@@ -1,0 +1,779 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="前言什么是Hexo   Hexo 是高效的静态站点生成框架，它基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。   类似于jekyll、Octopress、Wordp">
+<meta name="keywords">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo,快速搭建简约博客">
+<meta property="og:url" content="http://yoursite.com/2017/04/18/Hexo,快速搭建简约博客/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="前言什么是Hexo   Hexo 是高效的静态站点生成框架，它基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。   类似于jekyll、Octopress、Wordp">
+<meta property="og:updated_time" content="2017-04-21T07:52:55.023Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hexo,快速搭建简约博客">
+<meta name="twitter:description" content="前言什么是Hexo   Hexo 是高效的静态站点生成框架，它基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。   类似于jekyll、Octopress、Wordp">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/18/Hexo,快速搭建简约博客/"/>
+
+
+
+
+
+  <title> Hexo,快速搭建简约博客 | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/18/Hexo,快速搭建简约博客/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Hexo,快速搭建简约博客
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-18T23:56:25+08:00">
+                2017-04-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/18/Hexo,快速搭建简约博客/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/18/Hexo,快速搭建简约博客/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="什么是Hexo"><a href="#什么是Hexo" class="headerlink" title="什么是Hexo"></a>什么是Hexo</h3><p>   Hexo 是高效的静态站点生成框架，它基于 Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了Markdown 本身的语法之外，还可以使用 Hexo 提供的 标签插件 来快速的插入特定形式的内容。在这篇文章中，假定你已经成功安装了 Hexo，并使用 Hexo 提供的命令创建了一个站点。<br>   类似于jekyll、Octopress、Wordpress，我们可以用hexo创建自己的博客，托管到github或Heroku上，绑定自己的域名，用markdown写文章。</p>
+<h3 id="为什么要用Hexo"><a href="#为什么要用Hexo" class="headerlink" title="为什么要用Hexo"></a>为什么要用Hexo</h3><p>不可思议的快速 ─ 只要一眨眼静态文件即生成完成<br>支持 Markdown<br>仅需一道指令即可部署到 GitHub Pages 和 Heroku<br>已移植 Octopress 插件<br>高扩展性、自订性<br>兼容于 Windows, Mac &amp; Linux</p>
+<p>以上是引用作者的话。<br>For me,as a coder,整理平时的note，将所遇到的坑及时记录在案非常重要。</p>
+<a id="more"></a>
+<h2 id="配置环境"><a href="#配置环境" class="headerlink" title="配置环境"></a>配置环境</h2><h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>简单来说，<a href="https://nodejs.org/en/" target="_blank" rel="external">Node.js</a>就是运行在服务器的JavaScript，是一个JavaScript的运行环境(runtime).作用是用来生成静态页面。<br>这里注意安装分两种，一种是Source Code源码，一种是编译后的文件。所谓编译好的文件就是解压后，在bin文件夹中已经存在node及npm。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">cd</span> your-node-path/bin</div><div class="line">ls</div><div class="line">./node -v</div></pre></td></tr></table></figure>
+<p>注意这里执行命令并不是全局的，需要将这个设置为全局命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">ln <span class="_">-s</span> .../bin/node /usr/<span class="built_in">local</span>/bin/node</div><div class="line">ln <span class="_">-s</span> .../bin/npm /usr/<span class="built_in">local</span>/bin/npm</div></pre></td></tr></table></figure>
+<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>作用是把本地的hexo内容提交到github中。</p>
+<h3 id="申请Github"><a href="#申请Github" class="headerlink" title="申请Github"></a>申请Github</h3><p>作用：用来做博客的远程创库、域名、服务器之类。</p>
+<h3 id="配置SSH"><a href="#配置SSH" class="headerlink" title="配置SSH"></a>配置SSH</h3><p>使用hexo博客必须配置SSH。<br>打开git bash，输入cd ~/.ssh，如果果提示：No such file or directory 说明未配置SSH。</p>
+<p>本地生成密钥对<br>ssh-keygen -t rsa -C “你的邮件地址”，注意命令中的大小写不要搞混。按提示指定保存文件夹，不设置密码。<br>添加公钥到Github<br>        根据上一步的提示，找到公钥文件（默认为id_rsa.pub），用记事本打开，全选并复制。<br>        登录Github，右上角 头像 -&gt; Settings —&gt; SSH keys —&gt; Add SSH key。把公钥粘贴到key中，填好title并点击 Add key。<br>        git bash中输入命令ssh -T git@github.com，选yes，等待片刻可看到成功提示。<br>修改本地的ssh remote url，不用https协议，改用git协议<br>        Github仓库中获取ssh协议相应的url<br>        本地仓库执行命令git remote set-url origin SSH对应的url，配置完后可用git remote -v查看结果</p>
+<p>这样git push或hexo d时不再需要输入账号密码。</p>
+<h3 id="hexo安装和使用"><a href="#hexo安装和使用" class="headerlink" title="hexo安装和使用"></a>hexo安装和使用</h3><p>安装hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
+<p>初始化hexo<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo init</div></pre></td></tr></table></figure></p>
+<p>生成静态页面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo generate //hexo g也可以</div></pre></td></tr></table></figure></p>
+<p>启动本地服务，进行文章预览调试<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s --debug //hexo service --debug也可以</div></pre></td></tr></table></figure></p>
+<p><a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">————————————————————————添加Next主题教程————————————————————————</a><br><a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">Next主题下载</a></p>
+<h4 id="hexo博客中添加图片"><a href="#hexo博客中添加图片" class="headerlink" title="hexo博客中添加图片"></a>hexo博客中添加图片</h4><p>插入外部链接图片<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">"图片描述"</span>](<span class="string">"图片地址"</span>)</div></pre></td></tr></table></figure></p>
+<p>插入本地图片:在/hexo/source目录下新建文件夹，命名为img<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">![<span class="string">"图片描述"</span>](/img/image_name.jpg)</div></pre></td></tr></table></figure></p>
+<p>设置图片居中<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div align=center&gt;</div><div class="line">![<span class="string">"图片描述"</span>](/img/image_name.jpg)</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="hexo博客中添加音乐"><a href="#hexo博客中添加音乐" class="headerlink" title="hexo博客中添加音乐"></a>hexo博客中添加音乐</h4><p>比如网易云音乐，找到喜欢的歌曲，点击分享按钮，把里面的代码复制下来，直接粘贴博文中即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;iframe frameborder=<span class="string">"no"</span> border=<span class="string">"0"</span> marginwidth=<span class="string">"0"</span> marginheight=<span class="string">"0"</span> width=330 height=86   </div><div class="line">    src=<span class="string">"http://music.163.com/outchain/player?type=2&amp;id=25706282&amp;auto=0&amp;height=66"</span>&gt;  </div><div class="line">&lt;/iframe&gt;</div></pre></td></tr></table></figure></p>
+<h4 id="hexo博客中添加视频"><a href="#hexo博客中添加视频" class="headerlink" title="hexo博客中添加视频"></a>hexo博客中添加视频</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Idina Menze和Caleb Hyles激情对唱Let It Go：  </div><div class="line">&lt;iframe   </div><div class="line">    height=498 width=510   </div><div class="line">    src=<span class="string">"http://player.youku.com/embed/XNjcyMDU4Njg0"</span>   </div><div class="line">    frameborder=0 allowfullscreen&gt;  </div><div class="line">&lt;/iframe&gt;</div></pre></td></tr></table></figure>
+<h4 id="hexo博客中添加评论功能"><a href="#hexo博客中添加评论功能" class="headerlink" title="hexo博客中添加评论功能"></a>hexo博客中添加评论功能</h4><p>1.在<a href="http://duoshuo.com/" target="_blank" rel="external">多说网站</a>新建一个站点，并且获取一个多说域名，我填写的是yuzhiyun,然后填写需要使用评论功能的域名。<br>2.找到本地theme下你正在使用的hexo主题，我的是next,打开主题配置文件，找到duoshuo_shortname标签，设置为刚才创建站点时多说域名中的内容，请注意没有前缀和后缀，比如我的就是iymx。<br>3.另外，多说公司业务调整，宣布多说项目即将关闭，将于2017年6月1日正式关停服务，后期可以寻找其他方法。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/19/TX1/" rel="next" title="Jetson TX1配置教程">
+                <i class="fa fa-chevron-left"></i> Jetson TX1配置教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/18/hello-world/" rel="prev" title="Hello World">
+                Hello World <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/18/Hexo,快速搭建简约博客/"
+           data-title="Hexo,快速搭建简约博客" data-url="http://yoursite.com/2017/04/18/Hexo,快速搭建简约博客/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/your-user-name" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/your-user-name" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://douban.com/people/your-user-name" target="_blank" title="豆瓣">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  豆瓣
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/your-user-name" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Hexo"><span class="nav-number">1.1.</span> <span class="nav-text">什么是Hexo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要用Hexo"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要用Hexo</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置环境"><span class="nav-number">2.</span> <span class="nav-text">配置环境</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Node-js"><span class="nav-number">2.1.</span> <span class="nav-text">安装Node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Git"><span class="nav-number">2.2.</span> <span class="nav-text">安装Git</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#申请Github"><span class="nav-number">2.3.</span> <span class="nav-text">申请Github</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置SSH"><span class="nav-number">2.4.</span> <span class="nav-text">配置SSH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hexo安装和使用"><span class="nav-number">2.5.</span> <span class="nav-text">hexo安装和使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo博客中添加图片"><span class="nav-number">2.5.1.</span> <span class="nav-text">hexo博客中添加图片</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo博客中添加音乐"><span class="nav-number">2.5.2.</span> <span class="nav-text">hexo博客中添加音乐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo博客中添加视频"><span class="nav-number">2.5.3.</span> <span class="nav-text">hexo博客中添加视频</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#hexo博客中添加评论功能"><span class="nav-number">2.5.4.</span> <span class="nav-text">hexo博客中添加评论功能</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iymx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
