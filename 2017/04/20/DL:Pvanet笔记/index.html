@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/20/DL:Pvanet笔记/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="pvanet训练及BUG记录Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)来自小北完美踩过的坑">
-<meta property="og:updated_time" content="2017-04-21T11:37:15.838Z">
+<meta property="og:updated_time" content="2017-05-09T11:42:31.550Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DL:Pvanet笔记">
 <meta name="twitter:description" content="pvanet训练及BUG记录Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)来自小北完美踩过的坑">
@@ -402,6 +402,8 @@
 <p>若使用pip install numpy会自动安装最新版本的numpy-1.12<br>此时编译后会出现第二的错误</p>
 <h4 id="Error-2"><a href="#Error-2" class="headerlink" title="Error 2"></a>Error 2</h4><p>bbox_targets[ind,start:end]=bbox_target_data[ind,1:]<br>TypeError: slice indices must be integers or None or have an<em>index</em> method<br>说明当前numpy版本过高<br>numpy-1.12 does not support floats as indexes ！！！ </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Download numpy 1.11.2 </div><div class="line"><span class="built_in">cd</span> numpy-1.11.2</div><div class="line">python setup.py build</div><div class="line">sudo python setup.py install</div></pre></td></tr></table></figure>
+<h4 id="Error-3"><a href="#Error-3" class="headerlink" title="Error 3"></a>Error 3</h4><p>KeyError: ‘max_overlaps’</p>
+<p>在/data/cache文件夹中删除.pkl文件</p>
 <p>cudnn错误，暂时支持4.0版本的cudnn</p>
 <p>so一类错误，添加LD_LIBRARY_PATH，另外在pva/lib/中重新make，有时需要手动删除.so文件再make</p>
 
@@ -629,7 +631,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练方法"><span class="nav-number">1.</span> <span class="nav-text">训练方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改程序"><span class="nav-number">3.</span> <span class="nav-text">修改程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型Error及解决方法"><span class="nav-number">4.</span> <span class="nav-text">典型Error及解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-1"><span class="nav-number">4.1.</span> <span class="nav-text">Error 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-2"><span class="nav-number">4.2.</span> <span class="nav-text">Error 2</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练方法"><span class="nav-number">1.</span> <span class="nav-text">训练方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改程序"><span class="nav-number">3.</span> <span class="nav-text">修改程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型Error及解决方法"><span class="nav-number">4.</span> <span class="nav-text">典型Error及解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-1"><span class="nav-number">4.1.</span> <span class="nav-text">Error 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-2"><span class="nav-number">4.2.</span> <span class="nav-text">Error 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-3"><span class="nav-number">4.3.</span> <span class="nav-text">Error 3</span></a></li></ol></li></ol></div>
             
 
           </div>
