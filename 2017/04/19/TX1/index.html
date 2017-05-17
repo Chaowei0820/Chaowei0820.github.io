@@ -87,23 +87,27 @@
 
 
 
-<meta name="description" content="使用JetPack 2.3配置TX1">
+<meta name="description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
 <meta name="keywords" content="DeepLearning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Jetson TX1配置教程">
+<meta property="og:title" content="Jetson TX1/TX2配置教程">
 <meta property="og:url" content="http://yoursite.com/2017/04/19/TX1/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="使用JetPack 2.3配置TX1">
+<meta property="og:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-3.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-4.jpg">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-1.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-2.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-2.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-3.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-4.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-5.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-6.png">
-<meta property="og:updated_time" content="2017-04-21T06:53:06.565Z">
+<meta property="og:updated_time" content="2017-05-17T09:08:51.631Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Jetson TX1配置教程">
-<meta name="twitter:description" content="使用JetPack 2.3配置TX1">
-<meta name="twitter:image" content="http://yoursite.com/img/tx1/tx1-2.png">
+<meta name="twitter:title" content="Jetson TX1/TX2配置教程">
+<meta name="twitter:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
+<meta name="twitter:image" content="http://yoursite.com/img/tx1/tx2-3.png">
 
 
 
@@ -137,7 +141,7 @@
 
 
 
-  <title> Jetson TX1配置教程 | Chaowei's Blog </title>
+  <title> Jetson TX1/TX2配置教程 | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -297,7 +301,7 @@
             
             
               
-                Jetson TX1配置教程
+                Jetson TX1/TX2配置教程
               
             
           </h1>
@@ -380,11 +384,13 @@
       
 
       
-        <blockquote class="blockquote-center"><p>使用JetPack 2.3配置TX1 </p>
+        <blockquote class="blockquote-center"><p>使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2 </p>
 </blockquote>
 <a id="more"></a>
-<h2 id="配置JetPack-2-3"><a href="#配置JetPack-2-3" class="headerlink" title="配置JetPack 2.3"></a>配置JetPack 2.3</h2><p>JetPack 系列是NVIDIA发布的在Jetson系列嵌入式平台上部署开发环境的开发包，目前最新版本是3.0，它包含 64bit 的 Ubuntu16.04 操作系统，CUDA 8.0，cuDNN 5.1，以及用来加速CNN推断速度的TensorRT. 对于JetPack 3.0更详细的介绍参见<a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">JetPack介绍</a>.<br>另外，由于本人电脑中的资源是旧版本2.3，所以后面的教程均基于2.3版本，与配置3.0没有太大区别。</p>
+<h2 id="配置JetPack-2-3-JetPack-3-0"><a href="#配置JetPack-2-3-JetPack-3-0" class="headerlink" title="配置JetPack 2.3/JetPack 3.0"></a>配置JetPack 2.3/JetPack 3.0</h2><p>JetPack 系列是NVIDIA发布的在Jetson系列嵌入式平台上部署开发环境的开发包，目前最新版本是3.0，推荐用于TX2,它包含64bit的 Ubuntu16.04 操作系统，CUDA 8.0，cuDNN 5.1，以及用来加速CNN推断速度的TensorRT. 对于JetPack 3.0更详细的介绍参见<a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">JetPack介绍</a>.<br>由于TX1与TX2的配置方法差别不大，因此以下教程基于JetPack 2.3配置TX1。</p>
+<p><img src="/img/tx1/tx2-3.png" alt="&quot;da&quot;"></p>
 <h3 id="所需设备"><a href="#所需设备" class="headerlink" title="所需设备"></a>所需设备</h3><p>1.一台装有Ubuntu64位操作系统的主机：由于JetPack是先在主机上下载并安装相关的包，然后刷到TX1上。<br>2.一根microUSB转USB线用于将主机中的系统镜像刷写至TX1中，一根网线连接TX1与路由器用于通过路由器传输cuda等包，注意这里若使用路由器方式传输文件速度较慢，强烈建议采用离线拷贝文件的方式，具体细节见下文。<br>3.USBHub，HDMI转VGA线，显示器，键鼠 等。</p>
+<p>附上前几天到货的TX2拆箱图！<br><img src="/img/tx1/tx2-4.jpg" alt="&quot;da&quot;"></p>
 <h3 id="下载JetPack2-3"><a href="#下载JetPack2-3" class="headerlink" title="下载JetPack2.3"></a>下载JetPack2.3</h3><p>在主机上通过 NVIDIA <a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">官方链接</a> 下载 JetPack 2.3，并新建一个文件夹存放下载下来的文件，文件名大概为    JetPack-L4T-2.3-Linux-x64.run,在/home/usrname/目录下新建文件夹，可以命名为 JetPack :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir JetPack</div><div class="line">cp ~/Downloads/JetPack-L4T-2.3-linux-x64.run ~/JetPack</div></pre></td></tr></table></figure></p>
 <h3 id="安装JetPack2-3"><a href="#安装JetPack2-3" class="headerlink" title="安装JetPack2.3"></a>安装JetPack2.3</h3><ol>
 <li><p>为 JetPack-L4T-2.3-linux-x64.run 增加执行权限</p>
@@ -393,9 +399,9 @@
 <li><p>执行 JetPack-L4T-2.3-linux-x64.run ，点击 Next</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./JetPack-L4T-2.3-linux-x64.run</div></pre></td></tr></table></figure>
 </li>
-<li><p>指明安装路径后选择部署的开发平台<br>此处我们选择 Jetson TX1，同样也支持 TK 1的部署</p>
-</li>
-<li><p>弹出JetPack L4T Component Manager对话框<br>由于我已经安装好了所有的包，所以这边的Action一栏是no action，如果没有安装过的话，会显示install xxx。<br>点击Next后，开始下载。<br><div align="center"><br><img src="/img/tx1/tx1-2.png" alt="&quot;da&quot;"><br></div><br>这里大家可以选择不安装OpenCV for Tegra，因为这个版本是2.4.13，对于USB摄像头的读取支持不是很好，另外对于CUDA静态库的读取也有些问题，所以不推荐安装，稍后会提示大家安装OpenCV 3.1</p>
+<li><p>指明安装路径后选择部署的开发平台<br>根据需求选择 Jetson TX1或者Jetson TX2，同样也支持 TK1的部署</p>
+<div align="center"><br><img src="/img/tx1/tx2-1.png" alt="&quot;da&quot;"><br></div></li>
+<li><p>弹出JetPack L4T Component Manager对话框<br>由于我已经安装好了所有的包，所以这边的Action一栏是no action，如果没有安装过的话，会显示install xxx。点击Next后，开始下载。<br>JetPack 2.3下载界面<br><div align="center"><br><img src="/img/tx1/tx1-2.png" alt="&quot;da&quot;"><br></div><br>JetPack 3.0下载界面<br><div align="center"><br><img src="/img/tx1/tx2-2.png" alt="&quot;da&quot;"><br></div><br>这里大家可以选择不安装OpenCV for Tegra，因为这个版本是2.4.13，对于USB摄像头的读取支持不是很好，另外对于CUDA静态库的读取也有些问题，所以不推荐安装，稍后会提示大家安装OpenCV 3.1</p>
 </li>
 <li><p>网络配置和端口选择<br>安装完成后进入网络配置选项，选择通过路由器连接互联网，同时将TX1连接到与主机同一个路由器上.<br>选择eth0端口，点击Next</p>
 </li>
@@ -514,7 +520,7 @@
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2017/04/19/TX1/"
-           data-title="Jetson TX1配置教程" data-url="http://yoursite.com/2017/04/19/TX1/">
+           data-title="Jetson TX1/TX2配置教程" data-url="http://yoursite.com/2017/04/19/TX1/">
       </div>
     
   </div>
@@ -563,7 +569,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -574,7 +580,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -585,7 +591,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -658,7 +664,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置JetPack-2-3"><span class="nav-number">1.</span> <span class="nav-text">配置JetPack 2.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所需设备"><span class="nav-number">1.1.</span> <span class="nav-text">所需设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载JetPack2-3"><span class="nav-number">1.2.</span> <span class="nav-text">下载JetPack2.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JetPack2-3"><span class="nav-number">1.3.</span> <span class="nav-text">安装JetPack2.3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝离线安装包及安装脚本"><span class="nav-number">2.</span> <span class="nav-text">拷贝离线安装包及安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda安装脚本"><span class="nav-number">2.1.</span> <span class="nav-text">拷贝cuda安装脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda、cudnn安装包"><span class="nav-number">2.2.</span> <span class="nav-text">拷贝cuda、cudnn安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cuda"><span class="nav-number">2.3.</span> <span class="nav-text">TX1中安装cuda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cudnn"><span class="nav-number">2.4.</span> <span class="nav-text">TX1中安装cudnn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中配置opencv3-1"><span class="nav-number">2.5.</span> <span class="nav-text">TX1中配置opencv3.1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX1中配置基于caffe的工程"><span class="nav-number">3.</span> <span class="nav-text">TX1中配置基于caffe的工程</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置JetPack-2-3-JetPack-3-0"><span class="nav-number">1.</span> <span class="nav-text">配置JetPack 2.3/JetPack 3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所需设备"><span class="nav-number">1.1.</span> <span class="nav-text">所需设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载JetPack2-3"><span class="nav-number">1.2.</span> <span class="nav-text">下载JetPack2.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JetPack2-3"><span class="nav-number">1.3.</span> <span class="nav-text">安装JetPack2.3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝离线安装包及安装脚本"><span class="nav-number">2.</span> <span class="nav-text">拷贝离线安装包及安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda安装脚本"><span class="nav-number">2.1.</span> <span class="nav-text">拷贝cuda安装脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda、cudnn安装包"><span class="nav-number">2.2.</span> <span class="nav-text">拷贝cuda、cudnn安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cuda"><span class="nav-number">2.3.</span> <span class="nav-text">TX1中安装cuda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cudnn"><span class="nav-number">2.4.</span> <span class="nav-text">TX1中安装cudnn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中配置opencv3-1"><span class="nav-number">2.5.</span> <span class="nav-text">TX1中配置opencv3.1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX1中配置基于caffe的工程"><span class="nav-number">3.</span> <span class="nav-text">TX1中配置基于caffe的工程</span></a></li></ol></div>
             
 
           </div>
