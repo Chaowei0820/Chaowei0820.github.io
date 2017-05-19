@@ -96,7 +96,7 @@
 <meta property="og:description" content="在Linux中，给你的程序设置开机自启动">
 <meta property="og:image" content="http://yoursite.com/img/autostart/1.png">
 <meta property="og:image" content="http://yoursite.com/img/autostart/2.png">
-<meta property="og:updated_time" content="2017-05-19T03:36:50.674Z">
+<meta property="og:updated_time" content="2017-05-19T03:56:52.320Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux设置程序开机自启动">
 <meta name="twitter:description" content="在Linux中，给你的程序设置开机自启动">
@@ -411,6 +411,8 @@
 <p>其中Exec后面放的就是需要自启动的可执行程序的路径，这里最好选择绝对路径</p>
 <h2 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h2><p>注意：此方法使用于部分Ubuntu系统<br>(1)点击Dash home打开Dash home。在检索窗里键入Startup application，<br><img src="/img/autostart/1.png" alt="&quot;da&quot;"><br>(2)显示出来的“Startup Applications”称为Startup Application Manager。点击打开Startup Application Manager,点击Add<br><img src="/img/autostart/2.png" alt="&quot;da&quot;"><br>“Name”可以是任意名称,给要启动的程序起个名字。当然是简单易懂明了的为好。<br>“Command”处记入启动电脑时要执行的命令或者是要启动的程序的所在,可以使用“Browse”这个按钮来设定要启动的程序的所在。<br>“Comment”处可记入一些说明。也可以不记入（当然“name”的地方也可以不记入。不过以后用起来很不方便）。</p>
 <p>点击下面的“Add”按钮即可设定好想要在启动电脑时启动的程序了。</p>
+<p>设置开机自动打开终端,可将终端的执行文件添加到startup中，其位置在/usr/bin/gnome-terminal<br>若要设置打开终端自动运行某个脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gedit /etc/bash.bashrc</div></pre></td></tr></table></figure></p>
+<p>在文件下面添加命令<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">bash test.sh</div></pre></td></tr></table></figure></p>
 
       
     </div>
