@@ -91,7 +91,7 @@
 <meta name="keywords" content="DeepLearning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jetson TX1/TX2配置教程">
-<meta property="og:url" content="http://yoursite.com/2017/04/19/TX1/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/04/19/TX1配置教程/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx2-3.png">
@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-4.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-5.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-6.png">
-<meta property="og:updated_time" content="2017-05-19T08:46:56.134Z">
+<meta property="og:updated_time" content="2017-05-19T08:50:22.051Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetson TX1/TX2配置教程">
 <meta name="twitter:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
@@ -135,7 +135,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/19/TX1/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/04/19/TX1配置教程/"/>
 
 
 
@@ -290,7 +290,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/TX1/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/TX1配置教程/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaowei">
@@ -367,8 +367,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2017/04/19/TX1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/19/TX1/" itemprop="commentCount"></span>
+                <a href="/2017/04/19/TX1配置教程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/19/TX1配置教程/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -376,7 +376,7 @@
 
           
           
-             <span id="/2017/04/19/TX1/" class="leancloud_visitors" data-flag-title="Jetson TX1/TX2配置教程">
+             <span id="/2017/04/19/TX1配置教程/" class="leancloud_visitors" data-flag-title="Jetson TX1/TX2配置教程">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -446,7 +446,9 @@
 <p>4.完毕后导入环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-8.0/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-8.0/lib64:<span class="variable">$LD_LIBRARY_PATH</span></div></pre></td></tr></table></figure></p>
 <h3 id="TX1中安装cudnn"><a href="#TX1中安装cudnn" class="headerlink" title="TX1中安装cudnn"></a>TX1中安装cudnn</h3><p>1.解压cuDNN-v5.1.zip,有三个deb安装包<br>2.使用sudo dpkg -i指令依次安装，但是默认安装路径是在usr/include和usr/lib下的，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo cp /usr/include/cudnn.h /usr/<span class="built_in">local</span>/include/</div><div class="line">sudo cp /usr/lib/aarch64-linux-gnu/libcudnn* /usr/<span class="built_in">local</span>/lib/</div></pre></td></tr></table></figure></p>
 <h3 id="TX1中配置opencv3-1"><a href="#TX1中配置opencv3-1" class="headerlink" title="TX1中配置opencv3.1"></a>TX1中配置opencv3.1</h3><p>1.安装依赖库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-add-repository universe</div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">sudo apt-get install -y build-essential make cmake cmake-curses-gui g++</div><div class="line">sudo apt-get install -y libavformat-dev libavutil-dev libswscale-dev</div><div class="line">sudo apt-get install -y libv4l-dev libeigen3-dev libglew1.6-dev libgtk2.0-dev</div><div class="line">sudo apt-get install python-numpy</div></pre></td></tr></table></figure></p>
-<p>注意：为了方便，这里将opencv的所有依赖项与下面caffe工程所需依赖项的安装命令统一写入脚本，然后运行该脚本即可。以下是脚本内容<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y build-essential make cmake cmake-curses-gui g++ \</div><div class="line">libavformat-dev libavutil-dev libswscale-dev \</div><div class="line">libv4l-dev libeigen3-dev libglew1.6-dev libgtk2.0-dev \</div><div class="line">libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \</div><div class="line">--no-install-recommends libboost-all-dev \</div><div class="line">libatlas-base-dev \</div><div class="line">libgflags-dev libgoogle-glog-dev liblmdb-dev \</div><div class="line">python-dev python-numpy</div></pre></td></tr></table></figure></p>
+<font color="#FF000000">注意：为了方便，这里将opencv的所有依赖项与下面caffe工程所需依赖项的安装命令统一写入脚本，然后运行该脚本即可。以下是脚本内容</font>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y build-essential make cmake cmake-curses-gui g++ \</div><div class="line">libavformat-dev libavutil-dev libswscale-dev \</div><div class="line">libv4l-dev libeigen3-dev libglew1.6-dev libgtk2.0-dev \</div><div class="line">libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \</div><div class="line">--no-install-recommends libboost-all-dev \</div><div class="line">libatlas-base-dev \</div><div class="line">libgflags-dev libgoogle-glog-dev liblmdb-dev \</div><div class="line">python-dev python-numpy</div></pre></td></tr></table></figure>
 <p>2.编译安装Opencv3.1<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Downloads opencv-3.1.0.zip</div><div class="line"><span class="built_in">cd</span> ~</div><div class="line">unzip opencv-3.1.0.zip</div><div class="line"><span class="built_in">cd</span> opencv-3.1.0</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DWITH_CUDA=ON -DCUDA_ARCH_BIN=<span class="string">"5.3"</span> -DCUDA_ARCH_PTX=<span class="string">""</span> -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON ..</div><div class="line">sudo make -j4 install</div></pre></td></tr></table></figure></p>
 <p>编译好的OpenCV库会默认安装到 /usr/local/文件夹下</p>
 <p>注意：<br>由于CUDA 8.0不支持OpenCV的 GraphCut 算法，可能出现以下错误：</p>
@@ -503,8 +505,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/20/DL:Pvanet笔记/" rel="next" title="DL:Pvanet笔记">
-                <i class="fa fa-chevron-left"></i> DL:Pvanet笔记
+              <a href="/2017/04/19/TX1/" rel="next" title="Jetson TX1/TX2配置教程">
+                <i class="fa fa-chevron-left"></i> Jetson TX1/TX2配置教程
               </a>
             
           </div>
@@ -513,8 +515,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/04/19/TX1配置教程/" rel="prev" title="Jetson TX1/TX2配置教程">
-                Jetson TX1/TX2配置教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/04/18/Hexo,快速搭建简约博客/" rel="prev" title="Hexo,快速搭建简约博客">
+                Hexo,快速搭建简约博客 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -541,8 +543,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/04/19/TX1/"
-           data-title="Jetson TX1/TX2配置教程" data-url="http://yoursite.com/2017/04/19/TX1/">
+      <div class="ds-thread" data-thread-key="2017/04/19/TX1配置教程/"
+           data-title="Jetson TX1/TX2配置教程" data-url="http://yoursite.com/2017/04/19/TX1配置教程/">
       </div>
     
   </div>
