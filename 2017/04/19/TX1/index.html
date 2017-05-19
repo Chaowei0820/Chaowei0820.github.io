@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-4.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-5.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/tx1-6.png">
-<meta property="og:updated_time" content="2017-05-17T09:08:51.631Z">
+<meta property="og:updated_time" content="2017-05-19T02:46:57.911Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetson TX1/TX2配置教程">
 <meta name="twitter:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
@@ -411,7 +411,7 @@
 <h2 id="配置JetPack-2-3-JetPack-3-0"><a href="#配置JetPack-2-3-JetPack-3-0" class="headerlink" title="配置JetPack 2.3/JetPack 3.0"></a>配置JetPack 2.3/JetPack 3.0</h2><p>JetPack 系列是NVIDIA发布的在Jetson系列嵌入式平台上部署开发环境的开发包，目前最新版本是3.0，推荐用于TX2,它包含64bit的 Ubuntu16.04 操作系统，CUDA 8.0，cuDNN 5.1，以及用来加速CNN推断速度的TensorRT. 对于JetPack 3.0更详细的介绍参见<a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">JetPack介绍</a>.<br>由于TX1与TX2的配置方法差别不大，因此以下教程基于JetPack 2.3配置TX1。</p>
 <p><img src="/img/tx1/tx2-3.png" alt="&quot;da&quot;"></p>
 <h3 id="所需设备"><a href="#所需设备" class="headerlink" title="所需设备"></a>所需设备</h3><p>1.一台装有Ubuntu64位操作系统的主机：由于JetPack是先在主机上下载并安装相关的包，然后刷到TX1上。<br>2.一根microUSB转USB线用于将主机中的系统镜像刷写至TX1中，一根网线连接TX1与路由器用于通过路由器传输cuda等包，注意这里若使用路由器方式传输文件速度较慢，强烈建议采用离线拷贝文件的方式，具体细节见下文。<br>3.USBHub，HDMI转VGA线，显示器，键鼠 等。</p>
-<p>附上前几天到货的TX2拆箱图！<br><img src="/img/tx1/tx2-4.jpg" alt="&quot;da&quot;"></p>
+<p><a href="http://www.nvidia.cn/object/embedded-systems-dev-kits-modules-cn.html" target="_blank" rel="external">Nvidia Jetson面向无人智能化领域的嵌入式平台</a><br>附上前几天到货的TX2拆箱图！<br><img src="/img/tx1/tx2-4.jpg" alt="&quot;da&quot;"></p>
 <h3 id="下载JetPack2-3"><a href="#下载JetPack2-3" class="headerlink" title="下载JetPack2.3"></a>下载JetPack2.3</h3><p>在主机上通过 NVIDIA <a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">官方链接</a> 下载 JetPack 2.3，并新建一个文件夹存放下载下来的文件，文件名大概为    JetPack-L4T-2.3-Linux-x64.run,在/home/usrname/目录下新建文件夹，可以命名为 JetPack :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir JetPack</div><div class="line">cp ~/Downloads/JetPack-L4T-2.3-linux-x64.run ~/JetPack</div></pre></td></tr></table></figure></p>
 <h3 id="安装JetPack2-3"><a href="#安装JetPack2-3" class="headerlink" title="安装JetPack2.3"></a>安装JetPack2.3</h3><ol>
 <li><p>为 JetPack-L4T-2.3-linux-x64.run 增加执行权限</p>
