@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/17/Linux串口编程/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="Linux串口通信编程简介，附Code">
-<meta property="og:updated_time" content="2017-05-19T02:54:03.721Z">
+<meta property="og:updated_time" content="2017-05-19T02:56:57.454Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux串口通信编程">
 <meta name="twitter:description" content="Linux串口通信编程简介，附Code">
@@ -427,7 +427,7 @@
 <p> 保存，重新插入USB转串口，普通用户就能搞定了</p>
 <h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><p>通过添加用户来实现<br>(1)由于tty属于“dialout”组别，比如你的用户名是chaowei，先命令查看下用户隶属的组别<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">groups chaowei</div></pre></td></tr></table></figure></p>
 <p>(2)如果没有隶属“dialout”，那么把用户加入进去<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gpasswd --add chaowei dialout</div></pre></td></tr></table></figure></p>
-<p>(3)logout 再登录系统激活功能<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo gpasswd --add chaowei dialout</div></pre></td></tr></table></figure></p>
+<p>(3)logout 再登录系统激活功能</p>
 
       
     </div>
