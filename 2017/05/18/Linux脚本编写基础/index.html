@@ -1,0 +1,931 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Linux," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Linux中编写shell脚本的基础语法知识">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux脚本编写基础">
+<meta property="og:url" content="http://yoursite.com/2017/05/18/Linux脚本编写基础/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="Linux中编写shell脚本的基础语法知识">
+<meta property="og:updated_time" content="2017-05-19T08:19:34.710Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux脚本编写基础">
+<meta name="twitter:description" content="Linux中编写shell脚本的基础语法知识">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/18/Linux脚本编写基础/"/>
+
+
+
+
+
+  <title> Linux脚本编写基础 | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/18/Linux脚本编写基础/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Linux脚本编写基础
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-05-18T15:31:25+08:00">
+                2017-05-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/05/18/Linux脚本编写基础/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/05/18/Linux脚本编写基础/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+             <span id="/2017/05/18/Linux脚本编写基础/" class="leancloud_visitors" data-flag-title="Linux脚本编写基础">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>Linux中编写shell脚本的基础语法知识 </p>
+</blockquote> 
+<a id="more"></a>
+<h2 id="Linux-脚本编写基础"><a href="#Linux-脚本编写基础" class="headerlink" title="Linux 脚本编写基础"></a>Linux 脚本编写基础</h2><h3 id="语法基本介绍"><a href="#语法基本介绍" class="headerlink" title="语法基本介绍"></a>语法基本介绍</h3><h4 id="开头"><a href="#开头" class="headerlink" title="开头"></a>开头</h4><p>程序必须以下面的行开始（必须放在文件的第一行）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">#!/bin/sh</div></pre></td></tr></table></figure></p>
+<p>符号#!用来告诉系统它后面的参数是用来执行该文件的程序。在这个例子中我们使用/bin/sh来执行程序。<br>当编辑好脚本时，如果要执行该脚本，还必须使其可执行。<br>要使脚本可执行：编译 chmod +x filename 这样才能用./filename 来运行</p>
+<h4 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h4><p>在进行shell编程时，以#开头的句子表示注释，直到这一行的结束，强烈建议在程序中使用注释。如果使用了注释，那么即使相当长的时间内没有使用该脚本，也能在很短的时间内明白该脚本的作用及工作原理。</p>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>在其他编程语言中您必须使用变量。在shell编程中，所有的变量都由字符串组成，并且不需要对变量进行声明。要赋值给一个变量，可以这样写：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"> <span class="comment">#对变量赋值：</span></div><div class="line">a=<span class="string">"hello world"</span></div><div class="line"> <span class="comment"># 现在打印变量a的内容：</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"A is:"</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$a</span></div></pre></td></tr></table></figure></p>
+<p>有时候变量名很容易与其他文字混淆，比如：<br>num=2<br>echo “this is the $numnd”<br>这并不会打印出”this is the 2nd”，而仅仅打印”this is the “，因为shell会去搜索变量numnd的值，但是这个变量时没有值的。可以使用花括号来告诉shell我们要打印的是num变量：<br>num=2<br>echo “this is the ${num}nd”<br>这将打印： this is the 2nd</p>
+<h4 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a>环境变量</h4><p>由export关键字处理过的变量叫做环境变量。我们不对环境变量进行讨论，因为通常情况下仅仅在登录脚本中使用环境变量。</p>
+<h2 id="Shell命令和流程控制"><a href="#Shell命令和流程控制" class="headerlink" title="Shell命令和流程控制"></a>Shell命令和流程控制</h2><p>在shell脚本中可以使用三类命令</p>
+<h3 id="Unix-命令"><a href="#Unix-命令" class="headerlink" title="Unix 命令"></a>Unix 命令</h3><p>虽然在shell脚本中可以使用任意的unix命令，但是还是由一些相对更常用的命令。这些命令通常是用来进行文件和文字操作的。<br>常用命令语法及功能</p>
+<blockquote>
+<p>(1)echo “some text”: 将文字内容打印在屏幕上<br>(2)ls: 文件列表<br>(3)wc –l filewc -w filewc -c file: 计算文件行数,计算文件中的单词数,计算文件中的字符数<br>(4)cp sourcefile destfile: 文件拷贝<br>(5)mv oldname newname : 重命名文件或移动文件<br>(6)rm file: 删除文件<br>(7)grep ‘pattern’ file: 在文件内搜索字符串比如：grep ‘searchstring’ file.txt<br>(8)cut -b colnum file: 指定欲显示的文件内容范围，并将它们输出到标准输出设备比如：输出每行第5个到第9个字符cut -b5-9 file.txt千万不要和cat命令混淆，这是两个完全不同的命令<br>(9)cat file.txt: 输出文件内容到标准输出设备（屏幕）上<br>(10)file somefile: 得到文件类型<br>(11)read var: 提示用户输入，并将输入赋值给变量<br>(12)sort file.txt: 对file.txt文件中的行进行排序<br>(13)uniq: 删除文本文件中出现的行列比如： sort file.txt | uniq<br>(14)expr: 进行数学运算Example: add 2 and 3expr 2 “+” 3<br>(15)find: 搜索文件比如：根据文件名搜索find . -name filename -print<br>(16)tee: 将数据输出到标准输出设备(屏幕) 和文件比如：somecommand | tee outfile<br>(17)basename file: 返回不包含路径的文件名比如： basename /bin/tux将返回 tux<br>(18)dirname file: 返回文件所在路径比如：dirname /bin/tux将返回 /bin<br>(19)head file: 打印文本文件开头几行<br>(20)tail file : 打印文本文件末尾几行<br>(21)sed: Sed是一个基本的查找替换程序。可以从标准输入（比如命令管道）读入文本，并将结果输出到标准输出（屏幕）。该命令采用正则表达式（见参考）进行搜索。<br>不要和shell中的通配符相混淆。比如：将linuxfocus 替换为LinuxFocus<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat text.file | sed <span class="string">'s/linuxfocus/LinuxFocus/'</span> &gt; newtext.file</div></pre></td></tr></table></figure></p>
+<p>(22)awk: awk 用来从文本文件中提取字段。缺省地，字段分割符是空格，可以使用-F指定其他分割符。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat file.txt | awk -F, <span class="string">'&#123;print $1 "," $3 &#125;'</span></div></pre></td></tr></table></figure></p>
+</blockquote>
+<p>这里我们使用，作为字段分割符，同时打印第一个和第三个字段。如果该文件内容如下： Adam Bor, 34, IndiaKerry Miller, 22, USA<br>命令输出结果为：Adam Bor, IndiaKerry Miller, USA</p>
+<h3 id="概念-管道-重定向和-backtick"><a href="#概念-管道-重定向和-backtick" class="headerlink" title="概念: 管道, 重定向和 backtick"></a>概念: 管道, 重定向和 backtick</h3><p>这些不是系统命令，但是他们真的很重要。</p>
+<h4 id="管道"><a href="#管道" class="headerlink" title="管道 (|)"></a>管道 (|)</h4><p>将一个命令的输出作为另外一个命令的输入。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"hello"</span> file.txt | wc <span class="_">-l</span></div></pre></td></tr></table></figure></p>
+<p>在file.txt中搜索包含有”hello”的行并计算其行数。<br>在这里grep命令的输出作为wc命令的输入。当然您可以使用多个命令。</p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>将命令的结果输出到文件，而不是标准输出（屏幕）。<br>　　&gt; 写入文件并覆盖旧文件<br>　　&gt;&gt; 加到文件的尾部，保留旧文件内容。</p>
+<h4 id="反短斜线"><a href="#反短斜线" class="headerlink" title="反短斜线"></a>反短斜线</h4><p>使用反短斜线可以将一个命令的输出作为另外一个命令的一个命令行参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -mtime -1 -type f -print</div></pre></td></tr></table></figure></p>
+<p>上面命令用来查找过去24小时（-mtime –2则表示过去48小时）内修改过的文件。如果想将所有查找到的文件打一个包，则可以使用以下脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"> <span class="comment"># The ticks are backticks (`) not normal quotes ('):</span></div><div class="line">tar -zcvf lastmod.tar.gz `find . -mtime -1 -type f -print`</div></pre></td></tr></table></figure></p>
+<h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>if表达式 如果条件为真则执行then后面的部分<br>if ….; then<br>　 ….<br>elif ….; then<br>　 ….<br>else<br>　 ….<br>fi</p>
+<p>大多数情况下，可以使用测试命令来对条件进行测试。比如可以比较字符串、判断文件是否存在及是否可读等等…通常用” [ ] “来表示条件测试。注意这里的空格很重要。要确保方括号的空格。</p>
+<blockquote>
+<p>[ -f “somefile” ] ：判断是否是一个文件<br>[ -x “/bin/ls” ] ：判断/bin/ls是否存在并有可执行权限<br>[ -n “$var” ] ：判断$var变量是否有值<br>[ “$a” = “$b” ] ：判断$a和$b是否相等</p>
+</blockquote>
+<p>执行man test可以查看所有测试表达式可以比较和判断的类型。<br>直接执行以下脚本：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$SHELL</span>"</span> = <span class="string">"/bin/bash"</span> ]; <span class="keyword">then</span></div><div class="line">　<span class="built_in">echo</span> <span class="string">"your login shell is the bash (bourne again shell)"</span></div><div class="line"><span class="keyword">else</span></div><div class="line">　<span class="built_in">echo</span> <span class="string">"your login shell is not bash but <span class="variable">$SHELL</span>"</span></div><div class="line"><span class="keyword">fi</span></div></pre></td></tr></table></figure></p>
+<p>变量$SHELL包含了登录shell的名称，我们和/bin/bash进行了比较。</p>
+<p>快捷操作符<br>熟悉C语言的朋友可能会很喜欢下面的表达式<br>[ -f “/etc/shadow” ] &amp;&amp; echo “This computer uses shadow passwors”<br>这里 &amp;&amp; 就是一个快捷操作符，如果左边的表达式为真则执行右边的语句,也可以认为是逻辑运算中的与操作。<br>上例中表示如果/etc/shadow文件存在则打印” This computer uses shadow passwors”。同样或操作(||)在shell编程中也是可用的。这里有个例子：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line">mailfolder=/var/spool/mail/james</div><div class="line">[ -r <span class="string">"<span class="variable">$mailfolder</span>"</span> ]<span class="string">' '</span>&#123; <span class="built_in">echo</span> <span class="string">"Can not read <span class="variable">$mailfolder</span>"</span> ; <span class="built_in">exit</span> 1; &#125;</div><div class="line"><span class="built_in">echo</span> <span class="string">"<span class="variable">$mailfolder</span> has mail from:"</span></div><div class="line">grep <span class="string">"^From "</span> <span class="variable">$mailfolder</span></div></pre></td></tr></table></figure></p>
+<p>该脚本首先判断mailfolder是否可读。如果可读则打印该文件中的”From” 一行。如果不可读则或操作生效，打印错误信息后脚本退出。这里有个问题，那就是我们必须有两个命令：<br>　　-打印错误信息<br>　　-退出程序<br>　　我们使用花括号以匿名函数的形式将两个命令放到一起作为一个命令使用。一般函数将在下文提及。<br>　　不用与和或操作符，我们也可以用if表达式作任何事情，但是使用与或操作符会更便利很多。</p>
+<h4 id="case"><a href="#case" class="headerlink" title="case"></a>case</h4><p>case :表达式可以用来匹配一个给定的字符串，而不是数字。<br>case … in<br>…) do something here ;;<br>esac<br>让我们看一个例子。 file命令可以辨别出一个给定文件的文件类型，比如：<br>file lf.gz<br>这将返回：<br>lf.gz: gzip compressed data, deflated, original filename,<br>last modified: Mon Aug 27 23:09:18 2001, os: Unix<br>利用这一点写了一个叫做smartzip的脚本，该脚本可以自动解压bzip2, gzip 和zip 类型的压缩文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/bin/sh</span></div><div class="line">ftype=`file <span class="string">"<span class="variable">$1</span>"</span>`</div><div class="line"><span class="keyword">case</span> <span class="string">"<span class="variable">$ftype</span>"</span> <span class="keyword">in</span></div><div class="line"><span class="string">"<span class="variable">$1</span>: Zip archive"</span>*)</div><div class="line">　　unzip <span class="string">"<span class="variable">$1</span>"</span> ;;</div><div class="line"><span class="string">"<span class="variable">$1</span>: gzip compressed"</span>*)</div><div class="line">　　gunzip <span class="string">"<span class="variable">$1</span>"</span> ;;</div><div class="line"><span class="string">"<span class="variable">$1</span>: bzip2 compressed"</span>*)</div><div class="line">　　bunzip2 <span class="string">"<span class="variable">$1</span>"</span> ;;</div><div class="line">*) <span class="built_in">echo</span> <span class="string">"File <span class="variable">$1</span> can not be uncompressed with smartzip"</span>;;</div><div class="line"><span class="keyword">esac</span></div></pre></td></tr></table></figure></p>
+<p>注意到我们在这里使用了一个特殊的变量$1,该变量包含了传递给该程序的第一个参数值。也就是说，当我们运行<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">smartzip articles.zip</div></pre></td></tr></table></figure></p>
+<p>$1 就是字符串 articles.zip</p>
+<h4 id="selsect"><a href="#selsect" class="headerlink" title="selsect"></a>selsect</h4><p>select 表达式是一种bash的扩展应用，尤其擅长于交互式使用。用户可以从一组不同的值中进行选择。<br>select var in … ; do<br>　break<br>done<br>…. now $var can be used ….<br>下面是一个例子<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"What is your favourite OS?"</span></div><div class="line">select var <span class="keyword">in</span> <span class="string">"Linux"</span> <span class="string">"Gnu Hurd"</span> <span class="string">"Free BSD"</span> <span class="string">"Other"</span>; <span class="keyword">do</span></div><div class="line">　　　　<span class="built_in">break</span></div><div class="line"><span class="keyword">done</span></div><div class="line"><span class="built_in">echo</span> <span class="string">"You have selected <span class="variable">$var</span>"</span></div></pre></td></tr></table></figure></p>
+<p>下面是该脚本运行的结果：<br>What is your favourite OS?<br>1) Linux<br>2) Gnu Hurd<br>3) Free BSD<br>4) Other</p>
+<p> #? 1<br>You have selected Linux</p>
+<h4 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h4><p>loop表达式：<br>while …; do<br>….<br>done<br>　　while-loop 将运行直到表达式测试为真。will run while the expression that we test for is true.<br>关键字”break” 用来跳出循环。而关键字”continue”用来不执行余下的部分而直接跳到下一个循环。<br>　　<br>for-loop表达式查看一个字符串列表 (字符串用空格分隔) 然后将其赋给一个变量：<br>for var in ….; do<br>　 ….<br>done<br>在下面的例子中，将分别打印ABC到屏幕上<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"><span class="keyword">for</span> var <span class="keyword">in</span> A B C ; <span class="keyword">do</span></div><div class="line">　 <span class="built_in">echo</span> <span class="string">"var is <span class="variable">$var</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></p>
+<p>下面是一个更为有用的脚本showrpm，其功能是打印一些RPM包的统计信息<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"> <span class="comment"># list a content summary of a number of RPM packages</span></div><div class="line"> <span class="comment"># USAGE: showrpm rpmfile1 rpmfile2 ...</span></div><div class="line"> <span class="comment"># EXAMPLE: showrpm /cdrom/RedHat/RPMS/*.rpm</span></div><div class="line"><span class="keyword">for</span> rpmpackage <span class="keyword">in</span> $*; <span class="keyword">do</span></div><div class="line">　<span class="keyword">if</span> [ -r <span class="string">"<span class="variable">$rpmpackage</span>"</span> ];<span class="keyword">then</span></div><div class="line">　　<span class="built_in">echo</span> <span class="string">"=============== <span class="variable">$rpmpackage</span> =============="</span></div><div class="line">　　rpm -qi -p <span class="variable">$rpmpackage</span></div><div class="line">　<span class="keyword">else</span></div><div class="line">　　<span class="built_in">echo</span> <span class="string">"ERROR: cannot read file <span class="variable">$rpmpackage</span>"</span></div><div class="line">　<span class="keyword">fi</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure></p>
+<p>这里出现了第二个特殊的变量$<em>，该变量包含了所有输入的命令行参数值。<br>如果您运行showrpm openssh.rpm w3m.rpm webgrep.rpm<br>此时 $</em> 包含了 3 个字符串，即openssh.rpm, w3m.rpm and webgrep.rpm.</p>
+<h3 id="引号"><a href="#引号" class="headerlink" title="引号"></a>引号</h3><p>在向程序传递任何参数之前，程序会扩展通配符和变量。这里所谓扩展的意思是程序会把通配符（比如*）替换成合适的文件名，它变量替换成变量值。为了防止程序作这种替换，可以使用引号<br>让我们来看一个例子，假设在当前目录下有一些文件，两个jpg文件， mail.jpg 和tux.jpg。</p>
+<p>参考链接：<br>【1】<a href="http://www.jb51.net/article/36739.htm" target="_blank" rel="external">Linux 脚本编写基础知识</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Linux/" rel="tag"># Linux</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/18/Linux设置程序开机自启动/" rel="prev" title="Linux设置程序开机自启动">
+                Linux设置程序开机自启动 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/05/18/Linux脚本编写基础/"
+           data-title="Linux脚本编写基础" data-url="http://yoursite.com/2017/05/18/Linux脚本编写基础/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Linux-脚本编写基础"><span class="nav-number">1.</span> <span class="nav-text">Linux 脚本编写基础</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#语法基本介绍"><span class="nav-number">1.1.</span> <span class="nav-text">语法基本介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#开头"><span class="nav-number">1.1.1.</span> <span class="nav-text">开头</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注释"><span class="nav-number">1.1.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#变量"><span class="nav-number">1.1.3.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#环境变量"><span class="nav-number">1.1.4.</span> <span class="nav-text">环境变量</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Shell命令和流程控制"><span class="nav-number">2.</span> <span class="nav-text">Shell命令和流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Unix-命令"><span class="nav-number">2.1.</span> <span class="nav-text">Unix 命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#概念-管道-重定向和-backtick"><span class="nav-number">2.2.</span> <span class="nav-text">概念: 管道, 重定向和 backtick</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#管道"><span class="nav-number">2.2.1.</span> <span class="nav-text">管道 (|)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重定向"><span class="nav-number">2.2.2.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#反短斜线"><span class="nav-number">2.2.3.</span> <span class="nav-text">反短斜线</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流程控制"><span class="nav-number">2.3.</span> <span class="nav-text">流程控制</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#if"><span class="nav-number">2.3.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#case"><span class="nav-number">2.3.2.</span> <span class="nav-text">case</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#selsect"><span class="nav-number">2.3.3.</span> <span class="nav-text">selsect</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#loop"><span class="nav-number">2.3.4.</span> <span class="nav-text">loop</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引号"><span class="nav-number">2.4.</span> <span class="nav-text">引号</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"iymx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
