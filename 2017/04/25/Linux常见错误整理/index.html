@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/25/Linux常见错误整理/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="Linux中编译项目工程常见错误归档">
-<meta property="og:updated_time" content="2017-04-25T13:40:19.056Z">
+<meta property="og:updated_time" content="2017-06-06T03:17:33.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常见错误整理">
 <meta name="twitter:description" content="Linux中编译项目工程常见错误归档">
@@ -412,6 +412,9 @@
 <p>4.PC端编译的so文件无法在arm linux中使用<br>否则会出现错误提示：<br>/usr/bin/ld: skipping incompatible…<br>/usr/bin/ld: cannot find -lXXX</p>
 <h3 id="Error-2-error-while-loading-shared-libraries-XXX-so-X"><a href="#Error-2-error-while-loading-shared-libraries-XXX-so-X" class="headerlink" title="Error 2:error while loading shared libraries:XXX.so.X"></a>Error 2:error while loading shared libraries:XXX.so.X</h3><p>出现下面的错误提示<br>error while loading shared libraries:XXX.so.X</p>
 <p>错误原因及解决方法与上面第一个错误相同</p>
+<h3 id="Linux下搜狗输入法不能输入中文的解决方案"><a href="#Linux下搜狗输入法不能输入中文的解决方案" class="headerlink" title="Linux下搜狗输入法不能输入中文的解决方案"></a>Linux下搜狗输入法不能输入中文的解决方案</h3><p>方法一：重启搜狗输入法<br>通过下面的命令重启搜狗输入法，看重启后是否可以正常使用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~$ killall fcitx </div><div class="line">~$ killall sogou-qinpanel</div><div class="line">~$ fcitx</div></pre></td></tr></table></figure></p>
+<p>方法二：检查修复安装依赖<br>因为我之前是可以正常使用的，所以应该不是安装依赖的问题。刚安装好的朋友如果无法使用，可以用下面的命令排除或修复安装依赖问题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ sudo apt-get install <span class="_">-f</span></div></pre></td></tr></table></figure></p>
+<p>方法三：删除配置文件，重启搜狗<br>ubuntu下搜狗的配置文件在 ~/.config下的3个文件夹里：<br>SogouPY、SogouPY.users、sogou-qimpanel<br>删除这3个文件夹，然后重启搜狗。<br>我使用这种方法后解决了无法输入中文问题</p>
 
       
     </div>
@@ -619,7 +622,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1-Cannot-find-lXXX"><span class="nav-number">1.</span> <span class="nav-text">Error 1:Cannot find -lXXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2-error-while-loading-shared-libraries-XXX-so-X"><span class="nav-number">2.</span> <span class="nav-text">Error 2:error while loading shared libraries:XXX.so.X</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1-Cannot-find-lXXX"><span class="nav-number">1.</span> <span class="nav-text">Error 1:Cannot find -lXXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2-error-while-loading-shared-libraries-XXX-so-X"><span class="nav-number">2.</span> <span class="nav-text">Error 2:error while loading shared libraries:XXX.so.X</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux下搜狗输入法不能输入中文的解决方案"><span class="nav-number">3.</span> <span class="nav-text">Linux下搜狗输入法不能输入中文的解决方案</span></a></li></ol></div>
             
 
           </div>
