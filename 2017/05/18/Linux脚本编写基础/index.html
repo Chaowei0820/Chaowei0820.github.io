@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/18/Linux脚本编写基础/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="Linux中编写shell脚本的基础语法知识">
-<meta property="og:updated_time" content="2017-05-19T08:22:22.103Z">
+<meta property="og:updated_time" content="2017-08-24T08:56:41.963Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux脚本编写基础">
 <meta name="twitter:description" content="Linux中编写shell脚本的基础语法知识">
@@ -414,7 +414,7 @@
 <h3 id="概念-管道-重定向和-backtick"><a href="#概念-管道-重定向和-backtick" class="headerlink" title="概念: 管道, 重定向和 backtick"></a>概念: 管道, 重定向和 backtick</h3><p>这些不是系统命令，但是他们真的很重要。</p>
 <h4 id="管道"><a href="#管道" class="headerlink" title="管道 (|)"></a>管道 (|)</h4><p>将一个命令的输出作为另外一个命令的输入。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">grep <span class="string">"hello"</span> file.txt | wc <span class="_">-l</span></div></pre></td></tr></table></figure></p>
 <p>在file.txt中搜索包含有”hello”的行并计算其行数。<br>在这里grep命令的输出作为wc命令的输入。当然您可以使用多个命令。</p>
-<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>将命令的结果输出到文件，而不是标准输出（屏幕）。<br>　　&gt; 写入文件并覆盖旧文件<br>　　&gt;&gt; 加到文件的尾部，保留旧文件内容。</p>
+<h4 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h4><p>将命令的结果输出到文件，而不是标准输出（屏幕）。<br>　　&gt; 写入文件并覆盖旧文件<br>　　&gt;&gt; 加到文件的尾部，保留旧文件内容。<br>　　<br>如下面命令表示将当前目录及所有子目录中的xml文件写入trainval.txt文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find -name <span class="string">'*.xml'</span> &gt; /home/chaowei/pva-faster-rcnn-master1/data/VOCdevkit2007/VOC2007/trainval.txt</div></pre></td></tr></table></figure></p>
 <h4 id="反短斜线"><a href="#反短斜线" class="headerlink" title="反短斜线"></a>反短斜线</h4><p>使用反短斜线可以将一个命令的输出作为另外一个命令的一个命令行参数。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">find . -mtime -1 -type f -print</div></pre></td></tr></table></figure></p>
 <p>上面命令用来查找过去24小时（-mtime –2则表示过去48小时）内修改过的文件。如果想将所有查找到的文件打一个包，则可以使用以下脚本<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/sh</span></div><div class="line"> <span class="comment"># The ticks are backticks (`) not normal quotes ('):</span></div><div class="line">tar -zcvf lastmod.tar.gz `find . -mtime -1 -type f -print`</div></pre></td></tr></table></figure></p>
 <h3 id="流程控制"><a href="#流程控制" class="headerlink" title="流程控制"></a>流程控制</h3><h4 id="if"><a href="#if" class="headerlink" title="if"></a>if</h4><p>if表达式 如果条件为真则执行then后面的部分<br>if ….; then<br>　 ….<br>elif ….; then<br>　 ….<br>else<br>　 ….<br>fi</p>
@@ -567,7 +567,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

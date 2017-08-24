@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/24/Linux正则表达式与通配符/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="Linux中正则表达式与通配符的基本用法">
-<meta property="og:updated_time" content="2017-05-24T13:49:48.186Z">
+<meta property="og:updated_time" content="2017-08-24T08:26:44.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux正则表达式与通配符">
 <meta name="twitter:description" content="Linux中正则表达式与通配符的基本用法">
@@ -403,6 +403,7 @@
 <p>* 0个或多个在*字符之前的那个普通字符<br>. 匹配任意字符<br>^ 匹配行首，或后面字符的非<br>$ 匹配行尾<br>[] 匹配字符集合<br>\     转义符，屏蔽一个元字符的特殊意义<br>\&lt;> 精确匹配符号<br>{n} 匹配前面字符出现n次<br>{n,} 匹配前面字符至少出现n次<br>{n,m} 匹配前面字符出现n~m次</p>
 </blockquote>
 <p>1.“*”符号<br>  zha*ng  ：“*”前面的普通字符是a，就表示匹配a字符0次或多次，如：zhng、zhang、zhaaaang<br>  （根据测试可以不包括前面的字符，即匹配0次）<br>2.匹配空行<br>  匹配行首的^和匹配行尾的$组合起来“^$”可以用来匹配空行，如果需要匹配只包含一个字符的行，可以用“^.$”<br>3.”[]”符号<br>  匹配字符集合，支持穷举方法列出字符集合的所有元素，也支持使用“-”符号表示字符集合范围。<br>  [12345] 等价于 [1-5]<br>  我们知道“^”符号表示匹配行首，但是，“^”符号放到“[]”符号中就不再表示匹配行首了，而是表示取反符号。<br>  [^b-d]  :表示不再b~d范围内的字符<br>  [A-Za-z] [A-Za-z]*  :匹配任意英文单词</p>
+<p>例如：输出当前目录下的文件个数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ls <span class="_">-l</span> |grep <span class="string">"^-"</span>|wc <span class="_">-l</span></div></pre></td></tr></table></figure></p>
 <h2 id="正则表达式的扩展"><a href="#正则表达式的扩展" class="headerlink" title="正则表达式的扩展"></a>正则表达式的扩展</h2><p>扩展的正则表达式元字符及其意义</p>
 <blockquote>
 <p>？   匹配0个或一个在其之前的那个普通字符<br> +  匹配一个或多个在其之前的那个普通字符<br>() 表示一个字符集合或用在expr中<br>|  表示“或”，匹配一组可选的字符</p>
@@ -542,7 +543,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
