@@ -98,7 +98,7 @@
 <meta property="og:image" content="http://yoursite.com/img/ML/2.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/3.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/4.png">
-<meta property="og:updated_time" content="2017-08-28T07:21:23.059Z">
+<meta property="og:updated_time" content="2017-08-30T06:49:00.850Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Machine Learing中的过拟合与欠拟合">
 <meta name="twitter:description" content="谈谈机器学习算法中的泛化与拟合。">
@@ -357,16 +357,6 @@
 
           
             
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2017/08/25/机器学习算法中的过拟合与欠拟合/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/08/25/机器学习算法中的过拟合与欠拟合/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
           
 
           
@@ -436,6 +426,7 @@
 <p>1&gt;随机将样本集S划分成k个不相交的子集，每个子集中样本数量为m/k个，这些子集分别记作S1,S2…Sk；</p>
 <p>2&gt;对于每个模型，进行如下操作：<br>for j=1 to k<br>将S1 ∪…∪ Sj-1 ∪ Sj+1 ∪…∪ Sk作为训练集，训练模型Mi，得到相应的假设函数Hij。<br>再将Sj作为验证集，计算泛化误差W(Sj(Hij))；</p>
 <p>3&gt;计算每个模型的平均泛化误差，选择泛化误差最小的模型Mi。<br>交叉验证是一种模型选择方法，其将样本的一部分用于训练，另一部分用于验证。因此不仅考虑了训练误差，同时也考虑了泛化误差。</p>
+<p>参考：<br>【1】<a href="http://blog.csdn.net/u014696921/article/details/62883249" target="_blank" rel="external">http://blog.csdn.net/u014696921/article/details/62883249</a><br>【2】<a href="http://blog.csdn.net/linkin1005/article/details/42869331" target="_blank" rel="external">http://blog.csdn.net/linkin1005/article/details/42869331</a></p>
 
       
     </div>
@@ -512,9 +503,7 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2017/08/25/机器学习算法中的过拟合与欠拟合/"
-           data-title="Machine Learing中的过拟合与欠拟合" data-url="http://yoursite.com/2017/08/25/机器学习算法中的过拟合与欠拟合/">
-      </div>
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
     
   </div>
 
@@ -760,6 +749,7 @@
 
 
 
+
   
   
 
@@ -778,39 +768,42 @@
 
   
 
-  
-    
-  
-
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"iymx"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.id = 'duoshuo-script';
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
   
-    
-    
-    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
-    <script src="/js/src/hook-duoshuo.js"></script>
+
+
+
+
+	
+
+
+
+
+
   
 
 
 
 
 
+  
 
 
 
 
 
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
 
 
 
