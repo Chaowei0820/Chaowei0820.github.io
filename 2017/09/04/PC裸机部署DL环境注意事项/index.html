@@ -94,7 +94,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/09/04/PC裸机部署DL环境注意事项/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
 <meta property="og:description" content="Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题">
-<meta property="og:updated_time" content="2017-09-04T11:40:44.154Z">
+<meta property="og:updated_time" content="2017-09-04T11:44:50.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PC裸机部署DL环境注意事项">
 <meta name="twitter:description" content="Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题">
@@ -389,14 +389,14 @@
 </blockquote> 
 <a id="more"></a>
 <h2 id="Ubuntu分区注意事项"><a href="#Ubuntu分区注意事项" class="headerlink" title="Ubuntu分区注意事项"></a>Ubuntu分区注意事项</h2><p>1.首先插好制作好的Ubuntu安装U盘，启动电脑，选择通过U盘启动。<br>2.选择安装英文版的Ubuntu系统，注意中文版的系统在后期配置环境时可能存在各种问题，当然已经安装了中文版系统的也可以在系统设置中修改语言。<br>3.在选择安装方式时，选择最下面的其他选项，自定义分区。<br>4.选择一块空闲的空间，点击”+”添加分区，分区类型选择逻辑分区。首先添加”boot”分区，挂载点选”/boot”，选Ex4日志文件系统，大小设置20G；再添加挂载点”/“的分区，选择Ex4日志文件系统，大小设置100G；再添加挂载点”/home”分区，选择Ex4日志文件系统，大小设置1T；再添加2G大小的交换空间和1G大小的EFI引导空间。<br>5.全部添加完后，修改安装自动引导器的设备，<font color="#FF000000">选择刚才boot分区的设备编号</font>，单击下一步。<br>6.安装完成后重启电脑。</p>
-<h2 id="Ubuntu安装显卡驱动加cuda的正确姿势"><a href="#Ubuntu安装显卡驱动加cuda的正确姿势" class="headerlink" title="Ubuntu安装显卡驱动加cuda的正确姿势"></a>Ubuntu安装显卡驱动加cuda的正确姿势</h2><p>避免安装NVIDIA驱动后桌面循环登录问题</p>
+<h2 id="Ubuntu安装显卡驱动加cuda的正确姿势"><a href="#Ubuntu安装显卡驱动加cuda的正确姿势" class="headerlink" title="Ubuntu安装显卡驱动加cuda的正确姿势"></a>Ubuntu安装显卡驱动加cuda的正确姿势</h2><p>避免安装NVIDIA驱动后桌面循环登录问题。出现这种问题的原因应该是显卡驱动不匹配</p>
 <h3 id="下载显卡驱动"><a href="#下载显卡驱动" class="headerlink" title="下载显卡驱动"></a>下载显卡驱动</h3><p>首次安装完Ubuntu系统后，需要在NVIDIA官网上下载与自己电脑显卡型号对应的显卡驱动。</p>
 <h3 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h3><p>ctrl+alt+F1进入文本模式下安装驱动，首先需要手动关闭图形界面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service lightdm stop</div></pre></td></tr></table></figure></p>
 <p>若电脑之前已经安装有旧驱动，那么需要先卸载旧驱动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove –purge nvidia*</div></pre></td></tr></table></figure></p>
 <p>给驱动run文件赋予执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod a+x NVIDIA-Linux-x86_64-375.20.run</div></pre></td></tr></table></figure></p>
 <p>安装，注意参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./NVIDIA-linux-x86_64-375.20.run –no-x-check –no-nouveau-check –no-opengl-files</div></pre></td></tr></table></figure></p>
 <p>–no-x-check 安装驱动时关闭X服务<br>–no-nouveau-check 安装驱动时禁用nouveau<br>–no-opengl-files 只安装驱动文件，不安装OpenGL文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service lightdm start</div></pre></td></tr></table></figure></p>
-<h3 id="安装cuda注意事项"><a href="#安装cuda注意事项" class="headerlink" title="安装cuda注意事项"></a>安装cuda注意事项</h3><font color="#FF000000">警告！<br>在安装CUDA时一定使用runfile文件，这样可以进行选择。不再选择安装驱动，以及在弹出xorg.conf时选择NO<br>注意，在选择安装项目时一定擦亮眼睛咯，千万不要使用ubuntu设置中附加驱动中驱动，除非你想重头来一遍……</font>
+<h3 id="安装cuda注意事项"><a href="#安装cuda注意事项" class="headerlink" title="安装cuda注意事项"></a>安装cuda注意事项</h3><font color="#FF000000">警告！<br>在安装CUDA时一定使用runfile文件，这样可以进行选择，不再选择安装驱动，以及在弹出xorg.conf时选择NO<br>注意，在选择安装项目时一定擦亮眼睛咯，千万不要使用ubuntu设置中附加驱动中驱动，否则会覆盖掉之前安装的驱动，造成不匹配，除非你想重头来一遍……</font>
 
 <p>重启，并不会出现循环登录的问题。<br>若已经出现这种循环登录的问题，只能说抱歉…已经很难抢救回来了，重装吧亲，之前花了很长时间想解决此问题，未果，这时间足够重装系统了。欢迎大神留言解决此问题的捷径！</p>
 
