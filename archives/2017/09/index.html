@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,17 +87,15 @@
 
 
 
-<meta name="description" content="Linux中编译项目工程常见错误归档">
-<meta name="keywords" content="Linux">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux常见错误整理">
-<meta property="og:url" content="http://yoursite.com/2017/04/25/Linux常见错误整理/index.html">
+<meta name="description" content="Believe Amazing_Grace  --By小北">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Chaowei's Blog">
+<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="Linux中编译项目工程常见错误归档">
-<meta property="og:updated_time" content="2017-06-06T03:17:33.485Z">
+<meta property="og:description" content="Believe Amazing_Grace  --By小北">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux常见错误整理">
-<meta name="twitter:description" content="Linux中编译项目工程常见错误归档">
+<meta name="twitter:title" content="Chaowei's Blog">
+<meta name="twitter:description" content="Believe Amazing_Grace  --By小北">
 
 
 
@@ -125,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/25/Linux常见错误整理/"/>
+  <link rel="canonical" href="http://yoursite.com/archives/2017/09/"/>
 
 
 
 
 
-  <title> Linux常见错误整理 | Chaowei's Blog </title>
+  <title> 归档 | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -166,7 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail ">
+  <div class="container sidebar-position-left  page-archive  ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -270,212 +268,66 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
+  <section id="posts" class="posts-collapse">
+    <span class="archive-move-on"></span>
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/25/Linux常见错误整理/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Chaowei">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Chaowei's Blog">
+    <span class="archive-page-counter">
+      
+      
+      
+        
+      
+      嗯..! 目前共计 22 篇日志。 继续努力。
     </span>
 
     
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                Linux常见错误整理
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-25T22:31:25+08:00">
-                2017-04-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-          
-
-          
-          
-             <span id="/2017/04/25/Linux常见错误整理/" class="leancloud_visitors" data-flag-title="Linux常见错误整理">
-               <span class="post-meta-divider">|</span>
-               <span class="post-meta-item-icon">
-                 <i class="fa fa-eye"></i>
-               </span>
-               
-                 <span class="post-meta-item-text">阅读次数 </span>
-               
-                 <span class="leancloud-visitors-count"></span>
-             </span>
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
 
       
       
-
       
-        <blockquote class="blockquote-center"><p>Linux中编译项目工程常见错误归档 </p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
-</blockquote>
-<h3 id="Error-1-Cannot-find-lXXX"><a href="#Error-1-Cannot-find-lXXX" class="headerlink" title="Error 1:Cannot find -lXXX"></a>Error 1:Cannot find -lXXX</h3><p>1.出现下面的错误提示：<br>/usr/bin/ld: cannot find -lXXX<br>其中XXX表示函数库文件名称，即XXX.so<br>其命名规则是:lib+库名(即XXX)+.so</p>
-<p>错误原因可能有三:</p>
-<blockquote>
-<p>系统没有安装相对应的lib<br>对应的lib版本不对<br>lib的symbolic link不正确，没有连接到正确的库文件</p>
-</blockquote>
-<p>2.Linux系统寻找动态库的路径设置文件是/etc/ld.so.conf,可以进行查看，根据需求进行增加操作<br>若共享库文件安装到了其他非lib目录下，但又不想在/etc/ld.so.conf中加路径，那可以export一个全局变量LD_LIBRARY_PATH</p>
-<p>3.若工程目录中已经给出编译好的.so文件，将其连接到/usr/local/lib中即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ln -sf /yourpath/XXX.so /usr/<span class="built_in">local</span>/lib</div></pre></td></tr></table></figure></p>
-<p>注意：直接拷贝.so文件至/usr/local/lib中是无效的，要么建立链接，要么执行ldconfig命令<br>ldconfig命令主要用于在默认搜索目录中(lib和usr/lib)以及动态库配置文件/etc/ld.so.conf内所列的目录下，搜索出可共享的动态链接库，进而创建出动态装入程序(ld.so)所需的链接和缓存文件，缓存文件默认为/etc/ld.so.cache,此文件保存已排好序的动态链接库名字列表。</p>
-<p>4.PC端编译的so文件无法在arm linux中使用<br>否则会出现错误提示：<br>/usr/bin/ld: skipping incompatible…<br>/usr/bin/ld: cannot find -lXXX</p>
-<h3 id="Error-2-error-while-loading-shared-libraries-XXX-so-X"><a href="#Error-2-error-while-loading-shared-libraries-XXX-so-X" class="headerlink" title="Error 2:error while loading shared libraries:XXX.so.X"></a>Error 2:error while loading shared libraries:XXX.so.X</h3><p>出现下面的错误提示<br>error while loading shared libraries:XXX.so.X</p>
-<p>错误原因及解决方法与上面第一个错误相同</p>
-<h3 id="Linux下搜狗输入法不能输入中文的解决方案"><a href="#Linux下搜狗输入法不能输入中文的解决方案" class="headerlink" title="Linux下搜狗输入法不能输入中文的解决方案"></a>Linux下搜狗输入法不能输入中文的解决方案</h3><p>方法一：重启搜狗输入法<br>通过下面的命令重启搜狗输入法，看重启后是否可以正常使用：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">~$ killall fcitx </div><div class="line">~$ killall sogou-qinpanel</div><div class="line">~$ fcitx</div></pre></td></tr></table></figure></p>
-<p>方法二：检查修复安装依赖<br>因为我之前是可以正常使用的，所以应该不是安装依赖的问题。刚安装好的朋友如果无法使用，可以用下面的命令排除或修复安装依赖问题<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">~$ sudo apt-get install <span class="_">-f</span></div></pre></td></tr></table></figure></p>
-<p>方法三：删除配置文件，重启搜狗<br>ubuntu下搜狗的配置文件在 ~/.config下的3个文件夹里：<br>SogouPY、SogouPY.users、sogou-qimpanel<br>删除这3个文件夹，然后重启搜狗。<br>我使用这种方法后解决了无法输入中文问题</p>
 
-      
-    </div>
-
-    <div>
       
         
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <div>
-      
-        
-
-      
-    </div>
-
-    <footer class="post-footer">
-      
-        <div class="post-tags">
-          
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
-          
+        <div class="collection-title">
+          <h2 class="archive-year motion-element" id="archive-year-2017">2017</h2>
         </div>
       
+      
 
       
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h1 class="post-title">
         
-      
+            <a class="post-title-link" href="/2017/09/04/PC裸机部署DL环境注意事项/" itemprop="url">
+              
+                <span itemprop="name">PC裸机部署DL环境注意事项</span>
+              
+            </a>
+        
+      </h1>
 
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2017/05/17/Jetson TX2/" rel="next" title="（转）Jetson TX2助力终端人工智能">
-                <i class="fa fa-chevron-left"></i> （转）Jetson TX2助力终端人工智能
-              </a>
-            
-          </div>
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated"
+              datetime="2017-09-04T19:31:25+08:00"
+              content="2017-09-04" >
+          09-04
+        </time>
+      </div>
 
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/21/DL:SSD笔记/" rel="prev" title="DL:SSD笔记">
-                DL:SSD笔记 <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
-      
-    </footer>
+    </header>
   </article>
 
 
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+    
+
+  </section>
+
+  
+
 
 
           </div>
@@ -483,12 +335,6 @@
 
 
           
-  <div class="comments" id="comments">
-    
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
-    
-  </div>
-
 
         </div>
         
@@ -508,17 +354,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview sidebar-panel">
+      <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -600,22 +437,6 @@
 
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-1-Cannot-find-lXXX"><span class="nav-number">1.</span> <span class="nav-text">Error 1:Cannot find -lXXX</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Error-2-error-while-loading-shared-libraries-XXX-so-X"><span class="nav-number">2.</span> <span class="nav-text">Error 2:error while loading shared libraries:XXX.so.X</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Linux下搜狗输入法不能输入中文的解决方案"><span class="nav-number">3.</span> <span class="nav-text">Linux下搜狗输入法不能输入中文的解决方案</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -736,9 +557,11 @@
   
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
-
+  
+    <script type="text/javascript" id="motion.page.archive">
+      $('.archive-year').velocity('transition.slideLeftIn');
+    </script>
+  
 
 
   
