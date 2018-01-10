@@ -1,0 +1,937 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Machine Learning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Andrew Ng老师deeplearning.ai课程纪要">
+<meta name="keywords" content="Machine Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络基础-by Andrew Ng">
+<meta property="og:url" content="http://yoursite.com/2018/01/10/神经网络基础-Andrew Ng/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="Andrew Ng老师deeplearning.ai课程纪要">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/2.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/4.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/4.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.6.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/9.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/9.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/10.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/11.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/11.2.png">
+<meta property="og:updated_time" content="2018-01-10T13:34:34.530Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经网络基础-by Andrew Ng">
+<meta name="twitter:description" content="Andrew Ng老师deeplearning.ai课程纪要">
+<meta name="twitter:image" content="http://yoursite.com/img/Ng_DL/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/10/神经网络基础-Andrew Ng/"/>
+
+
+
+
+
+  <title> 神经网络基础-by Andrew Ng | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/10/神经网络基础-Andrew Ng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                神经网络基础-by Andrew Ng
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-10T17:31:25+08:00">
+                2018-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Machine-Learning/" itemprop="url" rel="index">
+                    <span itemprop="name">Machine Learning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/10/神经网络基础-Andrew Ng/" class="leancloud_visitors" data-flag-title="神经网络基础-by Andrew Ng">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>Andrew Ng老师deeplearning.ai课程纪要 </p>
+</blockquote> 
+<a id="more"></a>
+<h2 id="前因后果"><a href="#前因后果" class="headerlink" title="前因后果"></a>前因后果</h2><p>很久没有更新博客…不找其他借口，本博主就是太懒了= =<br>临近毕业，很快就要面临秋招，目前已确定找DL和CV方向的工作。<br>前期虽然做了不少项目，积累了一些经验，但是基本都是用啥学啥，虽然尝试系统学习基础知识理论，曾信誓旦旦要啃完某一本书或者某一个课程，其结果都是啃得乱七八糟一团浆糊，不找其他借口，本博主就是擅长忘记，不擅长坚持，嗯。</p>
+<p>建立一个完整的知识体系真的非常重要，任何细小的知识点都可能从未来的面试官口中蹦出来。基础牢固，才能指哪打哪。</p>
+<p>此前曾学习完Ng老师deeplearning.ai前四周课程，受益匪浅，但很久没重温，现在需重新捡起来。<br><a href="https://www.deeplearning.ai/" target="_blank" rel="external">deeplearning.ai主页</a><br>此前Ng老师deeplearning.ai前四周的课程已经在网易云课堂免费开放，萌新们的福音。<br>这里为了方便温习，将课程中重要的部分贴出来。</p>
+<h2 id="二分分类"><a href="#二分分类" class="headerlink" title="二分分类"></a>二分分类</h2><p><img src="/img/Ng_DL/1.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归"><a href="#logistic回归" class="headerlink" title="logistic回归"></a>logistic回归</h2><p><img src="/img/Ng_DL/2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/2.5.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归损失函数"><a href="#logistic回归损失函数" class="headerlink" title="logistic回归损失函数"></a>logistic回归损失函数</h2><p><img src="/img/Ng_DL/3.png" alt="&quot;da&quot;"></p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h2><p><img src="/img/Ng_DL/4.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/4.5.png" alt="&quot;da&quot;"></p>
+<h2 id="计算图及其导数计算"><a href="#计算图及其导数计算" class="headerlink" title="计算图及其导数计算"></a>计算图及其导数计算</h2><p><img src="/img/Ng_DL/5.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/5.5.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/5.6.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归中的梯度下降法"><a href="#logistic回归中的梯度下降法" class="headerlink" title="logistic回归中的梯度下降法"></a>logistic回归中的梯度下降法</h2><p><img src="/img/Ng_DL/6.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/6.1.png" alt="&quot;da&quot;"></p>
+<h2 id="m个样本的梯度下降"><a href="#m个样本的梯度下降" class="headerlink" title="m个样本的梯度下降"></a>m个样本的梯度下降</h2><p><img src="/img/Ng_DL/6.2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/6.3.png" alt="&quot;da&quot;"></p>
+<h2 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h2><p><img src="/img/Ng_DL/7.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.1.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.3.png" alt="&quot;da&quot;"></p>
+<h2 id="向量化logistic回归"><a href="#向量化logistic回归" class="headerlink" title="向量化logistic回归"></a>向量化logistic回归</h2><p><img src="/img/Ng_DL/8.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/8.1.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/8.2.png" alt="&quot;da&quot;"></p>
+<h2 id="Python中的广播机制"><a href="#Python中的广播机制" class="headerlink" title="Python中的广播机制"></a>Python中的广播机制</h2><p><img src="/img/Ng_DL/9.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/9.1.png" alt="&quot;da&quot;"></p>
+<h2 id="关于python-numpy向量的说明"><a href="#关于python-numpy向量的说明" class="headerlink" title="关于python/numpy向量的说明"></a>关于python/numpy向量的说明</h2><p><img src="/img/Ng_DL/10.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic损失函数的解释"><a href="#logistic损失函数的解释" class="headerlink" title="logistic损失函数的解释"></a>logistic损失函数的解释</h2><p><img src="/img/Ng_DL/11.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/11.2.png" alt="&quot;da&quot;"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/09/04/PC裸机部署DL环境注意事项/" rel="prev" title="PC裸机部署DL环境注意事项">
+                PC裸机部署DL环境注意事项 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">23</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前因后果"><span class="nav-number">1.</span> <span class="nav-text">前因后果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分分类"><span class="nav-number">2.</span> <span class="nav-text">二分分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归"><span class="nav-number">3.</span> <span class="nav-text">logistic回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归损失函数"><span class="nav-number">4.</span> <span class="nav-text">logistic回归损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法"><span class="nav-number">5.</span> <span class="nav-text">梯度下降法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算图及其导数计算"><span class="nav-number">6.</span> <span class="nav-text">计算图及其导数计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归中的梯度下降法"><span class="nav-number">7.</span> <span class="nav-text">logistic回归中的梯度下降法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m个样本的梯度下降"><span class="nav-number">8.</span> <span class="nav-text">m个样本的梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量化"><span class="nav-number">9.</span> <span class="nav-text">向量化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量化logistic回归"><span class="nav-number">10.</span> <span class="nav-text">向量化logistic回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python中的广播机制"><span class="nav-number">11.</span> <span class="nav-text">Python中的广播机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于python-numpy向量的说明"><span class="nav-number">12.</span> <span class="nav-text">关于python/numpy向量的说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic损失函数的解释"><span class="nav-number">13.</span> <span class="nav-text">logistic损失函数的解释</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
