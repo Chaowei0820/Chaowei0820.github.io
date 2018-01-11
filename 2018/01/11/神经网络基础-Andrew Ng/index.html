@@ -87,31 +87,43 @@
 
 
 
-<meta name="description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
+<meta name="description" content="Andrew Ng老师deeplearning.ai课程纪要(第二周:神经网络基础)">
 <meta name="keywords" content="DeepLearning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="详解目标检测任务中的评价指标">
-<meta property="og:url" content="http://yoursite.com/2018/01/11/详解目标检测任务中的评价指标/index.html">
+<meta property="og:title" content="神经网络基础-by Andrew Ng">
+<meta property="og:url" content="http://yoursite.com/2018/01/11/神经网络基础-Andrew Ng/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
-<meta property="og:image" content="http://yoursite.com/img/DL1/1.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/14.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/15.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/16.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/17.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/18.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/20.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/21.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/19.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/22.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/23.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/24.png">
-<meta property="og:image" content="http://yoursite.com/img/DL1/25.png">
-<meta property="og:updated_time" content="2018-01-11T14:19:26.327Z">
+<meta property="og:description" content="Andrew Ng老师deeplearning.ai课程纪要(第二周:神经网络基础)">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/2.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/4.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/4.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.5.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/5.6.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/6.3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/7.3.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/8.2.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/9.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/9.1.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/10.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/11.png">
+<meta property="og:image" content="http://yoursite.com/img/Ng_DL/11.2.png">
+<meta property="og:updated_time" content="2018-01-11T14:19:34.699Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="详解目标检测任务中的评价指标">
-<meta name="twitter:description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
-<meta name="twitter:image" content="http://yoursite.com/img/DL1/1.png">
+<meta name="twitter:title" content="神经网络基础-by Andrew Ng">
+<meta name="twitter:description" content="Andrew Ng老师deeplearning.ai课程纪要(第二周:神经网络基础)">
+<meta name="twitter:image" content="http://yoursite.com/img/Ng_DL/1.png">
 
 
 
@@ -139,13 +151,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/01/11/详解目标检测任务中的评价指标/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/01/11/神经网络基础-Andrew Ng/"/>
 
 
 
 
 
-  <title> 详解目标检测任务中的评价指标 | Chaowei's Blog </title>
+  <title> 神经网络基础-by Andrew Ng | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -294,7 +306,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/详解目标检测任务中的评价指标/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/神经网络基础-Andrew Ng/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaowei">
@@ -315,7 +327,7 @@
             
             
               
-                详解目标检测任务中的评价指标
+                神经网络基础-by Andrew Ng
               
             
           </h1>
@@ -330,7 +342,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T22:31:25+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T17:31:25+08:00">
                 2018-01-11
               </time>
             
@@ -370,7 +382,7 @@
 
           
           
-             <span id="/2018/01/11/详解目标检测任务中的评价指标/" class="leancloud_visitors" data-flag-title="详解目标检测任务中的评价指标">
+             <span id="/2018/01/11/神经网络基础-Andrew Ng/" class="leancloud_visitors" data-flag-title="神经网络基础-by Andrew Ng">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -399,37 +411,24 @@
       
 
       
-        <blockquote class="blockquote-center"><p> 详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)<br>请再也不要凭你惊人的眼力断定一个算法的精度了好吗！ </p>
+        <blockquote class="blockquote-center"><p>Andrew Ng老师deeplearning.ai课程纪要(第二周:神经网络基础) </p>
 </blockquote> 
 <a id="more"></a>
-<blockquote>
-<p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
-</blockquote>
-<h2 id="吉娃娃与松饼"><a href="#吉娃娃与松饼" class="headerlink" title="吉娃娃与松饼"></a>吉娃娃与松饼</h2><p>从一个细思极恐的分类问题出发～～～先放图～～～</p>
-<p><div align="center"><img src="/img/DL1/1.png" alt="&quot;da&quot;"></div><br>此前有位神人发现了一个有趣的现象，吉娃娃与松饼的相似程度已经到了令人惊恐的程度…<br>这个图片在AI行业中流传甚广，区分吉娃娃与松饼这么有趣的问题，当然要交给万能的深度学习来解决！</p>
-<h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><p>  假设现有一个测试集，测试集如上图所示，图片只由吉娃娃与松饼组成<br>  现提出一个分类任务：识别出测试集中所有吉娃娃的图片</p>
-<p>作出如下定义<br>True positive：吉娃娃的图片被<font color="#FF000000">正确</font>识别成了吉娃娃<br>False positive：松饼的图片被<font color="#FF000000">错误</font>识别成了吉娃娃</p>
-<p>True negative：松饼的图片没有被识别出来，系统<font color="#FF000000">正确</font>地认为它们是松饼<br>False negative：吉娃娃的图片没有被识别出来，系统<font color="#FF000000">错误</font>地认为它们是松饼</p>
-<h2 id="Precision与Recall"><a href="#Precision与Recall" class="headerlink" title="Precision与Recall"></a>Precision与Recall</h2><p>Precision(精确率)其实就是在识别出来的图片中，True positives所占的比率：</p>
-<p><div align="center"><img src="/img/DL1/14.png" alt="&quot;da&quot;"></div><br>其中的n代表的是(True positives + False positives)，也就是系统一共识别出来多少照片是吉娃娃。</p>
-<p>Recall(召回率)是被正确识别出来的吉娃娃个数与测试集中所有吉娃娃的个数的比值：</p>
-<p><div align="center"><img src="/img/DL1/15.png" alt="&quot;da&quot;"></div><br>Recall的分母是(True positives + False negatives)，这两个值的和，可以理解为一共有多少张吉娃娃的照片。</p>
-<h2 id="Precision-Recall关系图绘制"><a href="#Precision-Recall关系图绘制" class="headerlink" title="Precision-Recall关系图绘制"></a>Precision-Recall关系图绘制</h2><p>通过调整识别阈值，来选择让系统识别出多少图片，进而改变Precision或 Recall的值。<br>如下图所示，对测试集中的图片进行编号</p>
-<p><div align="center"><img src="/img/DL1/16.png" alt="&quot;da&quot;"></div><br>假设改变识别阈值，使得系统依次能够识别前K张图片(K=1,2…,12)，阈值的变化同时会导致Precision与Recall值发生变化。<br>具体变化情况如下表:</p>
-<p><div align="center"><img src="/img/DL1/17.png" alt="&quot;da&quot;"></div><br>以Recall值为横轴，Precision值为纵轴绘制Precision-Recall曲线如下图:</p>
-<p><div align="center"><img src="/img/DL1/18.png" alt="&quot;da&quot;"></div><br>若想评估一个分类器的性能，一个比较好的方法就是：观察当阈值变化时，Precision与Recall值的变化情况。<br>如果一个分类器的性能比较好，那么它应该有如下的表现：在Recall值增长的同时，Precision的值保持在一个很高的水平。而性能比较差的分类器可能会损失很多Precision值才能换来Recall值的提高。通常情况下，文章中都会使用Precision-recall曲线，来显示出分类器在Precision与Recall之间的权衡。</p>
-<h2 id="Approximated-Average-Precision"><a href="#Approximated-Average-Precision" class="headerlink" title="Approximated Average Precision"></a>Approximated Average Precision</h2><p>相比较与曲线图，在某些时候还是一个具体的数值能更直观地表现出分类器的性能。通常情况下都是用 Average Precision来作为这一度量标准，它的公式为：</p>
-<p><div align="center"><img src="/img/DL1/20.png" alt="&quot;da&quot;"></div><br>在这一积分中，其中p代表Precision ，r代表Recall，p是一个以r为参数的函数，That is equal to taking the area under the curve.<br>实际上这一积分极其接近于这一数值：对每一种阈值分别求（Precision值）乘以（Recall值的变化情况），再把所有阈值下求得的乘积值进行累加。公式如下：</p>
-<p><div align="center"><img src="/img/DL1/21.png" alt="&quot;da&quot;"></div><br>在这一公式中，N代表测试集中所有图片的个数，P(k)表示在能识别出k个图片的时候Precision的值，而 Delta r(k) 则表示识别图片个数从k-1变化到k时（通过调整阈值）Recall值的变化情况。</p>
-<p><div align="center"><img src="/img/DL1/19.png" alt="&quot;da&quot;"></div><br>在这一例子中，Approximated Average Precision的值<br> =(1*(1/6-0)) + (1/2*(1/6-1/6)) + (1/3*(1/6-1/6)) + (1/2*(1/3-1/6)) + (3/5*(1/2-1/3)) + (1/2*(1/2-1/2)) + (4/7*(2/3-1/2)) +　(1/2*(2/3-2/3)) + (4/9*(2/3-2/3)) + (1/2*(5/6-2/3)) + (5/11*(5/6-5/6)) + (1/2*(1-5/6))<br> =(1*(1/6)) + (1/2*<font color="#FF000000">0</font>) + (1/3*<font color="#FF000000">0</font>) + (1/2*(1/6)) + (3/5*(1/6)) + (1/2*<font color="#FF000000">0</font>) + (4/7*(1/6)) +　(1/2*<font color="#FF000000">0</font>) + (4/9*<font color="#FF000000">0</font>) + (1/2*(1/6)) + (5/11*<font color="#FF000000">0</font>) + (1/2*(1/6))<br> =0.663<br>通过计算可以看到，那些Recall值没有变化的地方（红色数值），对增加Average Precision值没有贡献。</p>
-<h2 id="Interpolated-Average-Precision"><a href="#Interpolated-Average-Precision" class="headerlink" title="Interpolated Average Precision"></a>Interpolated Average Precision</h2><p>不同于Approximated Average Precision，一些作者选择另一种度量性能的标准：Interpolated Average Precision。<br>假设当前识别出k个图片，则使用识别图片数大于k时最大的Precision值与Recall的变化值相乘。公式如下：</p>
-<p><div align="center"><img src="/img/DL1/22.png" alt="&quot;da&quot;"></div><br>一些很重要的文章都是用Interpolated Average Precision 作为度量方法，并且直接称算出的值为Average Precision 。PASCAL Visual Objects Challenge从2007年开始就是用这一度量制度，他们认为这一方法能有效地减少Precision-recall 曲线中的抖动。所以在比较文章中Average Precision 值的时候，最好先弄清楚它们使用的是那种度量方式。</p>
-<h2 id="单图多目标的情况"><a href="#单图多目标的情况" class="headerlink" title="单图多目标的情况"></a>单图多目标的情况</h2><p>上面吉娃娃与松饼的例子属于单标签分类问题，即每张图只存在一个目标。<br>当一张图中存在多个种类数不定的目标时，对每种目标单独计算Precision和Recall<br>如A类目标的Precision就是在识别出来所有A目标中，识别正确的比率；<br>A类目标的Recall就是在测试集里所有的A目标中，识别正确的比率；</p>
-<h2 id="mean-Average-Precision-mAP"><a href="#mean-Average-Precision-mAP" class="headerlink" title="mean Average Precision(mAP)"></a>mean Average Precision(mAP)</h2><p><div align="center"><img src="/img/DL1/23.png" alt="&quot;da&quot;"></div><br>每一个类别都可以根据recall和precision绘制一条曲线，那么AP就是该曲线下的面积，而mAP是多个类别AP的平均值，这个值介于0到1之间，且越大越好。这个指标是目标检测算法最为重要的一个。</p>
-<h2 id="IoU"><a href="#IoU" class="headerlink" title="IoU"></a>IoU</h2><p>IoU可以理解为系统预测出来的框与原来图片中标记的框的重合程度。</p>
-<p><div align="center"><img src="/img/DL1/24.png" alt="&quot;da&quot;"></div><br>绿色框是人工标注的groundtruth，红色框是目标检测算法最终给出的结果，显然绿色框对于飞机这个物体检测的更加准确（机翼机尾都全部包含在绿色框中），IOU正是表达这种bounding box和groundtruth的差异的指标。算法产生的bbox VS 人工标注的数据</p>
-<p><div align="center"><img src="/img/DL1/25.png" alt="&quot;da&quot;"></div><br>OU定义了两个bounding box的重叠度，可以说，当算法给出的框和人工标注的框差异很小时，或者说重叠度很大时，可以说算法产生的boundingbox就很准确。<br>矩形框A、B的一个重合度IOU计算公式为：<br>IOU=(A∩B)/(A∪B)</p>
-<p>参考链接：<br>【1】<a href="http://blog.csdn.net/syoung9029/article/details/56276567" target="_blank" rel="external">目标检测（一）目标检测评价指标-CSDN</a><br>【2】<a href="https://www.jianshu.com/p/e6496a764b51" target="_blank" rel="external">目标检测研究综述+LocNet: Improving Localization Accuracy for Object Detection CVPR2016 阅读-简书</a></p>
+<h2 id="前因后果"><a href="#前因后果" class="headerlink" title="前因后果"></a>前因后果</h2><p>很久没有更新博客…不找其他借口，本博主就是太懒了= =<br>临近毕业，很快就要面临秋招，目前已确定找DL和CV方向的工作。<br>前期虽然做了不少项目，积累了一些经验，但是基本都是用啥学啥，虽然尝试系统学习基础知识理论，曾信誓旦旦要啃完某一本书或者某一个课程，其结果都是啃得乱七八糟一团浆糊，不找其他借口，本博主就是擅长忘记，不擅长坚持，嗯。</p>
+<p>建立一个完整的知识体系真的非常重要，任何细小的知识点都可能从未来的面试官口中蹦出来。基础牢固，才能指哪打哪。</p>
+<p>此前曾学习完Ng老师deeplearning.ai前四周课程，受益匪浅，但很久没重温，现在需重新捡起来。<br><a href="https://www.deeplearning.ai/" target="_blank" rel="external">deeplearning.ai主页</a><br>此前Ng老师deeplearning.ai前四周的课程已经在网易云课堂免费开放，萌新们的福音。<br>这里为了方便温习，将课程中重要的部分贴出来。</p>
+<h2 id="二分分类"><a href="#二分分类" class="headerlink" title="二分分类"></a>二分分类</h2><p><img src="/img/Ng_DL/1.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归"><a href="#logistic回归" class="headerlink" title="logistic回归"></a>logistic回归</h2><p><img src="/img/Ng_DL/2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/2.5.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归损失函数"><a href="#logistic回归损失函数" class="headerlink" title="logistic回归损失函数"></a>logistic回归损失函数</h2><p><img src="/img/Ng_DL/3.png" alt="&quot;da&quot;"></p>
+<h2 id="梯度下降法"><a href="#梯度下降法" class="headerlink" title="梯度下降法"></a>梯度下降法</h2><p><img src="/img/Ng_DL/4.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/4.5.png" alt="&quot;da&quot;"></p>
+<h2 id="计算图及其导数计算"><a href="#计算图及其导数计算" class="headerlink" title="计算图及其导数计算"></a>计算图及其导数计算</h2><p><img src="/img/Ng_DL/5.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/5.5.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/5.6.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic回归中的梯度下降法"><a href="#logistic回归中的梯度下降法" class="headerlink" title="logistic回归中的梯度下降法"></a>logistic回归中的梯度下降法</h2><p><img src="/img/Ng_DL/6.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/6.1.png" alt="&quot;da&quot;"></p>
+<h2 id="m个样本的梯度下降"><a href="#m个样本的梯度下降" class="headerlink" title="m个样本的梯度下降"></a>m个样本的梯度下降</h2><p><img src="/img/Ng_DL/6.2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/6.3.png" alt="&quot;da&quot;"></p>
+<h2 id="向量化"><a href="#向量化" class="headerlink" title="向量化"></a>向量化</h2><p><img src="/img/Ng_DL/7.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.1.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.2.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/7.3.png" alt="&quot;da&quot;"></p>
+<h2 id="向量化logistic回归"><a href="#向量化logistic回归" class="headerlink" title="向量化logistic回归"></a>向量化logistic回归</h2><p><img src="/img/Ng_DL/8.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/8.1.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/8.2.png" alt="&quot;da&quot;"></p>
+<h2 id="Python中的广播机制"><a href="#Python中的广播机制" class="headerlink" title="Python中的广播机制"></a>Python中的广播机制</h2><p><img src="/img/Ng_DL/9.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/9.1.png" alt="&quot;da&quot;"></p>
+<h2 id="关于python-numpy向量的说明"><a href="#关于python-numpy向量的说明" class="headerlink" title="关于python/numpy向量的说明"></a>关于python/numpy向量的说明</h2><p><img src="/img/Ng_DL/10.png" alt="&quot;da&quot;"></p>
+<h2 id="logistic损失函数的解释"><a href="#logistic损失函数的解释" class="headerlink" title="logistic损失函数的解释"></a>logistic损失函数的解释</h2><p><img src="/img/Ng_DL/11.png" alt="&quot;da&quot;"><br><img src="/img/Ng_DL/11.2.png" alt="&quot;da&quot;"></p>
 
       
     </div>
@@ -472,14 +471,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/11/详解目标检测任务中的评价指标/" rel="next" title="详解目标检测任务中的评价指标">
+                <i class="fa fa-chevron-left"></i> 详解目标检测任务中的评价指标
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/01/11/神经网络基础-Andrew Ng/" rel="prev" title="神经网络基础-by Andrew Ng">
-                神经网络基础-by Andrew Ng <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/10/浅层神经网络-Andrew Ng/" rel="prev" title="浅层神经网络-by Andrew Ng">
+                浅层神经网络-by Andrew Ng <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -631,7 +634,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吉娃娃与松饼"><span class="nav-number">1.</span> <span class="nav-text">吉娃娃与松饼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些定义"><span class="nav-number">2.</span> <span class="nav-text">一些定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision与Recall"><span class="nav-number">3.</span> <span class="nav-text">Precision与Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision-Recall关系图绘制"><span class="nav-number">4.</span> <span class="nav-text">Precision-Recall关系图绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approximated-Average-Precision"><span class="nav-number">5.</span> <span class="nav-text">Approximated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpolated-Average-Precision"><span class="nav-number">6.</span> <span class="nav-text">Interpolated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单图多目标的情况"><span class="nav-number">7.</span> <span class="nav-text">单图多目标的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mean-Average-Precision-mAP"><span class="nav-number">8.</span> <span class="nav-text">mean Average Precision(mAP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoU"><span class="nav-number">9.</span> <span class="nav-text">IoU</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前因后果"><span class="nav-number">1.</span> <span class="nav-text">前因后果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分分类"><span class="nav-number">2.</span> <span class="nav-text">二分分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归"><span class="nav-number">3.</span> <span class="nav-text">logistic回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归损失函数"><span class="nav-number">4.</span> <span class="nav-text">logistic回归损失函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#梯度下降法"><span class="nav-number">5.</span> <span class="nav-text">梯度下降法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计算图及其导数计算"><span class="nav-number">6.</span> <span class="nav-text">计算图及其导数计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic回归中的梯度下降法"><span class="nav-number">7.</span> <span class="nav-text">logistic回归中的梯度下降法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#m个样本的梯度下降"><span class="nav-number">8.</span> <span class="nav-text">m个样本的梯度下降</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量化"><span class="nav-number">9.</span> <span class="nav-text">向量化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#向量化logistic回归"><span class="nav-number">10.</span> <span class="nav-text">向量化logistic回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Python中的广播机制"><span class="nav-number">11.</span> <span class="nav-text">Python中的广播机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于python-numpy向量的说明"><span class="nav-number">12.</span> <span class="nav-text">关于python/numpy向量的说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#logistic损失函数的解释"><span class="nav-number">13.</span> <span class="nav-text">logistic损失函数的解释</span></a></li></ol></div>
             
 
           </div>
