@@ -107,7 +107,15 @@
 <meta property="og:image" content="http://yoursite.com/img/DL1/23.png">
 <meta property="og:image" content="http://yoursite.com/img/DL1/24.png">
 <meta property="og:image" content="http://yoursite.com/img/DL1/25.png">
-<meta property="og:updated_time" content="2018-01-11T14:19:26.327Z">
+<meta property="og:image" content="http://yoursite.com/img/DL1/27.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/28.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/29.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/31.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/32.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/33.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/34.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/35.png">
+<meta property="og:updated_time" content="2018-01-16T03:48:39.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="详解目标检测任务中的评价指标">
 <meta name="twitter:description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
@@ -429,7 +437,15 @@
 <h2 id="IoU"><a href="#IoU" class="headerlink" title="IoU"></a>IoU</h2><p>IoU可以理解为系统预测出来的框与原来图片中标记的框的重合程度。</p>
 <p><div align="center"><img src="/img/DL1/24.png" alt="&quot;da&quot;"></div><br>绿色框是人工标注的groundtruth，红色框是目标检测算法最终给出的结果，显然绿色框对于飞机这个物体检测的更加准确（机翼机尾都全部包含在绿色框中），IOU正是表达这种bounding box和groundtruth的差异的指标。算法产生的bbox VS 人工标注的数据</p>
 <p><div align="center"><img src="/img/DL1/25.png" alt="&quot;da&quot;"></div><br>OU定义了两个bounding box的重叠度，可以说，当算法给出的框和人工标注的框差异很小时，或者说重叠度很大时，可以说算法产生的boundingbox就很准确。<br>矩形框A、B的一个重合度IOU计算公式为：<br>IOU=(A∩B)/(A∪B)</p>
-<p>参考链接：<br>【1】<a href="http://blog.csdn.net/syoung9029/article/details/56276567" target="_blank" rel="external">目标检测（一）目标检测评价指标-CSDN</a><br>【2】<a href="https://www.jianshu.com/p/e6496a764b51" target="_blank" rel="external">目标检测研究综述+LocNet: Improving Localization Accuracy for Object Detection CVPR2016 阅读-简书</a></p>
+<h2 id="恐怖系列"><a href="#恐怖系列" class="headerlink" title="恐怖系列"></a>恐怖系列</h2><p>推特账号teenybiscuit的作品</p>
+<p><div align="center"><img src="/img/DL1/27.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/28.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/29.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/31.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/32.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/33.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/34.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/35.png" alt="&quot;da&quot;"></div><br>参考链接：<br>【1】<a href="http://blog.csdn.net/syoung9029/article/details/56276567" target="_blank" rel="external">目标检测（一）目标检测评价指标-CSDN</a><br>【2】<a href="https://www.jianshu.com/p/e6496a764b51" target="_blank" rel="external">目标检测研究综述+LocNet: Improving Localization Accuracy for Object Detection CVPR2016 阅读-简书</a></p>
 
       
     </div>
@@ -631,7 +647,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吉娃娃与松饼"><span class="nav-number">1.</span> <span class="nav-text">吉娃娃与松饼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些定义"><span class="nav-number">2.</span> <span class="nav-text">一些定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision与Recall"><span class="nav-number">3.</span> <span class="nav-text">Precision与Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision-Recall关系图绘制"><span class="nav-number">4.</span> <span class="nav-text">Precision-Recall关系图绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approximated-Average-Precision"><span class="nav-number">5.</span> <span class="nav-text">Approximated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpolated-Average-Precision"><span class="nav-number">6.</span> <span class="nav-text">Interpolated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单图多目标的情况"><span class="nav-number">7.</span> <span class="nav-text">单图多目标的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mean-Average-Precision-mAP"><span class="nav-number">8.</span> <span class="nav-text">mean Average Precision(mAP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoU"><span class="nav-number">9.</span> <span class="nav-text">IoU</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吉娃娃与松饼"><span class="nav-number">1.</span> <span class="nav-text">吉娃娃与松饼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些定义"><span class="nav-number">2.</span> <span class="nav-text">一些定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision与Recall"><span class="nav-number">3.</span> <span class="nav-text">Precision与Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision-Recall关系图绘制"><span class="nav-number">4.</span> <span class="nav-text">Precision-Recall关系图绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approximated-Average-Precision"><span class="nav-number">5.</span> <span class="nav-text">Approximated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpolated-Average-Precision"><span class="nav-number">6.</span> <span class="nav-text">Interpolated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单图多目标的情况"><span class="nav-number">7.</span> <span class="nav-text">单图多目标的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mean-Average-Precision-mAP"><span class="nav-number">8.</span> <span class="nav-text">mean Average Precision(mAP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoU"><span class="nav-number">9.</span> <span class="nav-text">IoU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恐怖系列"><span class="nav-number">10.</span> <span class="nav-text">恐怖系列</span></a></li></ol></div>
             
 
           </div>
