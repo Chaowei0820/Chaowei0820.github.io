@@ -1,0 +1,965 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Nvidia," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
+<meta name="keywords" content="Nvidia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetson TX1/TX2配置教程">
+<meta property="og:url" content="http://yoursite.com/2017/04/19/TX1-2configuration/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-3.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-4.jpg">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-1.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx1-2.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx2-2.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx1-3.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx1-4.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx1-5.png">
+<meta property="og:image" content="http://yoursite.com/img/tx1/tx1-6.png">
+<meta property="og:updated_time" content="2018-04-20T08:13:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Jetson TX1/TX2配置教程">
+<meta name="twitter:description" content="使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2">
+<meta name="twitter:image" content="http://yoursite.com/img/tx1/tx2-3.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/19/TX1-2configuration/"/>
+
+
+
+
+
+  <title> Jetson TX1/TX2配置教程 | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/19/TX1-2configuration/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Jetson TX1/TX2配置教程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-19T16:58:21+08:00">
+                2017-04-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Nvidia/" itemprop="url" rel="index">
+                    <span itemprop="name">Nvidia</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/04/19/TX1-2configuration/" class="leancloud_visitors" data-flag-title="Jetson TX1/TX2配置教程">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>使用JetPack 2.3配置TX1 / 使用JetPack 3.0配置TX2 </p>
+</blockquote>
+<a id="more"></a>
+<h2 id="配置JetPack-2-3-JetPack-3-0"><a href="#配置JetPack-2-3-JetPack-3-0" class="headerlink" title="配置JetPack 2.3/JetPack 3.0"></a>配置JetPack 2.3/JetPack 3.0</h2><p>JetPack 系列是NVIDIA发布的在Jetson系列嵌入式平台上部署开发环境的开发包，目前最新版本是3.0，推荐用于TX2,它包含64bit的 Ubuntu16.04 操作系统，CUDA 8.0，cuDNN 5.1，以及用来加速CNN推断速度的TensorRT. 对于JetPack 3.0更详细的介绍参见<a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">JetPack介绍</a>.<br>由于TX1与TX2的配置方法差别不大，因此以下教程基于JetPack 2.3配置TX1。</p>
+<p><img src="/img/tx1/tx2-3.png" alt="&quot;da&quot;"></p>
+<h3 id="所需设备"><a href="#所需设备" class="headerlink" title="所需设备"></a>所需设备</h3><p>1.一台装有Ubuntu64位操作系统的主机：由于JetPack是先在主机上下载并安装相关的包，然后刷到TX1上。<br>2.一根microUSB转USB线用于将主机中的系统镜像刷写至TX1中，一根网线连接TX1与路由器用于通过路由器传输cuda等包，注意这里若使用路由器方式传输文件速度较慢，强烈建议采用离线拷贝文件的方式，具体细节见下文。<br>3.USBHub，HDMI转VGA线，显示器，键鼠 等。</p>
+<p><a href="http://www.nvidia.cn/object/embedded-systems-dev-kits-modules-cn.html" target="_blank" rel="external">Nvidia Jetson面向无人智能化领域的嵌入式平台</a><br>附上前几天到货的TX2拆箱图！<br><img src="/img/tx1/tx2-4.jpg" alt="&quot;da&quot;"></p>
+<h3 id="下载JetPack2-3"><a href="#下载JetPack2-3" class="headerlink" title="下载JetPack2.3"></a>下载JetPack2.3</h3><p>在主机上通过 NVIDIA <a href="https://developer.nvidia.com/embedded/jetpack" target="_blank" rel="external">官方链接</a> 下载 JetPack 2.3，并新建一个文件夹存放下载下来的文件，文件名大概为    JetPack-L4T-2.3-Linux-x64.run,在/home/usrname/目录下新建文件夹，可以命名为 JetPack :<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir JetPack</div><div class="line">cp ~/Downloads/JetPack-L4T-2.3-linux-x64.run ~/JetPack</div></pre></td></tr></table></figure></p>
+<h3 id="安装JetPack2-3"><a href="#安装JetPack2-3" class="headerlink" title="安装JetPack2.3"></a>安装JetPack2.3</h3><ol>
+<li><p>为 JetPack-L4T-2.3-linux-x64.run 增加执行权限</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~/JetPack</div><div class="line">chmod +x JetPack-L4T-2.3-linux-x64.run</div></pre></td></tr></table></figure>
+</li>
+<li><p>执行 JetPack-L4T-2.3-linux-x64.run ，点击 Next</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./JetPack-L4T-2.3-linux-x64.run</div></pre></td></tr></table></figure>
+</li>
+<li><p>指明安装路径后选择部署的开发平台<br>根据需求选择 Jetson TX1或者Jetson TX2，同样也支持 TK1的部署</p>
+<div align="center"><br><img src="/img/tx1/tx2-1.png" alt="&quot;da&quot;"><br></div></li>
+<li><p>弹出JetPack L4T Component Manager对话框<br>由于我已经安装好了所有的包，所以这边的Action一栏是no action，如果没有安装过的话，会显示install xxx。点击Next后，开始下载。<br>JetPack 2.3下载界面<br><div align="center"><br><img src="/img/tx1/tx1-2.png" alt="&quot;da&quot;"><br></div><br>JetPack 3.0下载界面<br><div align="center"><br><img src="/img/tx1/tx2-2.png" alt="&quot;da&quot;"><br></div><br>这里大家可以选择不安装OpenCV for Tegra，因为这个版本是2.4.13，对于USB摄像头的读取支持不是很好，另外对于CUDA静态库的读取也有些问题，所以不推荐安装，稍后会提示大家安装OpenCV 3.1</p>
+</li>
+<li><p>网络配置和端口选择<br>安装完成后进入网络配置选项，选择通过路由器连接互联网，同时将TX1连接到与主机同一个路由器上.<br>选择eth0端口，点击Next</p>
+</li>
+<li><p>设置TX1为Force USB Recovery Mode(强制USB恢复模式)<br>弹出如图所示终端窗口：</p>
+<div align="center"><br><img src="/img/tx1/tx1-3.png" alt="&quot;da&quot;"><br></div></li>
+<li>按照提示，将TX1设置为强制USB恢复模式<blockquote>
+<p>关闭设备，移除电源适配器<br>用自带的Micro USB 转 USB 数据线连接主机与TX1<br>连接电源适配器<br>按下POWER按钮<br>按住FORCE RECOVERY 按钮不放开，同时按一下RESET按钮，等待两秒钟，松开FORCE RECOVERY 按钮<br>完成上述步骤后，可以在主机上通过 lsusb命令查看是否含有Nvidia Corp设备，确认存在后敲击Enter，开始将操作系统以及开发包拷贝到TX1，中途连接TX1的显示器会显示Ubuntu 16.04 桌面系统</p>
+</blockquote>
+</li>
+</ol>
+<p>至此，系统已经刷写完毕，下一步进行cuda,cudnn,opencv的配置，本教程采用效率更高的离线方式</p>
+<h2 id="拷贝离线安装包及安装脚本"><a href="#拷贝离线安装包及安装脚本" class="headerlink" title="拷贝离线安装包及安装脚本"></a>拷贝离线安装包及安装脚本</h2><p>若使用默认的路由器方式传输文件速度较慢，并且在传输过程中必须保证网络不被中断，否则需要从头再来，因此强烈建议采用稳定且快速的离线拷贝文件的方式。</p>
+<h3 id="拷贝cuda安装脚本"><a href="#拷贝cuda安装脚本" class="headerlink" title="拷贝cuda安装脚本"></a>拷贝cuda安装脚本</h3><div align="center"><br><img src="/img/tx1/tx1-4.png" alt="&quot;da&quot;"><br></div>
+
+<h3 id="拷贝cuda、cudnn安装包"><a href="#拷贝cuda、cudnn安装包" class="headerlink" title="拷贝cuda、cudnn安装包"></a>拷贝cuda、cudnn安装包</h3><p>所有在JetPack中下载的安装包均存在JetPack/jetpack_download中,拷贝出cuda8.0安装包(cuda-repo-l4t-8-0-local_8.0.34-1_arm64.deb)以及cuda安装脚本(cuda-l4t.sh)，cudnn安装包(cuDNN-v5.1.zip),若找不到文件可尝试在JetPack下搜索.</p>
+<div align="center"><br><img src="/img/tx1/tx1-5.png" alt="&quot;da&quot;"><br></div>
+
+<h3 id="TX1中安装cuda"><a href="#TX1中安装cuda" class="headerlink" title="TX1中安装cuda"></a>TX1中安装cuda</h3><p>1.拷贝<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> ~</div><div class="line">mkdir cuda<span class="_">-l</span>4t</div><div class="line">cp cuda<span class="_">-l</span>4t.sh /home/usrname/cuda<span class="_">-l</span>4t</div></pre></td></tr></table></figure></p>
+<p>2.查看cuda-l4t.sh脚本</p>
+<p><div align="center"><br><img src="/img/tx1/tx1-6.png" alt="&quot;da&quot;"><br></div><br>3.安装命令(需联网)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">bash cuda<span class="_">-l</span>4t.sh cuda-repo<span class="_">-l</span>4t-8-0-local_8.0.34-1_arm64.deb 8.0 8-0</div></pre></td></tr></table></figure></p>
+<p>4.完毕后导入环境变量<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">export</span> PATH=/usr/<span class="built_in">local</span>/cuda-8.0/bin:<span class="variable">$PATH</span></div><div class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/<span class="built_in">local</span>/cuda-8.0/lib64:<span class="variable">$LD_LIBRARY_PATH</span></div></pre></td></tr></table></figure></p>
+<h3 id="TX1中安装cudnn"><a href="#TX1中安装cudnn" class="headerlink" title="TX1中安装cudnn"></a>TX1中安装cudnn</h3><p>1.解压cuDNN-v5.1.zip,有三个deb安装包<br>2.使用sudo dpkg -i指令依次安装，但是默认安装路径是在usr/include和usr/lib下的，<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo cp /usr/include/cudnn.h /usr/<span class="built_in">local</span>/include/</div><div class="line">sudo cp /usr/lib/aarch64-linux-gnu/libcudnn* /usr/<span class="built_in">local</span>/lib/</div></pre></td></tr></table></figure></p>
+<h3 id="TX1中配置opencv3-1"><a href="#TX1中配置opencv3-1" class="headerlink" title="TX1中配置opencv3.1"></a>TX1中配置opencv3.1</h3><p>1.安装依赖库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">sudo apt-add-repository universe</div><div class="line">sudo apt-get update</div><div class="line"></div><div class="line">sudo apt-get install -y build-essential make cmake cmake-curses-gui g++</div><div class="line">sudo apt-get install -y libavformat-dev libavutil-dev libswscale-dev</div><div class="line">sudo apt-get install -y libv4l-dev libeigen3-dev libglew1.6-dev libgtk2.0-dev</div><div class="line">sudo apt-get install -y python-dev python-numpy</div></pre></td></tr></table></figure></p>
+<font color="#FF000000">注意：为了方便，这里将opencv的所有依赖项与下面caffe工程所需依赖项的安装命令统一写入脚本，然后运行该脚本即可。以下是脚本内容</font>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> <span class="comment">#!/bin/bash</span></div><div class="line">sudo apt-get update</div><div class="line">sudo apt-get install -y build-essential make cmake cmake-curses-gui g++ \</div><div class="line">libavformat-dev libavutil-dev libswscale-dev \</div><div class="line">libv4l-dev libeigen3-dev libglew1.6-dev libgtk2.0-dev \</div><div class="line">libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler \</div><div class="line">--no-install-recommends libboost-all-dev \</div><div class="line">libatlas-base-dev \</div><div class="line">libgflags-dev libgoogle-glog-dev liblmdb-dev \</div><div class="line">python-dev python-numpy</div></pre></td></tr></table></figure>
+<p>2.编译安装Opencv3.1<br>注意：<br>由于CUDA 8.0不支持OpenCV的 GraphCut 算法，可能出现以下错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">/home/usrname/opencv-3.1.0/modules/cudalegacy/src/graphcuts.cpp:120:54: error: ‘NppiGraphcutState’ has not been declared</div><div class="line">     typedef NppStatus (*init_func_t)(NppiSize oSize, NppiGraphcutState** ppStat</div><div class="line">                                                      ^</div><div class="line">/home/usrname/opencv-3.1.0/modules/cudalegacy/src/graphcuts.cpp:135:18: error: ‘NppiGraphcutState’ does not name a <span class="built_in">type</span></div><div class="line">         operator NppiGraphcutState*()</div><div class="line">                  ^</div><div class="line">/home/usrname/opencv-3.1.0/modules/cudalegacy/src/graphcuts.cpp:141:9: error: ‘NppiGraphcutState’ does not name a <span class="built_in">type</span></div><div class="line">         NppiGraphcutState* pState;</div><div class="line">.......</div></pre></td></tr></table></figure>
+<p>此时需要修改OpenCV源码，使其不编译graphcuts.cpp 即可<br>进入opencv-3.1.0/modules/cudalegacy/src/目录，修改graphcuts.cpp文件，将：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include "precomp.hpp"</span></div><div class="line"><span class="comment">#if !defined (HAVE_CUDA) || defined (CUDA_DISABLER)</span></div></pre></td></tr></table></figure></p>
+<p>修改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#include "precomp.hpp"</span></div><div class="line"><span class="comment">#if !defined (HAVE_CUDA) || defined (CUDA_DISABLER) || (CUDART_VERSION &gt;= 8000)</span></div></pre></td></tr></table></figure></p>
+<p>然后开始编译！</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Downloads opencv-3.1.0.zip</div><div class="line"><span class="built_in">cd</span> ~</div><div class="line">unzip opencv-3.1.0.zip</div><div class="line"><span class="built_in">cd</span> opencv-3.1.0</div><div class="line">mkdir build</div><div class="line"><span class="built_in">cd</span> build</div><div class="line">cmake -DWITH_CUDA=ON -DCUDA_ARCH_BIN=<span class="string">"5.3"</span> -DCUDA_ARCH_PTX=<span class="string">""</span> -DBUILD_TESTS=OFF -DBUILD_PERF_TESTS=OFF -DCUDA_FAST_MATH=ON ..</div><div class="line">sudo make -j4 install</div></pre></td></tr></table></figure>
+<p>编译好的OpenCV库会默认安装到 /usr/local/文件夹下</p>
+<h2 id="TX1中配置基于caffe的工程"><a href="#TX1中配置基于caffe的工程" class="headerlink" title="TX1中配置基于caffe的工程"></a>TX1中配置基于caffe的工程</h2><p>基于caffe的工程可以是rcnn,ssd<br>1.安装依赖库<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># General Dependencies</span></div><div class="line">sudo apt-get install libprotobuf-dev libleveldb-dev libsnappy-dev \</div><div class="line">libhdf5-serial-dev protobuf-compiler -y</div><div class="line">sudo apt-get install --no-install-recommends libboost-all-dev -y</div><div class="line"><span class="comment"># BLAS</span></div><div class="line">sudo apt-get install libatlas-base-dev -y</div><div class="line"><span class="comment"># Remaining Dependencies</span></div><div class="line">sudo apt-get install libgflags-dev libgoogle-glog-dev liblmdb-dev -y</div></pre></td></tr></table></figure></p>
+<p>2.编译caffe工程<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Downloads ...</div><div class="line"><span class="built_in">cd</span> caffe</div><div class="line">cp Makefile.config.example Makefile.config</div></pre></td></tr></table></figure></p>
+<p>修改Makefile.config:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cuDNN acceleration switch (uncomment to build with cuDNN).</span></div><div class="line">USE_CUDNN := 1</div><div class="line"></div><div class="line"><span class="comment"># Uncomment if you're using OpenCV 3</span></div><div class="line">OPENCV_VERSION := 3</div><div class="line"></div><div class="line"><span class="comment"># Uncomment to support layers written in Python (will link against Python libs)</span></div><div class="line">WITH_PYTHON_LAYER := 1</div></pre></td></tr></table></figure></p>
+<p>由于hdf5库目录更改，所以需要单独添加：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/<span class="built_in">local</span>/include /usr/include/hdf5/serial/</div><div class="line">LIBRARY_DIRS := $(PYTHON_LIB) /usr/<span class="built_in">local</span>/lib /usr/lib /usr/lib/aarch64-linux-gnu/hdf5/serial/</div></pre></td></tr></table></figure></p>
+<p>之后编辑即可<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make -j4 all</div></pre></td></tr></table></figure></p>
+<p>为了更好地使用pycaffe ，建议安装：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install python-numpy python-setuptools python-pip cython python-skimage python-protobuf</div><div class="line">make pycaffe</div></pre></td></tr></table></figure></p>
+<p>此处感谢大神师兄Jalong_Ma的悉心教导!<br>大部分内容引自<a href="http://blog.csdn.net/Jalong_Ma/article/details/52743923" target="_blank" rel="external">Jalong_Ma’s blog</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Nvidia/" rel="tag"># Nvidia</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/20/DL:Pvanet笔记/" rel="next" title="DL:Pvanet笔记">
+                <i class="fa fa-chevron-left"></i> DL:Pvanet笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/04/18/Hexo,快速搭建简约博客/" rel="prev" title="Hexo,快速搭建简约博客">
+                Hexo,快速搭建简约博客 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置JetPack-2-3-JetPack-3-0"><span class="nav-number">1.</span> <span class="nav-text">配置JetPack 2.3/JetPack 3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#所需设备"><span class="nav-number">1.1.</span> <span class="nav-text">所需设备</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#下载JetPack2-3"><span class="nav-number">1.2.</span> <span class="nav-text">下载JetPack2.3</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JetPack2-3"><span class="nav-number">1.3.</span> <span class="nav-text">安装JetPack2.3</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拷贝离线安装包及安装脚本"><span class="nav-number">2.</span> <span class="nav-text">拷贝离线安装包及安装脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda安装脚本"><span class="nav-number">2.1.</span> <span class="nav-text">拷贝cuda安装脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝cuda、cudnn安装包"><span class="nav-number">2.2.</span> <span class="nav-text">拷贝cuda、cudnn安装包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cuda"><span class="nav-number">2.3.</span> <span class="nav-text">TX1中安装cuda</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中安装cudnn"><span class="nav-number">2.4.</span> <span class="nav-text">TX1中安装cudnn</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TX1中配置opencv3-1"><span class="nav-number">2.5.</span> <span class="nav-text">TX1中配置opencv3.1</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TX1中配置基于caffe的工程"><span class="nav-number">3.</span> <span class="nav-text">TX1中配置基于caffe的工程</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
