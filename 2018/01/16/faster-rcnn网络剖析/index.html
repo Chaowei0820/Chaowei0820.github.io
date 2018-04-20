@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="Faster R-CNN的实现细节">
+<meta name="description" content="代码层面了解Faster R-CNN的实现细节, 重点RPN以及ROI pooling">
 <meta name="keywords" content="DeepLearning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入了解Faster R-CNN">
+<meta property="og:title" content="深入了解Faster R-CNN实现细节">
 <meta property="og:url" content="http://yoursite.com/2018/01/16/faster-rcnn网络剖析/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="Faster R-CNN的实现细节">
+<meta property="og:description" content="代码层面了解Faster R-CNN的实现细节, 重点RPN以及ROI pooling">
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/0.png">
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/1.png">
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/2.png">
@@ -111,10 +111,10 @@
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/15.png">
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/17.png">
 <meta property="og:image" content="http://yoursite.com/img/faster-rcnn/16.png">
-<meta property="og:updated_time" content="2018-04-20T08:09:59.287Z">
+<meta property="og:updated_time" content="2018-04-20T12:39:10.211Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入了解Faster R-CNN">
-<meta name="twitter:description" content="Faster R-CNN的实现细节">
+<meta name="twitter:title" content="深入了解Faster R-CNN实现细节">
+<meta name="twitter:description" content="代码层面了解Faster R-CNN的实现细节, 重点RPN以及ROI pooling">
 <meta name="twitter:image" content="http://yoursite.com/img/faster-rcnn/0.png">
 
 
@@ -149,7 +149,7 @@
 
 
 
-  <title> 深入了解Faster R-CNN | Chaowei's Blog </title>
+  <title> 深入了解Faster R-CNN实现细节 | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -319,7 +319,7 @@
             
             
               
-                深入了解Faster R-CNN
+                深入了解Faster R-CNN实现细节
               
             
           </h1>
@@ -374,7 +374,7 @@
 
           
           
-             <span id="/2018/01/16/faster-rcnn网络剖析/" class="leancloud_visitors" data-flag-title="深入了解Faster R-CNN">
+             <span id="/2018/01/16/faster-rcnn网络剖析/" class="leancloud_visitors" data-flag-title="深入了解Faster R-CNN实现细节">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -403,7 +403,7 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Faster R-CNN的实现细节</p>
+        <blockquote class="blockquote-center"><p>代码层面了解Faster R-CNN的实现细节, 重点RPN以及ROI pooling</p>
 </blockquote>
 <a id="more"></a>
 <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>Faster R-CNN首次提出了anchor,使用RPN网络快速提取proposals,取代了耗时的selective search方法,大大提高检测效率.<br>Faster R-CNN的anchor思想被用于之后的YOLO和SSD等检测算法<br>关于Faster R-CNN的实现细节在下面的博客中已经做了介绍,本文主要从中抽取一些重点便于后面的回顾。<br>[Faster R-CNN基于代码实现的细节]<a href="https://blog.csdn.net/williamyi96/article/details/77648047" target="_blank" rel="external">https://blog.csdn.net/williamyi96/article/details/77648047</a></p>
@@ -535,6 +535,10 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/01/20/数据集制作常用代码/" rel="next" title="自制DL数据集常用代码">
+                <i class="fa fa-chevron-left"></i> 自制DL数据集常用代码
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
@@ -617,7 +621,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">28</span>
+                <span class="site-state-item-count">30</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

@@ -1,0 +1,902 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DeepLearning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="txt转xml格式, 统一修改数据集label, 数据集label排错">
+<meta name="keywords" content="DeepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="自制DL数据集常用代码">
+<meta property="og:url" content="http://yoursite.com/2018/01/20/数据集制作常用代码/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="txt转xml格式, 统一修改数据集label, 数据集label排错">
+<meta property="og:updated_time" content="2018-04-20T13:00:02.401Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="自制DL数据集常用代码">
+<meta name="twitter:description" content="txt转xml格式, 统一修改数据集label, 数据集label排错">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/20/数据集制作常用代码/"/>
+
+
+
+
+
+  <title> 自制DL数据集常用代码 | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/20/数据集制作常用代码/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                自制DL数据集常用代码
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-20T17:31:25+08:00">
+                2018-01-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/20/数据集制作常用代码/" class="leancloud_visitors" data-flag-title="自制DL数据集常用代码">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>txt转xml格式, 统一修改数据集label, 数据集label排错</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="txt转xml格式"><a href="#txt转xml格式" class="headerlink" title="txt转xml格式"></a>txt转xml格式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#coding=utf-8</span></div><div class="line"><span class="comment"># 根据一个给定的XML Schema，使用DOM树的形式从空白文件生成一个XML</span></div><div class="line"><span class="keyword">from</span> xml.dom.minidom <span class="keyword">import</span> Document</div><div class="line"><span class="keyword">import</span> cv2</div><div class="line"><span class="keyword">import</span> os</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_xml</span><span class="params">(name,split_lines,img_size,class_ind)</span>:</span></div><div class="line">    doc = Document()  <span class="comment"># 创建DOM文档对象</span></div><div class="line"></div><div class="line">    annotation = doc.createElement(<span class="string">'annotation'</span>)</div><div class="line">    doc.appendChild(annotation)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'folder'</span>)</div><div class="line">    title_text = doc.createTextNode(<span class="string">'KITTI'</span>)</div><div class="line">    title.appendChild(title_text)</div><div class="line">    annotation.appendChild(title)</div><div class="line"></div><div class="line">    img_name=name+<span class="string">'.png'</span></div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'filename'</span>)</div><div class="line">    title_text = doc.createTextNode(img_name)</div><div class="line">    title.appendChild(title_text)</div><div class="line">    annotation.appendChild(title)</div><div class="line"></div><div class="line">    source = doc.createElement(<span class="string">'source'</span>)</div><div class="line">    annotation.appendChild(source)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'database'</span>)</div><div class="line">    title_text = doc.createTextNode(<span class="string">'The KITTI Database'</span>)</div><div class="line">    title.appendChild(title_text)</div><div class="line">    source.appendChild(title)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'annotation'</span>)</div><div class="line">    title_text = doc.createTextNode(<span class="string">'KITTI'</span>)</div><div class="line">    title.appendChild(title_text)</div><div class="line">    source.appendChild(title)</div><div class="line"></div><div class="line">    size = doc.createElement(<span class="string">'size'</span>)</div><div class="line">    annotation.appendChild(size)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'width'</span>)</div><div class="line">    title_text = doc.createTextNode(str(img_size[<span class="number">1</span>]))</div><div class="line">    title.appendChild(title_text)</div><div class="line">    size.appendChild(title)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'height'</span>)</div><div class="line">    title_text = doc.createTextNode(str(img_size[<span class="number">0</span>]))</div><div class="line">    title.appendChild(title_text)</div><div class="line">    size.appendChild(title)</div><div class="line"></div><div class="line">    title = doc.createElement(<span class="string">'depth'</span>)</div><div class="line">    title_text = doc.createTextNode(str(img_size[<span class="number">2</span>]))</div><div class="line">    title.appendChild(title_text)</div><div class="line">    size.appendChild(title)</div><div class="line"></div><div class="line">    <span class="keyword">for</span> split_line <span class="keyword">in</span> split_lines:</div><div class="line">        line=split_line.strip().split()</div><div class="line">        <span class="keyword">if</span> line[<span class="number">0</span>] <span class="keyword">in</span> class_ind:</div><div class="line">            object = doc.createElement(<span class="string">'object'</span>)</div><div class="line">            annotation.appendChild(object)</div><div class="line"></div><div class="line">            title = doc.createElement(<span class="string">'name'</span>)</div><div class="line">            title_text = doc.createTextNode(line[<span class="number">0</span>])</div><div class="line">            title.appendChild(title_text)</div><div class="line">            object.appendChild(title)</div><div class="line"></div><div class="line">            bndbox = doc.createElement(<span class="string">'bndbox'</span>)</div><div class="line">            object.appendChild(bndbox)</div><div class="line">            title = doc.createElement(<span class="string">'xmin'</span>)</div><div class="line">            title_text = doc.createTextNode(str(int(float(line[<span class="number">4</span>]))))</div><div class="line">            title.appendChild(title_text)</div><div class="line">            bndbox.appendChild(title)</div><div class="line">            title = doc.createElement(<span class="string">'ymin'</span>)</div><div class="line">            title_text = doc.createTextNode(str(int(float(line[<span class="number">5</span>]))))</div><div class="line">            title.appendChild(title_text)</div><div class="line">            bndbox.appendChild(title)</div><div class="line">            title = doc.createElement(<span class="string">'xmax'</span>)</div><div class="line">            title_text = doc.createTextNode(str(int(float(line[<span class="number">6</span>]))))</div><div class="line">            title.appendChild(title_text)</div><div class="line">            bndbox.appendChild(title)</div><div class="line">            title = doc.createElement(<span class="string">'ymax'</span>)</div><div class="line">            title_text = doc.createTextNode(str(int(float(line[<span class="number">7</span>]))))</div><div class="line">            title.appendChild(title_text)</div><div class="line">            bndbox.appendChild(title)</div><div class="line"></div><div class="line">    <span class="comment"># 将DOM对象doc写入文件</span></div><div class="line">    f = open(<span class="string">'.../Annotations/'</span>+name+<span class="string">'.xml'</span>,<span class="string">'w'</span>)</div><div class="line">    f.write(doc.toprettyxml(indent = <span class="string">''</span>))</div><div class="line">    f.close()</div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    class_ind=(<span class="string">'Pedestrian'</span>, <span class="string">'Car'</span>, <span class="string">'Truck'</span>, <span class="string">'Van'</span>,<span class="string">'Cyclist'</span>)</div><div class="line">    cur_dir=<span class="string">'.../training/'</span></div><div class="line">    labels_dir=os.path.join(cur_dir,<span class="string">'label'</span>) <span class="comment">#txt文件的路径</span></div><div class="line">    <span class="keyword">for</span> parent, dirnames, filenames <span class="keyword">in</span> os.walk(labels_dir): <span class="comment"># 分别得到根目录，子目录和根目录下文件   </span></div><div class="line">        <span class="keyword">for</span> file_name <span class="keyword">in</span> filenames:</div><div class="line">            full_path=os.path.join(parent, file_name) <span class="comment"># 获取文件全路径</span></div><div class="line">            <span class="keyword">print</span> full_path</div><div class="line">            f=open(full_path)</div><div class="line">            split_lines = f.readlines()</div><div class="line">            name= file_name[:<span class="number">-4</span>] <span class="comment"># 后四位是扩展名.txt，只取前面的文件名</span></div><div class="line">            img_name=name+<span class="string">'.png'</span> </div><div class="line">            img_path=os.path.join(<span class="string">'/home/chaowei/data/KITTI/Detection/Image/training/image_2'</span>,img_name) <span class="comment"># 路径需要自行修改            </span></div><div class="line">            img_size=cv2.imread(img_path).shape</div><div class="line">            generate_xml(name,split_lines,img_size,class_ind)</div><div class="line">print(<span class="string">'all txts has converted into xmls'</span>)</div></pre></td></tr></table></figure>
+<h2 id="统一修改数据集label"><a href="#统一修改数据集label" class="headerlink" title="统一修改数据集label"></a>统一修改数据集label</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#!/usr/bin/python</span></div><div class="line"><span class="comment"># coding=utf-8</span></div><div class="line"><span class="keyword">import</span> os</div><div class="line"><span class="keyword">from</span> xml.etree.ElementTree <span class="keyword">import</span> ElementTree, Element</div><div class="line"><span class="keyword">import</span> sys</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_xml</span><span class="params">(in_path)</span>:</span></div><div class="line">    <span class="string">'''</span></div><div class="line">    Read xml file and parse it</div><div class="line">    '''</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        tree = ElementTree()</div><div class="line">        tree.parse(in_path)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        tree = <span class="keyword">None</span>  <span class="comment"># if file is empty, just continue</span></div><div class="line">    <span class="keyword">return</span> tree</div><div class="line"></div><div class="line"></div><div class="line">label_prefix = os.path.join(<span class="string">"path/Annotations"</span>) <span class="comment">#原始的标注文件路径</span></div><div class="line">label_prefix2 = os.path.join(<span class="string">"path/Annotations2"</span>)　<span class="comment">#修改后的标注文件路径</span></div><div class="line"></div><div class="line"></div><div class="line"></div><div class="line">frame_cnt = <span class="number">0</span></div><div class="line">all_sum = <span class="number">0</span></div><div class="line">label_path = label_prefix</div><div class="line"></div><div class="line">label_folder = os.path.basename(label_path)</div><div class="line"></div><div class="line">annolist = os.listdir(label_path)</div><div class="line">sum = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> idx, anno <span class="keyword">in</span> enumerate(annolist):</div><div class="line">    tree = read_xml(os.path.join(label_path, anno))　　<span class="comment">#读取xml文件内容为一个DOM树</span></div><div class="line">    out_path = os.path.join(label_prefix2, anno)</div><div class="line">    <span class="keyword">if</span> tree <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">        <span class="keyword">continue</span></div><div class="line">    frame_cnt += <span class="number">1</span></div><div class="line">    object_node = tree.findall(<span class="string">'object'</span>)</div><div class="line"></div><div class="line">    cnt = <span class="number">0</span></div><div class="line">    <span class="keyword">for</span> obj <span class="keyword">in</span> object_node:</div><div class="line">        name = obj.find(<span class="string">'name'</span>).text</div><div class="line">        <span class="keyword">if</span> name == <span class="string">'person'</span>:　　　<span class="comment">#假设要将所有的'person' label修改为'Person'　　　　　　　　</span></div><div class="line">        	<span class="keyword">print</span> anno</div><div class="line">        	obj.find(<span class="string">'name'</span>).text = <span class="string">'Person'</span>  </div><div class="line">        cnt += <span class="number">1</span></div><div class="line">    sum += cnt</div><div class="line">    tree.write(out_path, encoding=<span class="string">"utf-8"</span>,xml_declaration=<span class="keyword">True</span>)  <span class="comment">#将修改后的DOM树写入xml文件</span></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/22/DL常用的若干Tricks/" rel="next" title="DL常用的若干Tricks">
+                <i class="fa fa-chevron-left"></i> DL常用的若干Tricks
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/16/faster-rcnn网络剖析/" rel="prev" title="深入了解Faster R-CNN实现细节">
+                深入了解Faster R-CNN实现细节 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#txt转xml格式"><span class="nav-number">1.</span> <span class="nav-text">txt转xml格式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统一修改数据集label"><span class="nav-number">2.</span> <span class="nav-text">统一修改数据集label</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
