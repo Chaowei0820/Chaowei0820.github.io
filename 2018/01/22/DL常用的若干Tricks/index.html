@@ -107,7 +107,15 @@
 <meta property="og:image" content="http://yoursite.com/img/DL-tricks/12.png">
 <meta property="og:image" content="http://yoursite.com/img/DL-tricks/13.png">
 <meta property="og:image" content="http://yoursite.com/img/DL-tricks/14.png">
-<meta property="og:updated_time" content="2018-04-23T14:32:33.610Z">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/15.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/16.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/17.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/18.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/18.5.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/19.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/20.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/21.png">
+<meta property="og:updated_time" content="2018-04-24T02:38:39.970Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="DL常用的若干Tricks">
 <meta name="twitter:description" content="ReLU、Dropout、mini-batch、BN、L1/L2、finetune等等">
@@ -461,10 +469,36 @@
 <div align="center"><img src="/img/DL-tricks/14.png" alt="&quot;da&quot;"></div>
 
 <p>上面的公式中m指的是mini-batch size</p>
-<h2 id="L1-L2正则化"><a href="#L1-L2正则化" class="headerlink" title="L1/L2正则化"></a>L1/L2正则化</h2><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种,称作L1正则化和L2正则化，或者L1范数和L2范数.<br>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓惩罚是指对损失函数中的某些参数做一些限制。这里在之前关于过拟合与欠拟合的博客中有提到。
-　</p>
-<p>Updating………………………</p>
-<p>参考文献<br>【1】[DeepLearning学习笔记之ReLU函数]<a href="https://blog.csdn.net/l349074299/article/details/72680078" target="_blank" rel="external">https://blog.csdn.net/l349074299/article/details/72680078</a><br>【2】[ReLU函数简介]<a href="https://blog.csdn.net/u012905422/article/details/52601022" target="_blank" rel="external">https://blog.csdn.net/u012905422/article/details/52601022</a><br>【3】[消失的梯度问题]<a href="https://www.cnblogs.com/tsiangleo/p/6151560.html" target="_blank" rel="external">https://www.cnblogs.com/tsiangleo/p/6151560.html</a><br>【4】[理解dropout]<a href="https://blog.csdn.net/stdcoutzyx/article/details/49022443" target="_blank" rel="external">https://blog.csdn.net/stdcoutzyx/article/details/49022443</a><br>【5】[mini-batch 梯度下降]<a href="https://blog.csdn.net/kebu12345678/article/details/54917600" target="_blank" rel="external">https://blog.csdn.net/kebu12345678/article/details/54917600</a><br>【6】[深度学习基础 (五)–超参数：mini batch]<a href="https://testerhome.com/topics/10877" target="_blank" rel="external">https://testerhome.com/topics/10877</a><br>【7】[Batch Normalization 学习笔记]<a href="https://blog.csdn.net/leayc/article/details/77645877" target="_blank" rel="external">https://blog.csdn.net/leayc/article/details/77645877</a></p>
+<h2 id="L1-L2正则化"><a href="#L1-L2正则化" class="headerlink" title="L1/L2正则化"></a>L1/L2正则化</h2><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种,称作L1正则化和L2正则化，或者L1范数和L2范数，<font color="#FF000000">目的主要是防止过拟合，提高泛化能力。</font><br>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓惩罚是指对损失函数中的某些参数做一些限制。这里在之前关于过拟合与欠拟合的博客中有提到。</p>
+<h3 id="L2-regularization"><a href="#L2-regularization" class="headerlink" title="L2 regularization"></a>L2 regularization</h3><p>L2正则化就是在代价函数后面再加上一个正则化项</p>
+<div align="center"><img src="/img/DL-tricks/15.png" alt="&quot;da&quot;"></div>
+
+<p>C0代表原始的代价函数，后面那一项就是L2正则化项。即全部参数w的平方的和，除以训练集的样本大小n。<br>λ就是正则项系数，权衡正则项与C0项的比重。另外系数1/2主要是为了后面求导的结果方便,后面那一项求导会产生一个2,与1/2相乘刚好凑整。</p>
+<p>L2正则化项是怎么避免overfitting的,先求导</p>
+<div align="center"><img src="/img/DL-tricks/16.png" alt="&quot;da&quot;"></div>
+
+<p>能够发现L2正则化项对b的更新没有影响，可是对于w的更新有影响:</p>
+<div align="center"><img src="/img/DL-tricks/17.png" alt="&quot;da&quot;"></div>
+
+<p>在不使用L2正则化时。求导结果中w前系数为1，如今w前面系数为 1−ηλ/n ，由于η、λ、n都是正的。所以 1−ηλ/n小于1，<font color="#FF000000">它的效果是减小w。这也就是权重衰减（weight decay）的由来。</font></p>
+<p>当然考虑到后面的导数项，w终于的值可能增大也可能减小。</p>
+<p>另外。须要提一下，对于基于mini-batch的随机梯度下降，w和b更新的公式跟上面给出的有点不同</p>
+<div align="center"><img src="/img/DL-tricks/18.png" alt="&quot;da&quot;"></div>
+
+<p>L2正则化能够让w有变小的趋势。现在解释一下w变小为什么能够防止过拟合。<br>过拟合的时候，拟合函数的系数往往非常大。例如下图，过拟合就是拟合函数须要顾忌每个点。在某些非常小的区间里，函数值的变化非常剧烈。<br>这就意味着函数在某些小区间里的导数值（绝对值）非常大，由于自变量值可大可小，所以仅仅有系数足够大，才干保证导数值非常大。</p>
+<div align="center"><img src="/img/DL-tricks/18.5.png" alt="&quot;da&quot;"></div>
+
+<h3 id="L1-regularization"><a href="#L1-regularization" class="headerlink" title="L1 regularization"></a>L1 regularization</h3><p>在原始的代价函数后面加上一个L1正则化项。即全部权重w的绝对值的和，乘以λ/n</p>
+<div align="center"><img src="/img/DL-tricks/19.png" alt="&quot;da&quot;"></div>
+
+<p>先计算导数</p>
+<div align="center"><img src="/img/DL-tricks/20.png" alt="&quot;da&quot;"></div>
+
+<p>上式中sgn(w)表示w的符号。那么权重w的更新规则为</p>
+<div align="center"><img src="/img/DL-tricks/21.png" alt="&quot;da&quot;"></div>
+
+<p>比原始的更新规则多出了η <em> λ </em> sgn(w)/n这一项。<br>当w为正时，更新后的w变小；当w为负时。更新后的w变大。<br>因此它的效果就是让w往0靠，使网络中的权重尽可能为0，也就相当于减小了网络复杂度，防止过拟合。</p>
+<p>参考文献<br>【1】[DeepLearning学习笔记之ReLU函数]<a href="https://blog.csdn.net/l349074299/article/details/72680078" target="_blank" rel="external">https://blog.csdn.net/l349074299/article/details/72680078</a><br>【2】[ReLU函数简介]<a href="https://blog.csdn.net/u012905422/article/details/52601022" target="_blank" rel="external">https://blog.csdn.net/u012905422/article/details/52601022</a><br>【3】[消失的梯度问题]<a href="https://www.cnblogs.com/tsiangleo/p/6151560.html" target="_blank" rel="external">https://www.cnblogs.com/tsiangleo/p/6151560.html</a><br>【4】[理解dropout]<a href="https://blog.csdn.net/stdcoutzyx/article/details/49022443" target="_blank" rel="external">https://blog.csdn.net/stdcoutzyx/article/details/49022443</a><br>【5】[mini-batch 梯度下降]<a href="https://blog.csdn.net/kebu12345678/article/details/54917600" target="_blank" rel="external">https://blog.csdn.net/kebu12345678/article/details/54917600</a><br>【6】[深度学习基础 (五)–超参数：mini batch]<a href="https://testerhome.com/topics/10877" target="_blank" rel="external">https://testerhome.com/topics/10877</a><br>【7】[Batch Normalization 学习笔记]<a href="https://blog.csdn.net/leayc/article/details/77645877" target="_blank" rel="external">https://blog.csdn.net/leayc/article/details/77645877</a><br>【8】[正则化方法：L1和L2 regularization、数据集扩增、dropout]<a href="https://www.cnblogs.com/yxwkf/p/5268577.html" target="_blank" rel="external">https://www.cnblogs.com/yxwkf/p/5268577.html</a></p>
 
       
     </div>
@@ -666,7 +700,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU"><span class="nav-number">1.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU优点"><span class="nav-number">1.1.</span> <span class="nav-text">ReLU优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏性的优势"><span class="nav-number">1.2.</span> <span class="nav-text">稀疏性的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏激活函数的优势"><span class="nav-number">1.3.</span> <span class="nav-text">稀疏激活函数的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度消失问题Gradient-vanishing"><span class="nav-number">1.4.</span> <span class="nav-text">梯度消失问题Gradient vanishing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU的缺陷"><span class="nav-number">1.5.</span> <span class="nav-text">ReLU的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">3.</span> <span class="nav-text">Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Gradient-Descent-BGD"><span class="nav-number">3.1.</span> <span class="nav-text">Batch Gradient Descent(BGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stochastic-Gradient-Descent-SGD"><span class="nav-number">3.2.</span> <span class="nav-text">Stochastic Gradient Descent(SGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-Gradient-Descent"><span class="nav-number">3.3.</span> <span class="nav-text">Mini-batch Gradient Descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带Mini-batch的SGD"><span class="nav-number">3.4.</span> <span class="nav-text">带Mini-batch的SGD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比分析"><span class="nav-number">3.5.</span> <span class="nav-text">对比分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">4.</span> <span class="nav-text">Batch Normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起因"><span class="nav-number">4.1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法的几大优势"><span class="nav-number">4.2.</span> <span class="nav-text">BN算法的几大优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法细节"><span class="nav-number">4.3.</span> <span class="nav-text">BN算法细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L1-L2正则化"><span class="nav-number">5.</span> <span class="nav-text">L1/L2正则化</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU"><span class="nav-number">1.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU优点"><span class="nav-number">1.1.</span> <span class="nav-text">ReLU优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏性的优势"><span class="nav-number">1.2.</span> <span class="nav-text">稀疏性的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏激活函数的优势"><span class="nav-number">1.3.</span> <span class="nav-text">稀疏激活函数的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度消失问题Gradient-vanishing"><span class="nav-number">1.4.</span> <span class="nav-text">梯度消失问题Gradient vanishing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU的缺陷"><span class="nav-number">1.5.</span> <span class="nav-text">ReLU的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">3.</span> <span class="nav-text">Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Gradient-Descent-BGD"><span class="nav-number">3.1.</span> <span class="nav-text">Batch Gradient Descent(BGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stochastic-Gradient-Descent-SGD"><span class="nav-number">3.2.</span> <span class="nav-text">Stochastic Gradient Descent(SGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-Gradient-Descent"><span class="nav-number">3.3.</span> <span class="nav-text">Mini-batch Gradient Descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带Mini-batch的SGD"><span class="nav-number">3.4.</span> <span class="nav-text">带Mini-batch的SGD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比分析"><span class="nav-number">3.5.</span> <span class="nav-text">对比分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">4.</span> <span class="nav-text">Batch Normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起因"><span class="nav-number">4.1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法的几大优势"><span class="nav-number">4.2.</span> <span class="nav-text">BN算法的几大优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法细节"><span class="nav-number">4.3.</span> <span class="nav-text">BN算法细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L1-L2正则化"><span class="nav-number">5.</span> <span class="nav-text">L1/L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L2-regularization"><span class="nav-number">5.1.</span> <span class="nav-text">L2 regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-regularization"><span class="nav-number">5.2.</span> <span class="nav-text">L1 regularization</span></a></li></ol></li></ol></div>
             
 
           </div>
