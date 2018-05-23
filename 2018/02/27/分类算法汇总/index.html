@@ -87,17 +87,28 @@
 
 
 
-<meta name="description" content="k-means,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta name="description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
 <meta name="keywords" content="MachineLearning">
 <meta property="og:type" content="article">
 <meta property="og:title" content="分类算法汇总">
 <meta property="og:url" content="http://yoursite.com/2018/02/27/分类算法汇总/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="k-means,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
-<meta property="og:updated_time" content="2018-05-04T03:13:56.645Z">
+<meta property="og:description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta property="og:image" content="http://yoursite.com/img/ML/5.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/7.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/7.5.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/6.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/8.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/9.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/10.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/11.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/12.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/13.png">
+<meta property="og:updated_time" content="2018-05-22T14:54:55.613Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分类算法汇总">
-<meta name="twitter:description" content="k-means,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta name="twitter:description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta name="twitter:image" content="http://yoursite.com/img/ML/5.png">
 
 
 
@@ -385,9 +396,50 @@
       
 
       
-        <blockquote class="blockquote-center"><p>k-means,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost </p>
+        <blockquote class="blockquote-center"><p>k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost </p>
 </blockquote> 
 <a id="more"></a>
+<h2 id="gt-gt-k-近邻-kNN"><a href="#gt-gt-k-近邻-kNN" class="headerlink" title="&gt;&gt; k-近邻(kNN)"></a>&gt;&gt; k-近邻(kNN)</h2><p>kNN算法采用测量不同特征值之间距离的方法进行分类。</p>
+<h3 id="算法原理"><a href="#算法原理" class="headerlink" title="算法原理"></a>算法原理</h3><p>存在一个样本数据集，每个数据都有标签。当输入没有标签的新数据后，<font color="#FF000000">将新数据的每个特征与样本集中数据对应的特征进行比较，然后算法提取样本集中特征最相似数据(最近邻)的分类标签</font>。一般来说，我们只选择样本数据集中前k个最相似的数据，通常k不大于20。最后，<font color="#FF000000">选择k个最相似数据中出现次数最多的分类</font>，作为新数据的分类。</p>
+<h3 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h3><p>1.计算已知类别数据集中的点与输入点之间的距离(对于特征之间数值量级差异较大的点，需要进行归一化操作)<br>这里将特征值转化到0到1区间<br>newValue = (oldValue-min)/(max-min)<br>2.按照距离递增次序排序<br>3.选取与当前点距离最小的k个点<br>4.确定前k个点所在类别的出现频率<br>5.返回前k个点出现频率最高的类别作为输入点的预测分类</p>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点:精度高、对异常值不敏感、无数据输入假定<br>缺点:<font color="#FF000000">无法给出数据的内在含义、计算复杂度高、空间复杂度高</font></p>
+<h2 id="gt-gt-决策树"><a href="#gt-gt-决策树" class="headerlink" title="&gt;&gt; 决策树"></a>&gt;&gt; 决策树</h2><p>决策树是一种树型结构，内部节点表示一个特征，分支代表一个判断结果的输出，叶节点表示一种类别<br>决策树的生成算法有ID3,C4.5和CART等</p>
+<h3 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h3><p>ID3 (Iterative Dichotomiser 3)迭代二分器算法</p>
+<h4 id="基本思想"><a href="#基本思想" class="headerlink" title="基本思想"></a>基本思想</h4><p>采用自顶向下的递归方法，<font color="#FF000000">以信息熵为度量</font>，用于决策树结点的属性选择,<font color="#FF000000">每次优先选取信息增益最大的属性</font>,即能使熵值最小的属性,构造一棵熵值下降最快的决策树。到叶子结点的熵值为0,此时对应实例集中的实例属于同一类别。</p>
+<h4 id="熵与信息增益"><a href="#熵与信息增益" class="headerlink" title="熵与信息增益"></a>熵与信息增益</h4><p>熵定义为信息期望值，为了计算所有类别所有可能值包含的信息期望值，通过下面公式得到</p>
+<div align="center"><img src="/img/ML/5.png" alt="&quot;da&quot;"></div>
+
+<p>信息增益(Information gain)来选取Feature作为决策树分裂的节点.特征A对训练数据集D的信息增益定义为集合D的经验熵(所谓经验熵,指的是熵是有某个数据集合估计得到的)H(D)与特征A给定条件下D的经验条件熵H(D∣A)之差,记为 g(D,A).信息增益是熵的减少值或者是数据无序度的减少.</p>
+<p><img src="/img/ML/7.png" alt="&quot;da&quot;"></p>
+<p>信息增益计算如下</p>
+<p><img src="/img/ML/7.5.png" alt="&quot;da&quot;"></p>
+<h4 id="生成决策树具体步骤"><a href="#生成决策树具体步骤" class="headerlink" title="生成决策树具体步骤"></a>生成决策树具体步骤</h4><p>ID3从根节点开始,计算所有可能特征的信息增益,取信息增益最大的特征作为节点的特征,<br>然后由特征的不同取值,建立子节点,<br>再对子节点递归调用以上方法,直到所有特征的信息增益都很小或者没有特征选择为止.</p>
+<div align="center"><img src="/img/ML/6.png" alt="&quot;da&quot;"></div>
+
+
+<h3 id="C4-5算法"><a href="#C4-5算法" class="headerlink" title="C4.5算法"></a>C4.5算法</h3><p>ID3采用会优先选择有较多属性值的Feature,因为属性值多的Feature会有相对较大的信息增益(信息增益反映的给定一个条件以后不确定性减少的程度,必然是分得越细的数据集确定性更高,也就是条件熵越小,信息增益越大).</p>
+<p>避免这个不足的一个度量就是不用信息增益来选择Feature,而是用<font color="#FF000000">信息增益比率(gain ratio)</font>,增益比率通过引入一个被称作<font color="#FF000000">分裂信息(Split information)</font>的项来惩罚取值较多的Feature,分裂信息用来衡量Feature分裂数据的广度和均匀性:</p>
+<div align="center"><img src="/img/ML/8.png" alt="&quot;da&quot;"></div>
+
+<p>但是当某个Di的大小跟D的大小接近的时候<br><img src="/img/ML/9.png" alt="&quot;da&quot;"><br>为了避免这样的属性,可以采用启发式的思路,<font color="#FF000000">只对那些信息增益比较高的属性才应用信息增益比率</font>.</p>
+<p>相比ID3,C4.5还能处理连续属性值,具体步骤为:<br>1.把需要处理的样本(对应根节点)或样本子集(对应子树)按照连续变量的大小从小到大进行排序.<br>2.假设该属性对应的不同的属性值一共有N个,那么总共有N−1个可能的候选分割阈值点,每个候选的分割阈值点的值为上述排序后的属性值中两两前后连续元素的中点,根据这个分割点把原来连续的属性分成bool属性.实际上可以不用检查所有N−1个分割点,具体请看下面的例子.<br>3.用信息增益比率选择最佳划分.</p>
+<p>假设上面关于贷款的例子还有个属性是收入情况,对应的数据如下(已经排好序):</p>
+<div align="center"><img src="/img/ML/10.png" alt="&quot;da&quot;"></div>
+
+<p>可以证明这时候的切分点,只能出现在目标分类不同的相邻实例之间,即出现在(48,60)和(80,90)之间,这时候选取切分点 s1=(48+60)/2=54 和 s2=(80+90)/2=85.利用s1=54就可以将收入分成小于54和大于54两类.连续属性值比较多的时候,由于需要排序和扫描,会使C4.5的性能有所下降.</p>
+<p>C4.5还能对缺失值进行处理,处理的方式通常有三种:<br>1.赋上该属性最常见的值<br>2.丢弃有缺失值的样本<br>3.根据节点的样例上该属性值出现的情况赋一个概率,比如该节点上有10个样本,其中属性A的取值有6个为是,4个为否.那么对改节点上缺失的属性A,以0.6的概率设为是,0.4的概率设为否.</p>
+<h3 id="CART算法"><a href="#CART算法" class="headerlink" title="CART算法"></a>CART算法</h3><p>CART（Classification and Regression tree）分类回归树由L.Breiman,J.Friedman,R.Olshen和C.Stone于1984年提出。ID3中根据属性值分割数据，之后该特征不会再起作用，这种快速切割的方式会影响算法的准确率。CART是一棵二叉树，采用二元切分法，每次把数据切成两份，分别进入左子树、右子树。而且每个非叶子节点都有两个孩子，所以CART的叶子节点比非叶子多1。相比ID3和C4.5，CART应用要多一些，既可以用于分类也可以用于回归。CART分类时，使用基尼指数（Gini）来选择最好的数据分割的特征，gini描述的是纯度，与信息熵的含义相似。CART中每一次迭代都会降低GINI系数。下图显示信息熵增益的一半，Gini指数，分类误差率三种评价指标非常接近。回归时使用均方差作为loss function。基尼系数的计算与信息熵增益的方式非常类似</p>
+<div align="center"><img src="/img/ML/11.png" alt="&quot;da&quot;"></div>
+
+<h3 id="剪枝算法"><a href="#剪枝算法" class="headerlink" title="剪枝算法"></a>剪枝算法</h3><p>决策树算法很容易在训练数据中生成复杂的树结构，造成过拟合。剪枝可以缓解过拟合的负作用，常用方法是预剪枝与后剪枝。</p>
+<h4 id="预剪枝策略-Pre-pruning"><a href="#预剪枝策略-Pre-pruning" class="headerlink" title="预剪枝策略(Pre-pruning)"></a>预剪枝策略(Pre-pruning)</h4><p><font color="#FF000000">决策树生成过程中</font>,对每个结点在划分前进行估计,若划分<font color="#FF000000">不能带来决策树泛化性能提升</font>,则<font color="#FF000000">停止</font>划分并将该节点设为叶结点.<br>这里测试泛化性能可通过计算测试样本分类的正确率判断.</p>
+<h4 id="后剪枝策略-Post-pruning"><a href="#后剪枝策略-Post-pruning" class="headerlink" title="后剪枝策略(Post-pruning)"></a>后剪枝策略(Post-pruning)</h4><p><font color="#FF000000">先利用训练集生成决策树</font>,自底向上对非叶结点进行考察,若将该结点对应子树替换为叶结点能带来泛化性能提升,则将该子树替换为叶结点</p>
+<h2 id="gt-gt-朴素贝叶斯"><a href="#gt-gt-朴素贝叶斯" class="headerlink" title="&gt;&gt; 朴素贝叶斯"></a>&gt;&gt; 朴素贝叶斯</h2><h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><h4 id="贝叶斯分类"><a href="#贝叶斯分类" class="headerlink" title="贝叶斯分类"></a>贝叶斯分类</h4><div align="center"><img src="/img/ML/12.png" alt="&quot;da&quot;"></div><br>p(B)为先验概率，表示每种类别分布的概率；<br>P(A|B)为类条件概率，表示在某种类别前提下，某事发生的概率；<br>P(B|A)为后验概率，表示某事发生了，并且它属于某一类别的概率，有了这个后验概率，我们就可以对样本进行分类。后验概率越大，说明某事物属于这个类别的可能性越大，我们越有理由把它归到这个类别下<br><br>基于最小错误率的贝叶斯分类:计算出后验概率后，再计算分类的错误率，选择错误率最小的那一类。<br>基于最小风险的贝叶斯分类:计算出后验概率后，将不同决策乘以对应决策的风险值，选择能使风险值最小的那一类。<br><br>但是在实际问题中并不都是这样幸运的，我们能获得的数据可能只有有限数目的样本数据，而先验概率和类条件概率(各类的总体分布)都是未知的。根据仅有的样本数据进行分类时，一种可行的办法是我们<font color="#FF000000">需要先对先验概率和类条件概率进行估计</font>，然后再套用贝叶斯分类器。<br><br><div align="center"><img src="/img/ML/13.png" alt="&quot;da&quot;"></div>
+
+<p>先验概率的估计较简单，1、每个样本所属的自然状态都是已知的（有监督学习）；2、依靠经验；3、用训练样本中各类出现的频率估计。</p>
+<p>类条件概率的估计（非常难），原因包括：概率密度函数包含了一个随机变量的全部信息；样本数据可能不多；特征向量x的维度可能很大等等。总之要直接估计类条件概率的密度函数很难。解决的办法就是，把估计完全未知的概率密度转化为估计参数。这里就将概率密度估计问题转化为参数估计问题，极大似然估计就是一种参数估计方法。</p>
+<h4 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h4><p>极大似然估计要求<font color="#FF000000">已知总体的概型</font>，<br>极大似然估计提供了一种给定观察数据来评估模型参数的方法，即：“模型已定，参数未知”。通过若干次试验，观察其结果，利用试验结果得到某个参数值能够使样本出现的概率为最大，则称为极大似然估计。</p>
+<p>参考链接：<br>【1】<a href="http://leijun00.github.io/2014/09/decision-tree/" target="_blank" rel="external">决策树</a><br>【2】<a href="https://www.cnblogs.com/wxquare/p/5379970.html" target="_blank" rel="external">决策树模型 ID3/C4.5/CART算法比较</a></p>
 
       
     </div>
@@ -491,8 +543,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.jpg"
@@ -574,6 +635,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-k-近邻-kNN"><span class="nav-number">1.</span> <span class="nav-text">>> k-近邻(kNN)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理"><span class="nav-number">1.1.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本步骤"><span class="nav-number">1.2.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-决策树"><span class="nav-number">2.</span> <span class="nav-text">>> 决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法"><span class="nav-number">2.1.</span> <span class="nav-text">ID3算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思想"><span class="nav-number">2.1.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#熵与信息增益"><span class="nav-number">2.1.2.</span> <span class="nav-text">熵与信息增益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成决策树具体步骤"><span class="nav-number">2.1.3.</span> <span class="nav-text">生成决策树具体步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5算法"><span class="nav-number">2.2.</span> <span class="nav-text">C4.5算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART算法"><span class="nav-number">2.3.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪枝算法"><span class="nav-number">2.4.</span> <span class="nav-text">剪枝算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预剪枝策略-Pre-pruning"><span class="nav-number">2.4.1.</span> <span class="nav-text">预剪枝策略(Pre-pruning)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后剪枝策略-Post-pruning"><span class="nav-number">2.4.2.</span> <span class="nav-text">后剪枝策略(Post-pruning)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-朴素贝叶斯"><span class="nav-number">3.</span> <span class="nav-text">>> 朴素贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预备知识"><span class="nav-number">3.1.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贝叶斯分类"><span class="nav-number">3.1.1.</span> <span class="nav-text">贝叶斯分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极大似然估计"><span class="nav-number">3.1.2.</span> <span class="nav-text">极大似然估计</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
