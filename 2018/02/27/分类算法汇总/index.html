@@ -87,13 +87,13 @@
 
 
 
-<meta name="description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta name="description" content="k-近邻,决策树,贝叶斯分类,Logistic,SVM">
 <meta name="keywords" content="MachineLearning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="分类算法汇总">
+<meta property="og:title" content="分类算法汇总(一)">
 <meta property="og:url" content="http://yoursite.com/2018/02/27/分类算法汇总/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta property="og:description" content="k-近邻,决策树,贝叶斯分类,Logistic,SVM">
 <meta property="og:image" content="http://yoursite.com/img/ML/5.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/7.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/7.5.png">
@@ -104,10 +104,34 @@
 <meta property="og:image" content="http://yoursite.com/img/ML/11.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/12.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/13.png">
-<meta property="og:updated_time" content="2018-05-22T14:54:55.613Z">
+<meta property="og:image" content="http://yoursite.com/img/ML/14.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/15.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/16.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/17.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/18.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/21.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/22.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/23.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/24.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/25.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/26.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/27.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/28.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/29.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/19.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/28.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/20.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/30.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/31.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/32.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/33.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/34.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/35.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/36.png">
+<meta property="og:updated_time" content="2018-05-24T02:20:47.397Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="分类算法汇总">
-<meta name="twitter:description" content="k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost">
+<meta name="twitter:title" content="分类算法汇总(一)">
+<meta name="twitter:description" content="k-近邻,决策树,贝叶斯分类,Logistic,SVM">
 <meta name="twitter:image" content="http://yoursite.com/img/ML/5.png">
 
 
@@ -142,7 +166,7 @@
 
 
 
-  <title> 分类算法汇总 | Chaowei's Blog </title>
+  <title> 分类算法汇总(一) | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -312,7 +336,7 @@
             
             
               
-                分类算法汇总
+                分类算法汇总(一)
               
             
           </h1>
@@ -367,7 +391,7 @@
 
           
           
-             <span id="/2018/02/27/分类算法汇总/" class="leancloud_visitors" data-flag-title="分类算法汇总">
+             <span id="/2018/02/27/分类算法汇总/" class="leancloud_visitors" data-flag-title="分类算法汇总(一)">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -396,7 +420,7 @@
       
 
       
-        <blockquote class="blockquote-center"><p>k-近邻,决策树,朴素贝叶斯,Logistic,SVM,AdaBoost </p>
+        <blockquote class="blockquote-center"><p>k-近邻,决策树,贝叶斯分类,Logistic,SVM </p>
 </blockquote> 
 <a id="more"></a>
 <h2 id="gt-gt-k-近邻-kNN"><a href="#gt-gt-k-近邻-kNN" class="headerlink" title="&gt;&gt; k-近邻(kNN)"></a>&gt;&gt; k-近邻(kNN)</h2><p>kNN算法采用测量不同特征值之间距离的方法进行分类。</p>
@@ -434,12 +458,35 @@
 <h3 id="剪枝算法"><a href="#剪枝算法" class="headerlink" title="剪枝算法"></a>剪枝算法</h3><p>决策树算法很容易在训练数据中生成复杂的树结构，造成过拟合。剪枝可以缓解过拟合的负作用，常用方法是预剪枝与后剪枝。</p>
 <h4 id="预剪枝策略-Pre-pruning"><a href="#预剪枝策略-Pre-pruning" class="headerlink" title="预剪枝策略(Pre-pruning)"></a>预剪枝策略(Pre-pruning)</h4><p><font color="#FF000000">决策树生成过程中</font>,对每个结点在划分前进行估计,若划分<font color="#FF000000">不能带来决策树泛化性能提升</font>,则<font color="#FF000000">停止</font>划分并将该节点设为叶结点.<br>这里测试泛化性能可通过计算测试样本分类的正确率判断.</p>
 <h4 id="后剪枝策略-Post-pruning"><a href="#后剪枝策略-Post-pruning" class="headerlink" title="后剪枝策略(Post-pruning)"></a>后剪枝策略(Post-pruning)</h4><p><font color="#FF000000">先利用训练集生成决策树</font>,自底向上对非叶结点进行考察,若将该结点对应子树替换为叶结点能带来泛化性能提升,则将该子树替换为叶结点</p>
-<h2 id="gt-gt-朴素贝叶斯"><a href="#gt-gt-朴素贝叶斯" class="headerlink" title="&gt;&gt; 朴素贝叶斯"></a>&gt;&gt; 朴素贝叶斯</h2><h3 id="预备知识"><a href="#预备知识" class="headerlink" title="预备知识"></a>预备知识</h3><h4 id="贝叶斯分类"><a href="#贝叶斯分类" class="headerlink" title="贝叶斯分类"></a>贝叶斯分类</h4><div align="center"><img src="/img/ML/12.png" alt="&quot;da&quot;"></div><br>p(B)为先验概率，表示每种类别分布的概率；<br>P(A|B)为类条件概率，表示在某种类别前提下，某事发生的概率；<br>P(B|A)为后验概率，表示某事发生了，并且它属于某一类别的概率，有了这个后验概率，我们就可以对样本进行分类。后验概率越大，说明某事物属于这个类别的可能性越大，我们越有理由把它归到这个类别下<br><br>基于最小错误率的贝叶斯分类:计算出后验概率后，再计算分类的错误率，选择错误率最小的那一类。<br>基于最小风险的贝叶斯分类:计算出后验概率后，将不同决策乘以对应决策的风险值，选择能使风险值最小的那一类。<br><br>但是在实际问题中并不都是这样幸运的，我们能获得的数据可能只有有限数目的样本数据，而先验概率和类条件概率(各类的总体分布)都是未知的。根据仅有的样本数据进行分类时，一种可行的办法是我们<font color="#FF000000">需要先对先验概率和类条件概率进行估计</font>，然后再套用贝叶斯分类器。<br><br><div align="center"><img src="/img/ML/13.png" alt="&quot;da&quot;"></div>
+<h2 id="gt-gt-贝叶斯分类"><a href="#gt-gt-贝叶斯分类" class="headerlink" title="&gt;&gt; 贝叶斯分类"></a>&gt;&gt; 贝叶斯分类</h2><h3 id="贝叶斯公式"><a href="#贝叶斯公式" class="headerlink" title="贝叶斯公式"></a>贝叶斯公式</h3><div align="center"><img src="/img/ML/12.png" alt="&quot;da&quot;"></div><br>p(B)为先验概率，表示每种类别分布的概率；<br>P(A|B)为类条件概率，表示在某种类别前提下，某事发生的概率；<br>P(B|A)为后验概率，表示某事发生了，并且它属于某一类别的概率，有了这个后验概率，我们就可以对样本进行分类。后验概率越大，说明某事物属于这个类别的可能性越大，我们越有理由把它归到这个类别下<br><br>基于最小错误率的贝叶斯分类:计算出后验概率后，再计算分类的错误率，选择错误率最小的那一类。<br>基于最小风险的贝叶斯分类:计算出后验概率后，将不同决策乘以对应决策的风险值，选择能使风险值最小的那一类。<br><br>但是在实际问题中并不都是这样幸运的，我们能获得的数据可能只有有限数目的样本数据，而先验概率和类条件概率(各类的总体分布)都是未知的。根据仅有的样本数据进行分类时，一种可行的办法是我们<font color="#FF000000">需要先对先验概率和类条件概率进行估计</font>，然后再套用贝叶斯分类器。<br><br><div align="center"><img src="/img/ML/13.png" alt="&quot;da&quot;"></div>
 
 <p>先验概率的估计较简单，1、每个样本所属的自然状态都是已知的（有监督学习）；2、依靠经验；3、用训练样本中各类出现的频率估计。</p>
-<p>类条件概率的估计（非常难），原因包括：概率密度函数包含了一个随机变量的全部信息；样本数据可能不多；特征向量x的维度可能很大等等。总之要直接估计类条件概率的密度函数很难。解决的办法就是，把估计完全未知的概率密度转化为估计参数。这里就将概率密度估计问题转化为参数估计问题，极大似然估计就是一种参数估计方法。</p>
-<h4 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h4><p>极大似然估计要求<font color="#FF000000">已知总体的概型</font>，<br>极大似然估计提供了一种给定观察数据来评估模型参数的方法，即：“模型已定，参数未知”。通过若干次试验，观察其结果，利用试验结果得到某个参数值能够使样本出现的概率为最大，则称为极大似然估计。</p>
-<p>参考链接：<br>【1】<a href="http://leijun00.github.io/2014/09/decision-tree/" target="_blank" rel="external">决策树</a><br>【2】<a href="https://www.cnblogs.com/wxquare/p/5379970.html" target="_blank" rel="external">决策树模型 ID3/C4.5/CART算法比较</a></p>
+<p><font color="#FF000000">类条件概率的估计（非常难）</font>，原因包括：概率密度函数包含了一个随机变量的全部信息；样本数据可能不多；特征向量x的维度可能很大等等。总之要直接估计类条件概率的密度函数很难。<font color="#FF000000">解决的办法就是，把估计完全未知的概率密度转化为估计参数。这里就将概率密度估计问题转化为参数估计问题</font>，极大似然估计就是一种参数估计方法。</p>
+<h3 id="极大似然估计"><a href="#极大似然估计" class="headerlink" title="极大似然估计"></a>极大似然估计</h3><p>极大似然估计要求<font color="#FF000000">已知总体的概型</font>，<br>极大似然估计提供了一种给定观察数据来评估模型参数的方法，即：“模型已定，参数未知”。通过若干次试验，观察其结果，利用试验结果得到某个参数值能够使样本出现的概率为最大，则称为极大似然估计。</p>
+<p><img src="/img/ML/14.png" alt="&quot;da&quot;"><br><img src="/img/ML/15.png" alt="&quot;da&quot;"></p>
+<p><font color="#FF000000">这里乘法的因子可能会非常接近于0或者等于0，计算机内四舍五入后会等于0，解决这个问题的方法是取自然对数。取自然对数能将乘法转变为加法，便于计算，并且不会影响最后的大小判断</font>。</p>
+<p><img src="/img/ML/16.png" alt="&quot;da&quot;"></p>
+<p><font color="#FF000000">方程的解只是一个估计值，只有在样本数趋于无限多的时候，它才会接近于真实值</font>。</p>
+<p><img src="/img/ML/17.png" alt="&quot;da&quot;"><br><img src="/img/ML/18.png" alt="&quot;da&quot;"></p>
+<h3 id="朴素贝叶斯"><a href="#朴素贝叶斯" class="headerlink" title="朴素贝叶斯"></a>朴素贝叶斯</h3><p>朴素贝叶斯分类器假设特征之间均相互独立，并且是同等重要的，这种假设是非常理想的。</p>
+<p>应用:文本分类<br>对每个词条内的单词进行计数，生成词条向量，计算每一个类别中词条中各个单词出现的概率(类条件概率，取对数), 计算类概率<br>测试时将类条件概率与测试词条相乘</p>
+<h2 id="gt-gt-Logistic回归"><a href="#gt-gt-Logistic回归" class="headerlink" title="&gt;&gt; Logistic回归"></a>&gt;&gt; Logistic回归</h2><p>Logistic Regression（逻辑回归）是一种经典的<font color="#FF000000">分类模型（不是回归模型）,是一种广义的线性回归分析模型</font>，常用于数据挖掘，疾病自动诊断，经济预测等领域</p>
+<h3 id="模型构建"><a href="#模型构建" class="headerlink" title="模型构建"></a>模型构建</h3><p>线性回归的公式如下：</p>
+<p><div align="center"><img src="/img/ML/21.png" alt="&quot;da&quot;"></div><br>而对于Logistic Regression来说，其思想也是基于线性回归（Logistic Regression属于广义线性回归模型）。其公式如下：</p>
+<p><div align="center"><img src="/img/ML/22.png" alt="&quot;da&quot;"></div><br>其中</p>
+<p><div align="center"><img src="/img/ML/23.png" alt="&quot;da&quot;"></div><br>被称作sigmoid函数，我们可以看到，Logistic Regression算法是将线性函数的结果映射到了sigmoid函数中。<br>sigmoid的函数图形如下：</p>
+<p><div align="center"><img src="/img/ML/24.png" alt="&quot;da&quot;"></div><br>根据是否大于0.5判断所属类别<br>θ函数的值有特殊的含义，它表示hθ(x)结果取1的概率，因此对于输入x分类结果为类别1和类别0的概率分别为</p>
+<p><div align="center"><img src="/img/ML/25.png" alt="&quot;da&quot;"></div><br>根据上式，接下来我们可以使用概率论中极大似然估计的方法去求解损失函数，首先得到概率函数为</p>
+<p><div align="center"><img src="/img/ML/26.png" alt="&quot;da&quot;"></div><br>因为样本数据(m个)独立，所以它们的联合分布可以表示为各边际分布的乘积,取似然函数为</p>
+<p><div align="center"><img src="/img/ML/27.png" alt="&quot;da&quot;"></div><br>取对数似然函数</p>
+<p><div align="center"><img src="/img/ML/28.png" alt="&quot;da&quot;"></div><br>最大似然估计就是要求得使 l(θ) 取最大值时的 θ ，这里可以使用梯度上升法求解。我们稍微变换一下</p>
+<p><div align="center"><img src="/img/ML/29.png" alt="&quot;da&quot;"></div><br>因为乘了一个负的系数−1/m，然后就可以使用梯度下降算法进行参数求解了。</p>
+<h3 id="线性回归与逻辑回归的区别"><a href="#线性回归与逻辑回归的区别" class="headerlink" title="线性回归与逻辑回归的区别"></a>线性回归与逻辑回归的区别</h3><p>线性回归要求因变量必须是连续性的数据变量，逻辑回归要求因变量必须是分类变量，二分类或者多分类。<br><img src="/img/ML/19.png" alt="&quot;da&quot;"><br><img src="/img/ML/28.png" alt="&quot;da&quot;"></p>
+<p>最大，然后用所得的拟合函数进行二分类</p>
+<p>两者不同之处</p>
+<p><img src="/img/ML/20.png" alt="&quot;da&quot;"></p>
+<h2 id="gt-gt-支持向量机"><a href="#gt-gt-支持向量机" class="headerlink" title="&gt;&gt; 支持向量机"></a>&gt;&gt; 支持向量机</h2><p>这里直接引用去年上课时的PPT<br><img src="/img/ML/30.png" alt="&quot;da&quot;"><br><img src="/img/ML/31.png" alt="&quot;da&quot;"><br><img src="/img/ML/32.png" alt="&quot;da&quot;"><br><img src="/img/ML/33.png" alt="&quot;da&quot;"><br><img src="/img/ML/34.png" alt="&quot;da&quot;"><br><img src="/img/ML/35.png" alt="&quot;da&quot;"><br><img src="/img/ML/36.png" alt="&quot;da&quot;"></p>
+<p>参考链接：<br>【1】《机器学习实战》Peter Harrington(美) 人民邮电出版社<br>【2】<a href="http://leijun00.github.io/2014/09/decision-tree/" target="_blank" rel="external">决策树</a><br>【3】<a href="https://www.cnblogs.com/wxquare/p/5379970.html" target="_blank" rel="external">决策树模型 ID3/C4.5/CART算法比较</a><br>【4】<a href="https://blog.csdn.net/zengxiantao1994/article/details/72787849" target="_blank" rel="external">极大似然估计详解</a><br>【5】<a href="https://blog.csdn.net/yunhaitianguang/article/details/43877591" target="_blank" rel="external">线性回归和逻辑回归的区别</a><br>【6】<a href="https://blog.csdn.net/programmer_wei/article/details/52072939" target="_blank" rel="external">Logistic Regression（逻辑回归）原理及公式推导</a></p>
 
       
     </div>
@@ -568,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">33</span>
+                <span class="site-state-item-count">34</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -645,7 +692,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-k-近邻-kNN"><span class="nav-number">1.</span> <span class="nav-text">>> k-近邻(kNN)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理"><span class="nav-number">1.1.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本步骤"><span class="nav-number">1.2.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-决策树"><span class="nav-number">2.</span> <span class="nav-text">>> 决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法"><span class="nav-number">2.1.</span> <span class="nav-text">ID3算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思想"><span class="nav-number">2.1.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#熵与信息增益"><span class="nav-number">2.1.2.</span> <span class="nav-text">熵与信息增益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成决策树具体步骤"><span class="nav-number">2.1.3.</span> <span class="nav-text">生成决策树具体步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5算法"><span class="nav-number">2.2.</span> <span class="nav-text">C4.5算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART算法"><span class="nav-number">2.3.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪枝算法"><span class="nav-number">2.4.</span> <span class="nav-text">剪枝算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预剪枝策略-Pre-pruning"><span class="nav-number">2.4.1.</span> <span class="nav-text">预剪枝策略(Pre-pruning)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后剪枝策略-Post-pruning"><span class="nav-number">2.4.2.</span> <span class="nav-text">后剪枝策略(Post-pruning)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-朴素贝叶斯"><span class="nav-number">3.</span> <span class="nav-text">>> 朴素贝叶斯</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#预备知识"><span class="nav-number">3.1.</span> <span class="nav-text">预备知识</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#贝叶斯分类"><span class="nav-number">3.1.1.</span> <span class="nav-text">贝叶斯分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#极大似然估计"><span class="nav-number">3.1.2.</span> <span class="nav-text">极大似然估计</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-k-近邻-kNN"><span class="nav-number">1.</span> <span class="nav-text">>> k-近邻(kNN)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#算法原理"><span class="nav-number">1.1.</span> <span class="nav-text">算法原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基本步骤"><span class="nav-number">1.2.</span> <span class="nav-text">基本步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.3.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-决策树"><span class="nav-number">2.</span> <span class="nav-text">>> 决策树</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ID3算法"><span class="nav-number">2.1.</span> <span class="nav-text">ID3算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本思想"><span class="nav-number">2.1.1.</span> <span class="nav-text">基本思想</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#熵与信息增益"><span class="nav-number">2.1.2.</span> <span class="nav-text">熵与信息增益</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生成决策树具体步骤"><span class="nav-number">2.1.3.</span> <span class="nav-text">生成决策树具体步骤</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C4-5算法"><span class="nav-number">2.2.</span> <span class="nav-text">C4.5算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CART算法"><span class="nav-number">2.3.</span> <span class="nav-text">CART算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#剪枝算法"><span class="nav-number">2.4.</span> <span class="nav-text">剪枝算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#预剪枝策略-Pre-pruning"><span class="nav-number">2.4.1.</span> <span class="nav-text">预剪枝策略(Pre-pruning)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#后剪枝策略-Post-pruning"><span class="nav-number">2.4.2.</span> <span class="nav-text">后剪枝策略(Post-pruning)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-贝叶斯分类"><span class="nav-number">3.</span> <span class="nav-text">>> 贝叶斯分类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#贝叶斯公式"><span class="nav-number">3.1.</span> <span class="nav-text">贝叶斯公式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#极大似然估计"><span class="nav-number">3.2.</span> <span class="nav-text">极大似然估计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#朴素贝叶斯"><span class="nav-number">3.3.</span> <span class="nav-text">朴素贝叶斯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-Logistic回归"><span class="nav-number">4.</span> <span class="nav-text">>> Logistic回归</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模型构建"><span class="nav-number">4.1.</span> <span class="nav-text">模型构建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线性回归与逻辑回归的区别"><span class="nav-number">4.2.</span> <span class="nav-text">线性回归与逻辑回归的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#gt-gt-支持向量机"><span class="nav-number">5.</span> <span class="nav-text">>> 支持向量机</span></a></li></ol></div>
             
 
           </div>
