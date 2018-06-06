@@ -96,7 +96,7 @@
 <meta property="og:description" content="使用Nvidia官方自带的脚本，备份镜像、恢复镜像，快速在新板子中部署DL环境">
 <meta property="og:image" content="http://yoursite.com/img/tx1/1.png">
 <meta property="og:image" content="http://yoursite.com/img/tx1/2.png">
-<meta property="og:updated_time" content="2018-06-06T13:48:11.452Z">
+<meta property="og:updated_time" content="2018-06-06T14:08:58.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jetson TX2镜像刷板法">
 <meta name="twitter:description" content="使用Nvidia官方自带的脚本，备份镜像、恢复镜像，快速在新板子中部署DL环境">
@@ -404,6 +404,7 @@
 <h2 id="镜像恢复工作"><a href="#镜像恢复工作" class="headerlink" title="镜像恢复工作"></a>镜像恢复工作</h2><p><font color="#FF000000">使用已有的镜像刷写新TX2.</font><br>1.用 USB-Micro USB 线连接宿主机与TX2<br>2.TX2进入recovery模式:按机器上的 POWER 键后,长按 RECOVERY 键并点按 RESET 键即可进入recovery 模式<br>3.宿主机进入Linux_for_Tegra 目录<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">cd</span> Linux_for_Tegra/</div></pre></td></tr></table></figure></p>
 <p>4.将备份过的镜像文件拷贝到<font color="#FF000000"> Linux_for_Tegra/bootloader/</font>下<br>5.将镜像文件重命名为<font color="#FF000000"> system.img</font><br>6.执行镜像恢复命令:<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./flash.sh -r jetson-tx2 mmcblk0p1</div></pre></td></tr></table></figure></p>
 <p>刷写完毕后可以检查新板子系统环境是否完备。</p>
+<p>致谢: 感谢实验室牛欢同学的分享！</p>
 
       
     </div>
