@@ -1,0 +1,1019 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DeepLearning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="ReLU、Dropout、mini-batch、BN、L1/L2、finetune等等">
+<meta name="keywords" content="DeepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DL常用的若干Tricks">
+<meta property="og:url" content="http://yoursite.com/2018/03/28/DL常用的若干Tricks/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="ReLU、Dropout、mini-batch、BN、L1/L2、finetune等等">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/1.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/2.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/3.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/5.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/6.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/7.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/4.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/8.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/10.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/11.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/12.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/13.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/14.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/15.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/16.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/17.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/18.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/18.5.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/19.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/20.png">
+<meta property="og:image" content="http://yoursite.com/img/DL-tricks/21.png">
+<meta property="og:updated_time" content="2018-07-21T07:40:04.801Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="DL常用的若干Tricks">
+<meta name="twitter:description" content="ReLU、Dropout、mini-batch、BN、L1/L2、finetune等等">
+<meta name="twitter:image" content="http://yoursite.com/img/DL-tricks/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/28/DL常用的若干Tricks/"/>
+
+
+
+
+
+  <title> DL常用的若干Tricks | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/28/DL常用的若干Tricks/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                DL常用的若干Tricks
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-28T17:31:25+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/03/28/DL常用的若干Tricks/" class="leancloud_visitors" data-flag-title="DL常用的若干Tricks">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p>ReLU、Dropout、mini-batch、BN、L1/L2、finetune等等</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="ReLU"><a href="#ReLU" class="headerlink" title="ReLU"></a>ReLU</h2><p>关于激活函数的作用以及Sigmoid、tanh的性质这里不再赘述</p>
+<p>ReLU全称是Rectified Liner Uints，修正线性单元，又称线性整流函数,是一种稀疏激活函数,于2010~2011年提出,其具体形式为y=max(0,x)。</p>
+<div align="center"><img src="/img/DL-tricks/1.png" alt="&quot;da&quot;"></div>
+
+<h3 id="ReLU优点"><a href="#ReLU优点" class="headerlink" title="ReLU优点"></a>ReLU优点</h3><p>1、单侧抑制；<br>2、相对宽阔的兴奋边界；<br>3、稀疏激活性<br>4、解决梯度消失问题</p>
+<p>标准的sigmoid函数输出不具备稀疏性，需要用一些惩罚因子来训练出一大堆接近0的冗余数据来，从而产生稀疏数据，例如L1、L1/L2或Student-t作惩罚因子。<br>ReLU是线性修正,它的作用是如果计算出的值小于0，就让它等于0，否则保持原来的值不变。这是一种简单粗暴地强制某些数据为0的方法，然而经实践证明，训练后的网络完全具备适度的稀疏性。<br>ReLu的使用，使得网络可以自行引入稀疏性，同时大大地提高了训练速度。</p>
+<h3 id="稀疏性的优势"><a href="#稀疏性的优势" class="headerlink" title="稀疏性的优势"></a>稀疏性的优势</h3><p>这里有必要介绍一下稀疏性的优势<br>1.信息解离。 <font color="#FF000000">原始输入数据往往缠绕着高密度特征，特征之间相互耦合，表现出强烈的非线性特征.</font>传统学习算法往往是采用高维映射等手段进行信息解理，但是往往难以很好的进行解耦。若能通过手段将这些特征转换为稀疏特征，则特征之间耦合更小，特征鲁棒性更强。<br>2.线性可分。稀疏性特征之间<font color="#FF000000">耦合小，具有更好的线性可分性</font>，使用简单的线性分类器即可有好的效果<br>3.保留了原始稠密特征的性能。原始数据所表现出来的稠密特性, 而稀疏性是从稠密特征中解耦得来，在线性可分的同时也保留了原始稠密特征的性能，具有很大的潜力.</p>
+<h3 id="稀疏激活函数的优势"><a href="#稀疏激活函数的优势" class="headerlink" title="稀疏激活函数的优势"></a>稀疏激活函数的优势</h3><p>若激活函数具有稀疏性，则<font color="#FF000000">可以更好的从有效的数据维度上，学习到相对稀疏的特征，起到特征自动解耦的作用</font>。<br>1.非饱和线性端。相比于BP网络、SVM等分类器。采用线性激活函数，网络更快更高效。??此处还需调研一下<br>2.解决梯度消失问题<br>3.目前的DL架构中，合理的稀疏性比率为70~80%，否则屏蔽特征多过，容易出现欠拟合现象.</p>
+<h3 id="梯度消失问题Gradient-vanishing"><a href="#梯度消失问题Gradient-vanishing" class="headerlink" title="梯度消失问题Gradient vanishing"></a>梯度消失问题Gradient vanishing</h3><div align="center"><img src="/img/DL-tricks/2.png" alt="&quot;da&quot;"></div>
+
+<p>该导数在σ′(0) = 1/4时达到最高。现在，如果我们使用标准方法来初始化网络中的权重，那么会使用一个均值为0 标准差为1 的高斯分布。因此所有的权重通常会满足|wj|&lt;1。从而有wjσ′(zj) &lt; 1/4。</p>
+<div align="center"><img src="/img/DL-tricks/3.png" alt="&quot;da&quot;"></div>
+
+
+<h3 id="ReLU的缺陷"><a href="#ReLU的缺陷" class="headerlink" title="ReLU的缺陷"></a>ReLU的缺陷</h3><p>训练过程该函数<font color="#FF000000">不适应较大梯度输入</font>，因为在参数更新以后，ReLU的神经元不会再有激活的功能，导致梯度永远都是零。<br>另外,<font color="#FF000000">当学习率过大</font>的时候也会存在这种问题.</p>
+<p>如W’=W - lr*delta(w), 这里delta(w)指的是反向传播的梯度, lr是学习率, 当delta(w)或者lr过大的时候, w’可能变为负值。在此后计算梯度的时候delta(w)将始终为0</p>
+<p>为了针对以上的缺点，又出现Leaky-ReLU、P-ReLU、R-ReLU三种拓展激活函数。</p>
+<h2 id="Dropout"><a href="#Dropout" class="headerlink" title="Dropout"></a>Dropout</h2><p>我们知道过拟合是训练神经网络的大忌,通常解决过拟合问题有四种途径，<br>1.提前终止（当验证集上的效果变差的时候）<br>2.L1和L2正则化加权<br>3.soft weight sharing<br>4.Dropout</p>
+<p>Dropout的基本思想是引入Bernouli随机数,概率p舍弃神经元并让其它神经元以概率q=1-p保留,舍去的神经元的输出都被设置为零。</p>
+<div align="center"><img src="/img/DL-tricks/5.png" alt="&quot;da&quot;"></div>
+
+<p>没有Dropout的神经网络</p>
+<div align="center"><img src="/img/DL-tricks/6.png" alt="&quot;da&quot;"></div>
+
+<p>有Dropout的神经网络</p>
+<div align="center"><img src="/img/DL-tricks/7.png" alt="&quot;da&quot;"></div>
+
+<p>Dropout保证样本均值不会发生变化</p>
+<div align="center"><img src="/img/DL-tricks/4.png" alt="&quot;da&quot;"></div>
+
+
+<p>当前Dropout被大量利用于<font color="#FF000000">全连接网络</font>，而且参数一般设置为0.5或者0.3，而在卷积隐藏层由于卷积自身的稀疏化以及稀疏化的ReLu函数的大量使用等原因，Dropout策略在卷积隐藏层中使用较少。</p>
+<h2 id="Gradient-Descent"><a href="#Gradient-Descent" class="headerlink" title="Gradient Descent"></a>Gradient Descent</h2><h3 id="Batch-Gradient-Descent-BGD"><a href="#Batch-Gradient-Descent-BGD" class="headerlink" title="Batch Gradient Descent(BGD)"></a>Batch Gradient Descent(BGD)</h3><p>批梯度下降法(Batch Gradient Descent)针对的是<font color="#FF000000">整个数据集</font>，通过对所有的样本的计算来求解梯度的方向<br>每迭代一步，都要用到训练集所有的数据，如果样本数目很大，迭代速度会极慢。<br>优点：全局最优解；易于并行实现；<br>缺点：当样本数目很多时，训练过程会很慢。 </p>
+<h3 id="Stochastic-Gradient-Descent-SGD"><a href="#Stochastic-Gradient-Descent-SGD" class="headerlink" title="Stochastic Gradient Descent(SGD)"></a>Stochastic Gradient Descent(SGD)</h3><p>随机梯度下降法,每次迭代只使用一个训练样本,<font color="#FF000000">每次只使用一个样本迭代</font>，若遇上噪声则容易陷入局部最优解。</p>
+<h3 id="Mini-batch-Gradient-Descent"><a href="#Mini-batch-Gradient-Descent" class="headerlink" title="Mini-batch Gradient Descent"></a>Mini-batch Gradient Descent</h3><p>这是介于BSD和SGD之间的一种优化算法。<font color="#FF000000">每次选取一定量的训练样本</font>进行迭代。<br>由于每次更新用了多个样本来计算loss，就使得loss的计算和参数的更新更加具有代表性。不像原始SGD很容易被某一个样本给带偏 。loss的下降更加稳定，同时小批量的计算，也减少了计算资源的占用。<br>该方法速度比BSD快，比SGD慢；精度比BSD低，比SGD高.</p>
+<h3 id="带Mini-batch的SGD"><a href="#带Mini-batch的SGD" class="headerlink" title="带Mini-batch的SGD"></a>带Mini-batch的SGD</h3><p>1.选择n个训练样本（n&lt;m，m为总训练集样本数）<br>2.在这n个样本中进行n次迭代，每次使用1个样本<br>3.对n次迭代得出的n个gradient进行加权平均再并求和，作为这一次mini-batch下降梯度<br>4.不断在训练集中重复以上步骤，直到收敛。</p>
+<h3 id="对比分析"><a href="#对比分析" class="headerlink" title="对比分析"></a>对比分析</h3><div align="center"><img src="/img/DL-tricks/8.png" alt="&quot;da&quot;"></div>
+
+<p>如下图,左边是BSD的梯度下降效果,由于是对整个数据集迭代一次计算一次损失,因此呈现平稳下降的趋势。右边是Mini-batch的梯度下降效果，以看到它是上下波动的，成本函数的值有时高有时低，但总体还是呈现下降的趋势。</p>
+<div align="center"><img src="/img/DL-tricks/10.png" alt="&quot;da&quot;"></div>
+
+<p>把上面的图看做是梯度下降空间。蓝色的部分是full batch的而上面是mini batch。mini batch不是每次迭代损失函数都会减少,看上去好像走了很多弯路,不过整体还是朝着最优解迭代的。而且由于mini batch一个epoch就走了几千步，而full batch一个epoch只有一步,所以虽然mini batch走了弯路但还是会快很多.</p>
+<div align="center"><img src="/img/DL-tricks/11.png" alt="&quot;da&quot;"></div>
+
+<h2 id="Batch-Normalization"><a href="#Batch-Normalization" class="headerlink" title="Batch Normalization"></a>Batch Normalization</h2><h3 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h3><p>CNN网络在训练的过程中，前一层的参数变化影响着后面层的变化（因为前面层的输出是后面的输入），而且这种影响会随着网络深度的增加而不断放大。<br>在CNN训练时，绝大多数都采用mini-batch使用随机梯度下降算法进行训练，那么随着输入数据的不断变化，以及网络中参数不断调整，网络的各层输入数据的分布则会不断变化，那么各层在训练的过程中就需要不断的改变以适应这种新的数据分布，从而造成网络训练困难，难以拟合的问题。 </p>
+<p>Batch Normalization是2015年Google研究员在论文《Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift》一文中提出的,同时也将BN应用到了2014年的GoogLeNet上，也就是Inception-v2。</p>
+<h3 id="BN算法的几大优势"><a href="#BN算法的几大优势" class="headerlink" title="BN算法的几大优势"></a>BN算法的几大优势</h3><p>1.无论学习率大小如何,都能很快收敛<br>2.无需再使用Dropout<br>3.可以把训练数据彻底打乱<br>4.无需使用局部响应归一化层<br>5.<font color="#FF000000">有效避免梯度消失与梯度爆炸,同时作为一种正则化技术也提高了泛化能力</font></p>
+<h3 id="BN算法细节"><a href="#BN算法细节" class="headerlink" title="BN算法细节"></a>BN算法细节</h3><p>首先，BN算法在每一次iteration中的每一层输入都进行了归一化，将输入数据的分布归一化为均值为0,方差为1的分布</p>
+<p>但是这种做法有一个致命的缺点，尽管这样把每层的数据分布都固定了，但是这种分布不一定是前面一层的要学习到的数据分布，这样<font color="#FF000000">强行归一化就会破坏掉刚刚学习到的特征.</font></p>
+<p>于是算法使用了<font color="#FF000000">变换重构，引入了可学习参数γ、β</font>，这就是算法关键之处</p>
+<div align="center"><img src="/img/DL-tricks/12.png" alt="&quot;da&quot;"></div>
+
+<p>每一个神经元xk都会有一对这样的参数γ、β。这样其实当：</p>
+<div align="center"><img src="/img/DL-tricks/13.png" alt="&quot;da&quot;"></div>
+
+<p>是可以恢复出原始的某一层所学到的特征的。因此我们引入了这个可学习重构参数γ、β，让我们的网络可以学习恢复出原始网络所要学习的特征分布。最后Batch Normalization网络层的前向传导过程公式就是</p>
+<div align="center"><img src="/img/DL-tricks/14.png" alt="&quot;da&quot;"></div>
+
+<p>上面的公式中m指的是mini-batch size</p>
+<h2 id="L1-L2正则化"><a href="#L1-L2正则化" class="headerlink" title="L1/L2正则化"></a>L1/L2正则化</h2><p>机器学习中几乎都可以看到损失函数后面会添加一个额外项，常用的额外项一般有两种,称作L1正则化和L2正则化，或者L1范数和L2范数，<font color="#FF000000">目的主要是防止过拟合，提高泛化能力。</font><br>L1正则化和L2正则化可以看做是损失函数的惩罚项。所谓惩罚是指对损失函数中的某些参数做一些限制。这里在之前关于过拟合与欠拟合的博客中有提到。</p>
+<h3 id="L2-regularization"><a href="#L2-regularization" class="headerlink" title="L2 regularization"></a>L2 regularization</h3><p>L2正则化就是在代价函数后面再加上一个正则化项</p>
+<div align="center"><img src="/img/DL-tricks/15.png" alt="&quot;da&quot;"></div>
+
+<p>C0代表原始的代价函数，后面那一项就是L2正则化项。即全部参数w的平方的和，除以训练集的样本大小n。<br>λ就是正则项系数，权衡正则项与C0项的比重。另外系数1/2主要是为了后面求导的结果方便,后面那一项求导会产生一个2,与1/2相乘刚好凑整。</p>
+<p>L2正则化项是怎么避免overfitting的,先求导</p>
+<div align="center"><img src="/img/DL-tricks/16.png" alt="&quot;da&quot;"></div>
+
+<p>能够发现L2正则化项对b的更新没有影响，可是对于w的更新有影响:</p>
+<div align="center"><img src="/img/DL-tricks/17.png" alt="&quot;da&quot;"></div>
+
+<p>在不使用L2正则化时。求导结果中w前系数为1，如今w前面系数为 1−ηλ/n ，由于η、λ、n都是正的。所以 1−ηλ/n小于1，<font color="#FF000000">它的效果是减小w。这也就是权重衰减（weight decay）的由来。</font></p>
+<p>当然考虑到后面的导数项，w终于的值可能增大也可能减小。</p>
+<p>另外。须要提一下，对于基于mini-batch的随机梯度下降，w和b更新的公式跟上面给出的有点不同</p>
+<div align="center"><img src="/img/DL-tricks/18.png" alt="&quot;da&quot;"></div>
+
+<p>L2正则化能够让w有变小的趋势。现在解释一下w变小为什么能够防止过拟合。<br>过拟合的时候，拟合函数的系数往往非常大。例如下图，过拟合就是拟合函数须要顾忌每个点。在某些非常小的区间里，函数值的变化非常剧烈。<br>这就意味着函数在某些小区间里的导数值（绝对值）非常大，由于自变量值可大可小，所以仅仅有系数足够大，才干保证导数值非常大。</p>
+<div align="center"><img src="/img/DL-tricks/18.5.png" alt="&quot;da&quot;"></div>
+
+<h3 id="L1-regularization"><a href="#L1-regularization" class="headerlink" title="L1 regularization"></a>L1 regularization</h3><p>在原始的代价函数后面加上一个L1正则化项。即全部权重w的绝对值的和，乘以λ/n</p>
+<div align="center"><img src="/img/DL-tricks/19.png" alt="&quot;da&quot;"></div>
+
+<p>先计算导数</p>
+<div align="center"><img src="/img/DL-tricks/20.png" alt="&quot;da&quot;"></div>
+
+<p>上式中sgn(w)表示w的符号。那么权重w的更新规则为</p>
+<div align="center"><img src="/img/DL-tricks/21.png" alt="&quot;da&quot;"></div>
+
+<p>比原始的更新规则多出了η <em> λ </em> sgn(w)/n这一项。<br>当w为正时，更新后的w变小；当w为负时。更新后的w变大。<br>因此它的效果就是让w往0靠，使网络中的权重尽可能为0，也就相当于减小了网络复杂度，防止过拟合。</p>
+<h3 id="L1与L2的区别"><a href="#L1与L2的区别" class="headerlink" title="L1与L2的区别"></a>L1与L2的区别</h3><p>L1可以让一部分特征系数缩小到0，可以得到稀疏的权值，从而间接实现特征选择，适合特征之间有关联的情况。<br>L2让所有特征系数都缩小，但是不会减为0，可以得到平滑的权值，使得优化求解稳定快速,适用于特征之间没有关联的情况。</p>
+<h2 id="finetune"><a href="#finetune" class="headerlink" title="finetune"></a>finetune</h2><p>所谓finetune就是用别人训练好的模型，加上我们自己的数据，来训练新的模型。<font color="#FF000000">finetune相当于使用别人的模型的前几层，来提取浅层特征</font>，然后在最后再落入我们自己的分类中。</p>
+<p>finetune的好处在于不用完全重新训练模型，从而提高效率，因为一般新训练模型准确率都会从很低的值开始慢慢上升，但是finetune能够让我们在比较少的迭代次数之后得到一个比较好的效果。<font color="#FF000000">在数据量不是很大的情况下</font>，finetune会是一个比较好的选择。但是如果希望定义自己的网络结构的话，就需要从头开始。</p>
+<p>假设网络结构不改变，finetune的简单步骤如下:<br>1.依然是准备好我们的训练数据和测试数据<br>2.计算数据集的均值文件<br>使用caffe下的convert_imageset工具</p>
+<p>3.修改网络最后一层的名字、输出类别数，并且需要加快最后一层的参数学习速率<br>首先修改名字，这样预训练模型赋值的时候这里就会因为名字不匹配从而重新训练，也就达成了我们适应新任务的目的。<br>调整学习速率，因为最后一层是重新学习，因此需要有更快的学习速率相比较其他层，因此我们将，weight和bias的学习速率加快10倍(lr_mult)。</p>
+<p>4.调整Solver的配置参数，通常学习速率和步长，迭代次数都要适当减少<br>5.启动训练，并且需要加载pretrained模型的参数</p>
+<h2 id="迁移学习Transfer-Learning"><a href="#迁移学习Transfer-Learning" class="headerlink" title="迁移学习Transfer Learning"></a>迁移学习Transfer Learning</h2><p>迁移学习(Transfer learning) 顾名思义就是就是把已学训练好的模型参数迁移到新的模型来帮助新模型训练。考虑到大部分数据或任务是存在相关性的，所以<font color="#FF000000">通过迁移学习我们可以将已经学到的模型参数（也可理解为模型学到的知识）通过某种方式来分享给新模型,从而加快并优化模型的学习效率,不用像大多数网络那样从零学习</font></p>
+<p>迁移学习只是一种思想，Transfer Learning关心的问题是：什么是“知识”以及如何更好地运用之前得到的“知识”。这可以有很多方法和手段，finetune只是其中的一种手段。</p>
+<p>参考文献<br>【1】[DeepLearning学习笔记之ReLU函数]<a href="https://blog.csdn.net/l349074299/article/details/72680078" target="_blank" rel="external">https://blog.csdn.net/l349074299/article/details/72680078</a><br>【2】[ReLU函数简介]<a href="https://blog.csdn.net/u012905422/article/details/52601022" target="_blank" rel="external">https://blog.csdn.net/u012905422/article/details/52601022</a><br>【3】[消失的梯度问题]<a href="https://www.cnblogs.com/tsiangleo/p/6151560.html" target="_blank" rel="external">https://www.cnblogs.com/tsiangleo/p/6151560.html</a><br>【4】[理解dropout]<a href="https://blog.csdn.net/stdcoutzyx/article/details/49022443" target="_blank" rel="external">https://blog.csdn.net/stdcoutzyx/article/details/49022443</a><br>【5】[mini-batch 梯度下降]<a href="https://blog.csdn.net/kebu12345678/article/details/54917600" target="_blank" rel="external">https://blog.csdn.net/kebu12345678/article/details/54917600</a><br>【6】[深度学习基础 (五)–超参数：mini batch]<a href="https://testerhome.com/topics/10877" target="_blank" rel="external">https://testerhome.com/topics/10877</a><br>【7】[Batch Normalization 学习笔记]<a href="https://blog.csdn.net/leayc/article/details/77645877" target="_blank" rel="external">https://blog.csdn.net/leayc/article/details/77645877</a><br>【8】[正则化方法：L1和L2 regularization、数据集扩增、dropout]<a href="https://www.cnblogs.com/yxwkf/p/5268577.html" target="_blank" rel="external">https://www.cnblogs.com/yxwkf/p/5268577.html</a><br>【9】[Caffe 使用记录（三）finetune]<a href="https://www.cnblogs.com/xuanyuyt/p/6062204.html" target="_blank" rel="external">https://www.cnblogs.com/xuanyuyt/p/6062204.html</a><br>【10】[什么是迁移学习]<a href="https://www.zhihu.com/question/41979241/answer/123545914" target="_blank" rel="external">https://www.zhihu.com/question/41979241/answer/123545914</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/20/数据集制作常用代码/" rel="next" title="自制DL数据集常用代码">
+                <i class="fa fa-chevron-left"></i> 自制DL数据集常用代码
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/10/caffe相关参数说明/" rel="prev" title="caffe相关参数说明">
+                caffe相关参数说明 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#ReLU"><span class="nav-number">1.</span> <span class="nav-text">ReLU</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU优点"><span class="nav-number">1.1.</span> <span class="nav-text">ReLU优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏性的优势"><span class="nav-number">1.2.</span> <span class="nav-text">稀疏性的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#稀疏激活函数的优势"><span class="nav-number">1.3.</span> <span class="nav-text">稀疏激活函数的优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#梯度消失问题Gradient-vanishing"><span class="nav-number">1.4.</span> <span class="nav-text">梯度消失问题Gradient vanishing</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU的缺陷"><span class="nav-number">1.5.</span> <span class="nav-text">ReLU的缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dropout"><span class="nav-number">2.</span> <span class="nav-text">Dropout</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gradient-Descent"><span class="nav-number">3.</span> <span class="nav-text">Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Batch-Gradient-Descent-BGD"><span class="nav-number">3.1.</span> <span class="nav-text">Batch Gradient Descent(BGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Stochastic-Gradient-Descent-SGD"><span class="nav-number">3.2.</span> <span class="nav-text">Stochastic Gradient Descent(SGD)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mini-batch-Gradient-Descent"><span class="nav-number">3.3.</span> <span class="nav-text">Mini-batch Gradient Descent</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#带Mini-batch的SGD"><span class="nav-number">3.4.</span> <span class="nav-text">带Mini-batch的SGD</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对比分析"><span class="nav-number">3.5.</span> <span class="nav-text">对比分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Batch-Normalization"><span class="nav-number">4.</span> <span class="nav-text">Batch Normalization</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#起因"><span class="nav-number">4.1.</span> <span class="nav-text">起因</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法的几大优势"><span class="nav-number">4.2.</span> <span class="nav-text">BN算法的几大优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BN算法细节"><span class="nav-number">4.3.</span> <span class="nav-text">BN算法细节</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#L1-L2正则化"><span class="nav-number">5.</span> <span class="nav-text">L1/L2正则化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#L2-regularization"><span class="nav-number">5.1.</span> <span class="nav-text">L2 regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1-regularization"><span class="nav-number">5.2.</span> <span class="nav-text">L1 regularization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L1与L2的区别"><span class="nav-number">5.3.</span> <span class="nav-text">L1与L2的区别</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#finetune"><span class="nav-number">6.</span> <span class="nav-text">finetune</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迁移学习Transfer-Learning"><span class="nav-number">7.</span> <span class="nav-text">迁移学习Transfer Learning</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
