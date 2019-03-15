@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Linux," />
+  <meta name="keywords" content="MachineLearning," />
 
 
 
@@ -87,17 +87,22 @@
 
 
 
-<meta name="description" content="Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题">
-<meta name="keywords" content="Linux">
+<meta name="description" content="谈谈机器学习算法中的泛化与拟合。">
+<meta name="keywords" content="MachineLearning">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PC裸机部署DL环境注意事项">
-<meta property="og:url" content="http://yoursite.com/2017/09/04/PC裸机部署DL环境注意事项/index.html">
+<meta property="og:title" content="Machine Learing中的过拟合与欠拟合">
+<meta property="og:url" content="http://yoursite.com/2017/08/25/Underfitting&Overfitting/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题">
-<meta property="og:updated_time" content="2019-01-07T11:54:19.823Z">
+<meta property="og:description" content="谈谈机器学习算法中的泛化与拟合。">
+<meta property="og:image" content="http://yoursite.com/img/ML/1.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/2.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/3.png">
+<meta property="og:image" content="http://yoursite.com/img/ML/4.png">
+<meta property="og:updated_time" content="2019-01-07T11:54:19.817Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="PC裸机部署DL环境注意事项">
-<meta name="twitter:description" content="Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题">
+<meta name="twitter:title" content="Machine Learing中的过拟合与欠拟合">
+<meta name="twitter:description" content="谈谈机器学习算法中的泛化与拟合。">
+<meta name="twitter:image" content="http://yoursite.com/img/ML/1.png">
 
 
 
@@ -125,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/04/PC裸机部署DL环境注意事项/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/08/25/Underfitting&Overfitting/"/>
 
 
 
 
 
-  <title> PC裸机部署DL环境注意事项 | Chaowei's Blog </title>
+  <title> Machine Learing中的过拟合与欠拟合 | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +285,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/04/PC裸机部署DL环境注意事项/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/08/25/Underfitting&Overfitting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaowei">
@@ -301,7 +306,7 @@
             
             
               
-                PC裸机部署DL环境注意事项
+                Machine Learing中的过拟合与欠拟合
               
             
           </h1>
@@ -316,8 +321,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-04T19:31:25+08:00">
-                2017-09-04
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-08-25T17:31:25+08:00">
+                2017-08-25
               </time>
             
 
@@ -339,8 +344,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/MachineLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">MachineLearning</span>
                   </a>
                 </span>
 
@@ -356,7 +361,7 @@
 
           
           
-             <span id="/2017/09/04/PC裸机部署DL环境注意事项/" class="leancloud_visitors" data-flag-title="PC裸机部署DL环境注意事项">
+             <span id="/2017/08/25/Underfitting&Overfitting/" class="leancloud_visitors" data-flag-title="Machine Learing中的过拟合与欠拟合">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -385,20 +390,43 @@
       
 
       
-        <blockquote class="blockquote-center"><p>Ubuntu分区问题以及避免安装NVIDIA驱动后桌面循环登录问题 </p>
+        <blockquote class="blockquote-center"><p>谈谈机器学习算法中的泛化与拟合。 </p>
 </blockquote> 
 <a id="more"></a>
-<h2 id="Ubuntu分区注意事项"><a href="#Ubuntu分区注意事项" class="headerlink" title="Ubuntu分区注意事项"></a>Ubuntu分区注意事项</h2><p>1.首先插好制作好的Ubuntu安装U盘，启动电脑，选择通过U盘启动。<br>2.选择安装英文版的Ubuntu系统，注意中文版的系统在后期配置环境时可能存在各种问题，当然已经安装了中文版系统的也可以在系统设置中修改语言。<br>3.在选择安装方式时，选择最下面的其他选项，自定义分区。<br>4.选择一块空闲的空间，点击”+”添加分区，分区类型选择逻辑分区。首先添加”boot”分区，挂载点选”/boot”，选Ex4日志文件系统，大小设置20G；再添加挂载点”/“的分区，选择Ex4日志文件系统，大小设置100G；再添加挂载点”/home”分区，选择Ex4日志文件系统，大小设置1T；再添加2G大小的交换空间和1G大小的EFI引导空间。<br>5.全部添加完后，修改安装自动引导器的设备，<font color="#FF000000">选择刚才boot分区的设备编号</font>，单击下一步。<br>6.安装完成后重启电脑。</p>
-<h2 id="Ubuntu安装显卡驱动加cuda的正确姿势"><a href="#Ubuntu安装显卡驱动加cuda的正确姿势" class="headerlink" title="Ubuntu安装显卡驱动加cuda的正确姿势"></a>Ubuntu安装显卡驱动加cuda的正确姿势</h2><p>避免安装NVIDIA驱动后桌面循环登录问题。出现这种问题的原因应该是显卡驱动不匹配</p>
-<h3 id="下载显卡驱动"><a href="#下载显卡驱动" class="headerlink" title="下载显卡驱动"></a>下载显卡驱动</h3><p>首次安装完Ubuntu系统后，需要在NVIDIA官网上下载与自己电脑显卡型号对应的显卡驱动。</p>
-<h3 id="安装驱动"><a href="#安装驱动" class="headerlink" title="安装驱动"></a>安装驱动</h3><p>ctrl+alt+F1进入文本模式下安装驱动，首先需要手动关闭图形界面<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service lightdm stop</div></pre></td></tr></table></figure></p>
-<p>若电脑之前已经安装有旧驱动，那么需要先卸载旧驱动<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get remove –purge nvidia*</div></pre></td></tr></table></figure></p>
-<p>给驱动run文件赋予执行权限<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo chmod a+x NVIDIA-Linux-x86_64-375.20.run</div></pre></td></tr></table></figure></p>
-<p>安装，注意参数<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo ./NVIDIA-linux-x86_64-375.20.run –no-x-check –no-nouveau-check –no-opengl-files</div></pre></td></tr></table></figure></p>
-<p>–no-x-check 安装驱动时关闭X服务<br>–no-nouveau-check 安装驱动时禁用nouveau<br>–no-opengl-files 只安装驱动文件，不安装OpenGL文件<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo service lightdm start</div></pre></td></tr></table></figure></p>
-<h3 id="安装cuda注意事项"><a href="#安装cuda注意事项" class="headerlink" title="安装cuda注意事项"></a>安装cuda注意事项</h3><font color="#FF000000">警告！<br>在安装CUDA时一定使用runfile文件，这样可以进行选择，不再选择安装驱动，以及在弹出xorg.conf时选择NO<br>注意，在选择安装项目时一定擦亮眼睛咯，千万不要使用ubuntu设置中附加驱动中驱动，否则会覆盖掉之前安装的驱动，造成不匹配，除非你想重头来一遍……</font>
+<h2 id="目标函数与逼近"><a href="#目标函数与逼近" class="headerlink" title="目标函数与逼近"></a>目标函数与逼近</h2><p>监督式机器学习通常理解为逼近一个目标函数f，此函数映射输入变量X到输出变量Y。<br>Y=f(X)</p>
+<p>这种特性描述可以用于定义分类和预测问题和机器学习算法的领域。<br>从训练数据中学习目标函数的过程中，我们必须考虑的问题是模型在预测新数据时的泛化性能。泛化好坏是很重要的，因为我们收集到的数据只是样本，其带有噪音并且是不完全的。</p>
+<h2 id="泛化"><a href="#泛化" class="headerlink" title="泛化"></a>泛化</h2><p>(1)简单地说，<font color="#FF000000">泛化即是算法模型的通用性与适应性。</font></p>
+<p>(2)详细一点，泛化即是模型学习到的概念在它处理没有遇见过的样本时的表现。</p>
+<p>(3)好的机器学习模型的模板目标是：从问题领域内的训练数据到任意的数据上泛化性能良好，也就是模型能够精确预测没有见过的数据。</p>
+<p>(4)在机器学习领域中，当我们讨论一个机器学习模型学习和泛化的好坏时，我们通常使用术语：过拟合和欠拟合.</p>
+<p>(5)过拟合和欠拟合是机器学习算法表现差的两大原因。</p>
+<h2 id="统计学中的拟合"><a href="#统计学中的拟合" class="headerlink" title="统计学中的拟合"></a>统计学中的拟合</h2><p>(1)在统计学中，<font color="#FF000000">拟合指的是逼近目标函数的远近程度。</font></p>
+<p>(2)这个术语同样可以用于机器学习中，因为监督式机器学习算法的目标也是逼近一个未知的潜在映射函数，其把输入变量映射到输出变量。</p>
+<p>(3)统计学将描述函数和目标函数逼近的吻合程度来描述拟合的好坏。</p>
+<p>(4)这类理论中的一些在机器学习中也是有用的(例如，计算残差)，但是一些技巧假设我们已经知道了我们要逼近的函数。这和机器学习的场景就不同了。</p>
+<p>(5)如果我们已经知道了目标函数的形式，我们将可以直接用它来做预测，而不是从一堆有噪音的数据中把它费力的学习出来。</p>
+<h2 id="机器学习中的过拟合"><a href="#机器学习中的过拟合" class="headerlink" title="机器学习中的过拟合"></a>机器学习中的过拟合</h2><p>(1)过拟合指的是：<font color="#FF000000">模型对于训练数据拟合程度过当的情况。</font></p>
+<p>(2)当某个模型过度的学习训练数据中的细节和噪音，以至于模型在新的数据上表现很差，就是过拟合。这意味着训练数据中的<font color="#FF000000">噪音或者随机波动也被当做概念被模型学习了。</font>而问题就在于这些概念不适用于新的数据，从而导致模型泛化性能的变差。</p>
+<p>(3)<font color="#FF000000">过拟合更可能在无参数非线性模型中发生</font>,因为学习目标函数的过程是易变的具有弹性的。同样的，许多的无参数器学习算法也包括限制约束模型学习概念多少的参数或者技巧。</p>
+<p>(4)例如，决策树就是一种无参数机器学习算法，非常有弹性并且容易受过拟合训练数据的影响。这种问题可以通过对学习过后的树进行剪枝来解决，这种方法就是为了移除一些其学习到的细节。</p>
+<h2 id="机器学习中的欠拟合"><a href="#机器学习中的欠拟合" class="headerlink" title="机器学习中的欠拟合"></a>机器学习中的欠拟合</h2><p>(1)欠拟合指的是模型在训练和预测时表现都不好的情况。</p>
+<p>(2)欠拟合通常不被讨论，因为给定一个评估模型表现的指标的情况下，欠拟合很容易被发现。</p>
+<p>(3)<font color="#FF000000">欠拟合的矫正方法是增加学习样本或者更换机器学习算法。</font></p>
+<h2 id="几个例子"><a href="#几个例子" class="headerlink" title="几个例子"></a>几个例子</h2><p>这里引用斯坦福大学机器学习课程的几个例子加以说明：<br>先看三张图片，这三张图片是<font color="#FF000000">线性回归模型</font>拟合的函数和训练集的关系<br>1&gt;第一张图片拟合的函数和训练集误差较大，我们称这种情况为<font color="#FF000000">欠拟合</font><br>2&gt;第二张图片拟合的函数和训练集误差较小，我们称这种情况为<font color="#FF000000">合适拟合</font><br>3&gt;第三张图片拟合的函数完美的匹配训练集数据，我们称这种情况为<font color="#FF000000">过拟合</font></p>
+<p><img src="/img/ML/1.png" alt="&quot;da&quot;"></p>
+<p>类似的，对于<font color="#FF000000">逻辑回归</font>同样也存在欠拟合和过拟合问题，如下三张图</p>
+<p><img src="/img/ML/2.png" alt="&quot;da&quot;"></p>
+<h2 id="如何解决欠拟合与过拟合"><a href="#如何解决欠拟合与过拟合" class="headerlink" title="如何解决欠拟合与过拟合"></a>如何解决欠拟合与过拟合</h2><p>(1)欠拟合问题，根本的原因是特征维度过少，导致拟合的函数无法满足训练集，误差较大。</p>
+<font color="#FF000000">欠拟合问题可以通过增加特征维度来解决.</font>
 
-<p>重启，并不会出现循环登录的问题。<br>若已经出现这种循环登录的问题，只能说抱歉…已经很难抢救回来了，重装吧亲，之前花了很长时间想解决此问题，未果，这时间足够重装系统了。欢迎大神留言解决此问题的捷径！</p>
+<p>(2)过拟合问题，根本的原因则是特征维度过多，导致拟合的函数完美的经过训练集，但是对新数据的预测结果则较差。</p>
+<font color="#FF000000">解决过拟合问题，有3个途径:</font><br>①减少特征维度，可以人工选择保留的特征，或者模型选择算法<br>②正则化，保留所有的特征，通过降低参数θ的值，来影响模型<br>③重采样，即交叉验证。最流行的重采样技术是k折交叉验证。指的是在训练数据的子集上训练和测试模型k次，同时建立对于机器学习模型在未知数据上表现的评估。<br><br>## 正则化<br>回到前面过拟合例子, h(x) = θ0 + θ1x1 + θ2x2 + θ3x3 + θ4x4<br><br><img src="/img/ML/3.png" alt="&quot;da&quot;"><br><br>从图中可以看出，解决这个过拟合问题可以通过消除特征x3和x4的影响, 我们称为对参数的惩罚, 也就是使得参数θ3, θ4接近于0。<br><br>最简单的方法是对代价函数进行改造，例如<br><br><img src="/img/ML/4.png" alt="&quot;da&quot;"><br><br>这样在求解最小化代价函数的时候使得参数θ3, θ4接近于0。<font color="#FF000000">正则化其实就是通过对参数θ的惩罚来影响整个模型.</font>
+
+<h2 id="k折交叉验证"><a href="#k折交叉验证" class="headerlink" title="k折交叉验证"></a>k折交叉验证</h2><p>这里详细介绍一下k折交叉验证,k-折交叉验证将样本集随机划分为k份，k-1份作为训练集，1份作为验证集，依次轮换训练集和验证集k次，验证误差最小的模型为所求模型。具体方法如下：</p>
+<p>1&gt;随机将样本集S划分成k个不相交的子集，每个子集中样本数量为m/k个，这些子集分别记作S1,S2…Sk；</p>
+<p>2&gt;对于每个模型，进行如下操作：<br>for j=1 to k<br>将S1 ∪…∪ Sj-1 ∪ Sj+1 ∪…∪ Sk作为训练集，训练模型Mi，得到相应的假设函数Hij。<br>再将Sj作为验证集，计算泛化误差W(Sj(Hij))；</p>
+<p>3&gt;计算每个模型的平均泛化误差，选择泛化误差最小的模型Mi。<br>交叉验证是一种模型选择方法，其将样本的一部分用于训练，另一部分用于验证。因此不仅考虑了训练误差，同时也考虑了泛化误差。</p>
+<p>参考：<br>【1】<a href="http://blog.csdn.net/u014696921/article/details/62883249" target="_blank" rel="external">http://blog.csdn.net/u014696921/article/details/62883249</a><br>【2】<a href="http://blog.csdn.net/linkin1005/article/details/42869331" target="_blank" rel="external">http://blog.csdn.net/linkin1005/article/details/42869331</a></p>
 
       
     </div>
@@ -428,7 +456,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Linux/" rel="tag"># Linux</a>
+            <a href="/tags/MachineLearning/" rel="tag"># MachineLearning</a>
           
         </div>
       
@@ -441,8 +469,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/10/排序算法总结/" rel="next" title="常见排序算法总结">
-                <i class="fa fa-chevron-left"></i> 常见排序算法总结
+              <a href="/2017/09/04/PC裸机部署DL环境注意事项/" rel="next" title="PC裸机部署DL环境注意事项">
+                <i class="fa fa-chevron-left"></i> PC裸机部署DL环境注意事项
               </a>
             
           </div>
@@ -451,8 +479,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/25/Underfitting&Overfitting/" rel="prev" title="Machine Learing中的过拟合与欠拟合">
-                Machine Learing中的过拟合与欠拟合 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/25/Python中传统图片格式与base64转换/" rel="prev" title="Python中传统图片格式与base64转换">
+                Python中传统图片格式与base64转换 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -604,7 +632,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu分区注意事项"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu分区注意事项</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Ubuntu安装显卡驱动加cuda的正确姿势"><span class="nav-number">2.</span> <span class="nav-text">Ubuntu安装显卡驱动加cuda的正确姿势</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载显卡驱动"><span class="nav-number">2.1.</span> <span class="nav-text">下载显卡驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装驱动"><span class="nav-number">2.2.</span> <span class="nav-text">安装驱动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装cuda注意事项"><span class="nav-number">2.3.</span> <span class="nav-text">安装cuda注意事项</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#目标函数与逼近"><span class="nav-number">1.</span> <span class="nav-text">目标函数与逼近</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#泛化"><span class="nav-number">2.</span> <span class="nav-text">泛化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#统计学中的拟合"><span class="nav-number">3.</span> <span class="nav-text">统计学中的拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习中的过拟合"><span class="nav-number">4.</span> <span class="nav-text">机器学习中的过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#机器学习中的欠拟合"><span class="nav-number">5.</span> <span class="nav-text">机器学习中的欠拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几个例子"><span class="nav-number">6.</span> <span class="nav-text">几个例子</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决欠拟合与过拟合"><span class="nav-number">7.</span> <span class="nav-text">如何解决欠拟合与过拟合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k折交叉验证"><span class="nav-number">8.</span> <span class="nav-text">k折交叉验证</span></a></li></ol></div>
             
 
           </div>
