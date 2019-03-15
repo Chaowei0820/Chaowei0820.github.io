@@ -1,0 +1,963 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="DeepLearning," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
+<meta name="keywords" content="DeepLearning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="详解目标检测任务中的评价指标">
+<meta property="og:url" content="http://yoursite.com/2018/01/11/DL_ObjectDetectionMetric/index.html">
+<meta property="og:site_name" content="Chaowei's Blog">
+<meta property="og:description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
+<meta property="og:image" content="http://yoursite.com/img/DL1/1.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/14.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/15.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/16.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/17.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/18.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/20.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/21.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/19.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/22.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/23.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/24.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/25.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/27.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/28.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/29.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/31.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/32.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/33.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/34.png">
+<meta property="og:image" content="http://yoursite.com/img/DL1/35.png">
+<meta property="og:updated_time" content="2019-01-07T11:54:19.811Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="详解目标检测任务中的评价指标">
+<meta name="twitter:description" content="详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)请再也不要凭你惊人的眼力断定一个算法的精度了好吗！">
+<meta name="twitter:image" content="http://yoursite.com/img/DL1/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"always","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/11/DL_ObjectDetectionMetric/"/>
+
+
+
+
+
+  <title> 详解目标检测任务中的评价指标 | Chaowei's Blog </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?baa711a3bcbcb607e32347da955160de";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Chaowei's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/11/DL_ObjectDetectionMetric/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Chaowei">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Chaowei's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                详解目标检测任务中的评价指标
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-11T22:31:25+08:00">
+                2018-01-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
+                    <span itemprop="name">DeepLearning</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/01/11/DL_ObjectDetectionMetric/" class="leancloud_visitors" data-flag-title="详解目标检测任务中的评价指标">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote class="blockquote-center"><p> 详解CV领域中目标检测任务的评价指标(Recall,Precision,AP,mAP,IoU)<br>请再也不要凭你惊人的眼力断定一个算法的精度了好吗！ </p>
+</blockquote> 
+<a id="more"></a>
+<blockquote>
+<p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
+</blockquote>
+<h2 id="吉娃娃与松饼"><a href="#吉娃娃与松饼" class="headerlink" title="吉娃娃与松饼"></a>吉娃娃与松饼</h2><p>从一个细思极恐的分类问题出发～～～先放图～～～</p>
+<p><div align="center"><img src="/img/DL1/1.png" alt="&quot;da&quot;"></div><br>此前有位神人发现了一个有趣的现象，吉娃娃与松饼的相似程度已经到了令人惊恐的程度…<br>这个图片在AI行业中流传甚广，区分吉娃娃与松饼这么有趣的问题，当然要交给万能的深度学习来解决！</p>
+<h2 id="一些定义"><a href="#一些定义" class="headerlink" title="一些定义"></a>一些定义</h2><p>  假设现有一个测试集，测试集如上图所示，图片只由吉娃娃与松饼组成<br>  现提出一个分类任务：识别出测试集中所有吉娃娃的图片</p>
+<p>作出如下定义<br>True positive：吉娃娃的图片被<font color="#FF000000">正确</font>识别成了吉娃娃<br>False positive：松饼的图片被<font color="#FF000000">错误</font>识别成了吉娃娃</p>
+<p>True negative：松饼的图片没有被识别出来，系统<font color="#FF000000">正确</font>地认为它们是松饼<br>False negative：吉娃娃的图片没有被识别出来，系统<font color="#FF000000">错误</font>地认为它们是松饼</p>
+<h2 id="Precision与Recall"><a href="#Precision与Recall" class="headerlink" title="Precision与Recall"></a>Precision与Recall</h2><p>Precision(精确率)其实就是在识别出来的图片中，True positives所占的比率：</p>
+<p><div align="center"><img src="/img/DL1/14.png" alt="&quot;da&quot;"></div><br>其中的n代表的是(True positives + False positives)，也就是系统一共识别出来多少照片是吉娃娃。</p>
+<p>Recall(召回率)是被正确识别出来的吉娃娃个数与测试集中所有吉娃娃的个数的比值：</p>
+<p><div align="center"><img src="/img/DL1/15.png" alt="&quot;da&quot;"></div><br>Recall的分母是(True positives + False negatives)，这两个值的和，可以理解为一共有多少张吉娃娃的照片。</p>
+<h2 id="Precision-Recall关系图绘制"><a href="#Precision-Recall关系图绘制" class="headerlink" title="Precision-Recall关系图绘制"></a>Precision-Recall关系图绘制</h2><p>通过调整识别阈值，来选择让系统识别出多少图片，进而改变Precision或 Recall的值。<br>如下图所示，对测试集中的图片进行编号</p>
+<p><div align="center"><img src="/img/DL1/16.png" alt="&quot;da&quot;"></div><br>假设改变识别阈值，使得系统依次能够识别前K张图片(K=1,2…,12)，阈值的变化同时会导致Precision与Recall值发生变化。<br>具体变化情况如下表:</p>
+<p><div align="center"><img src="/img/DL1/17.png" alt="&quot;da&quot;"></div><br>以Recall值为横轴，Precision值为纵轴绘制Precision-Recall曲线如下图:</p>
+<p><div align="center"><img src="/img/DL1/18.png" alt="&quot;da&quot;"></div><br>若想评估一个分类器的性能，一个比较好的方法就是：观察当阈值变化时，Precision与Recall值的变化情况。<br>如果一个分类器的性能比较好，那么它应该有如下的表现：在Recall值增长的同时，Precision的值保持在一个很高的水平。而性能比较差的分类器可能会损失很多Precision值才能换来Recall值的提高。通常情况下，文章中都会使用Precision-recall曲线，来显示出分类器在Precision与Recall之间的权衡。</p>
+<h2 id="Approximated-Average-Precision"><a href="#Approximated-Average-Precision" class="headerlink" title="Approximated Average Precision"></a>Approximated Average Precision</h2><p>相比较与曲线图，在某些时候还是一个具体的数值能更直观地表现出分类器的性能。通常情况下都是用 Average Precision来作为这一度量标准，它的公式为：</p>
+<p><div align="center"><img src="/img/DL1/20.png" alt="&quot;da&quot;"></div><br>在这一积分中，其中p代表Precision ，r代表Recall，p是一个以r为参数的函数，That is equal to taking the area under the curve.<br>实际上这一积分极其接近于这一数值：对每一种阈值分别求（Precision值）乘以（Recall值的变化情况），再把所有阈值下求得的乘积值进行累加。公式如下：</p>
+<p><div align="center"><img src="/img/DL1/21.png" alt="&quot;da&quot;"></div><br>在这一公式中，N代表测试集中所有图片的个数，P(k)表示在能识别出k个图片的时候Precision的值，而 Delta r(k) 则表示识别图片个数从k-1变化到k时（通过调整阈值）Recall值的变化情况。</p>
+<p><div align="center"><img src="/img/DL1/19.png" alt="&quot;da&quot;"></div><br>在这一例子中，Approximated Average Precision的值<br> =(1*(1/6-0)) + (1/2*(1/6-1/6)) + (1/3*(1/6-1/6)) + (1/2*(1/3-1/6)) + (3/5*(1/2-1/3)) + (1/2*(1/2-1/2)) + (4/7*(2/3-1/2)) +　(1/2*(2/3-2/3)) + (4/9*(2/3-2/3)) + (1/2*(5/6-2/3)) + (5/11*(5/6-5/6)) + (1/2*(1-5/6))<br> =(1*(1/6)) + (1/2*<font color="#FF000000">0</font>) + (1/3*<font color="#FF000000">0</font>) + (1/2*(1/6)) + (3/5*(1/6)) + (1/2*<font color="#FF000000">0</font>) + (4/7*(1/6)) +　(1/2*<font color="#FF000000">0</font>) + (4/9*<font color="#FF000000">0</font>) + (1/2*(1/6)) + (5/11*<font color="#FF000000">0</font>) + (1/2*(1/6))<br> =0.663<br>通过计算可以看到，那些Recall值没有变化的地方（红色数值），对增加Average Precision值没有贡献。</p>
+<h2 id="Interpolated-Average-Precision"><a href="#Interpolated-Average-Precision" class="headerlink" title="Interpolated Average Precision"></a>Interpolated Average Precision</h2><p>不同于Approximated Average Precision，一些作者选择另一种度量性能的标准：Interpolated Average Precision。<br>假设当前识别出k个图片，则使用识别图片数大于k时最大的Precision值与Recall的变化值相乘。公式如下：</p>
+<p><div align="center"><img src="/img/DL1/22.png" alt="&quot;da&quot;"></div><br>一些很重要的文章都是用Interpolated Average Precision 作为度量方法，并且直接称算出的值为Average Precision 。PASCAL Visual Objects Challenge从2007年开始就是用这一度量制度，他们认为这一方法能有效地减少Precision-recall 曲线中的抖动。所以在比较文章中Average Precision 值的时候，最好先弄清楚它们使用的是那种度量方式。</p>
+<h2 id="单图多目标的情况"><a href="#单图多目标的情况" class="headerlink" title="单图多目标的情况"></a>单图多目标的情况</h2><p>上面吉娃娃与松饼的例子属于单标签分类问题，即每张图只存在一个目标。<br>当一张图中存在多个种类数不定的目标时，对每种目标单独计算Precision和Recall<br>如A类目标的Precision就是在识别出来所有A目标中，识别正确的比率；<br>A类目标的Recall就是在测试集里所有的A目标中，识别正确的比率；</p>
+<h2 id="mean-Average-Precision-mAP"><a href="#mean-Average-Precision-mAP" class="headerlink" title="mean Average Precision(mAP)"></a>mean Average Precision(mAP)</h2><p><div align="center"><img src="/img/DL1/23.png" alt="&quot;da&quot;"></div><br>每一个类别都可以根据recall和precision绘制一条曲线，那么AP就是该曲线下的面积，而mAP是多个类别AP的平均值，这个值介于0到1之间，且越大越好。这个指标是目标检测算法最为重要的一个。</p>
+<h2 id="IoU"><a href="#IoU" class="headerlink" title="IoU"></a>IoU</h2><p>IoU可以理解为系统预测出来的框与原来图片中标记的框的重合程度。</p>
+<p><div align="center"><img src="/img/DL1/24.png" alt="&quot;da&quot;"></div><br>绿色框是人工标注的groundtruth，红色框是目标检测算法最终给出的结果，显然绿色框对于飞机这个物体检测的更加准确（机翼机尾都全部包含在绿色框中），IOU正是表达这种bounding box和groundtruth的差异的指标。算法产生的bbox VS 人工标注的数据</p>
+<p><div align="center"><img src="/img/DL1/25.png" alt="&quot;da&quot;"></div><br>OU定义了两个bounding box的重叠度，可以说，当算法给出的框和人工标注的框差异很小时，或者说重叠度很大时，可以说算法产生的boundingbox就很准确。<br>矩形框A、B的一个重合度IOU计算公式为：<br>IOU=(A∩B)/(A∪B)</p>
+<h2 id="恐怖系列"><a href="#恐怖系列" class="headerlink" title="恐怖系列"></a>恐怖系列</h2><p>推特账号teenybiscuit的作品</p>
+<p><div align="center"><img src="/img/DL1/27.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/28.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/29.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/31.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/32.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/33.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/34.png" alt="&quot;da&quot;"></div></p>
+<p><div align="center"><img src="/img/DL1/35.png" alt="&quot;da&quot;"></div><br>参考链接：<br>【1】<a href="http://blog.csdn.net/syoung9029/article/details/56276567" target="_blank" rel="external">目标检测（一）目标检测评价指标-CSDN</a><br>【2】<a href="https://www.jianshu.com/p/e6496a764b51" target="_blank" rel="external">目标检测研究综述+LocNet: Improving Localization Accuracy for Object Detection CVPR2016 阅读-简书</a></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/15/DL_Caffe-ssd-NetDetail/" rel="next" title="深入了解Caffe-ssd网络">
+                <i class="fa fa-chevron-left"></i> 深入了解Caffe-ssd网络
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/10/DLCourses1-AndrewNg/" rel="prev" title="神经网络基础-by Andrew Ng">
+                神经网络基础-by Andrew Ng <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="gitalk-container"></div>    
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.jpg"
+               alt="Chaowei" />
+          <p class="site-author-name" itemprop="name">Chaowei</p>
+           
+              <p class="site-description motion-element" itemprop="description">Believe Amazing_Grace  --By小北</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">35</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Chaowei0820" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/3515157181?refer_flag=1001030201_&is_hot=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#吉娃娃与松饼"><span class="nav-number">1.</span> <span class="nav-text">吉娃娃与松饼</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些定义"><span class="nav-number">2.</span> <span class="nav-text">一些定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision与Recall"><span class="nav-number">3.</span> <span class="nav-text">Precision与Recall</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Precision-Recall关系图绘制"><span class="nav-number">4.</span> <span class="nav-text">Precision-Recall关系图绘制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Approximated-Average-Precision"><span class="nav-number">5.</span> <span class="nav-text">Approximated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Interpolated-Average-Precision"><span class="nav-number">6.</span> <span class="nav-text">Interpolated Average Precision</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单图多目标的情况"><span class="nav-number">7.</span> <span class="nav-text">单图多目标的情况</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mean-Average-Precision-mAP"><span class="nav-number">8.</span> <span class="nav-text">mean Average Precision(mAP)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IoU"><span class="nav-number">9.</span> <span class="nav-text">IoU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#恐怖系列"><span class="nav-number">10.</span> <span class="nav-text">恐怖系列</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy;  2017 - 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Chaowei</span>
+</div>
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<!--<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>-->
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '71694fc9d12248797ca9',
+          clientSecret: '049430e1ee3ea9c254d976b7de593cdf1595ea30',
+          repo: 'Chaowei0820.github.io',
+          owner: 'Chaowei0820',
+          admin: ['Chaowei0820'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("G4mO7GiazuroARxSJOi4JMR9-gzGzoHsz", "Q6jfXmr21nfFvuwOdhJBRa4c");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
