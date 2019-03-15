@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://yoursite.com/img/SSD2/5.png">
 <meta property="og:image" content="http://yoursite.com/img/SSD2/6.png">
 <meta property="og:image" content="http://yoursite.com/img/SSD2/8.png">
-<meta property="og:updated_time" content="2017-07-06T08:27:03.882Z">
+<meta property="og:updated_time" content="2019-01-07T11:54:19.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Caffe-ssd的Python接口封装">
 <meta name="twitter:description" content="SSD目标检测算法的python调用接口改写与封装，视频检测一步到位，只专注于便捷与高效。">
@@ -487,7 +487,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+      <div id="gitalk-container"></div>    
     
   </div>
 
@@ -535,7 +535,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -636,7 +636,7 @@
 <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -777,21 +777,26 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '71694fc9d12248797ca9',
+          clientSecret: '049430e1ee3ea9c254d976b7de593cdf1595ea30',
+          repo: 'Chaowei0820.github.io',
+          owner: 'chaowei0820@buaa.edu.cn',
+          admin: ['chaowei0820@buaa.edu.cn'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   

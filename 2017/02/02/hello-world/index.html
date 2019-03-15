@@ -71,7 +71,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="DeepLearning," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -87,17 +87,17 @@
 
 
 
-<meta name="description" content="pvanet训练及BUG记录Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)来自小北完美踩过的坑">
-<meta name="keywords" content="DeepLearning">
+<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta name="keywords">
 <meta property="og:type" content="article">
-<meta property="og:title" content="DL:Pvanet笔记">
-<meta property="og:url" content="http://yoursite.com/2017/04/20/DL:Pvanet笔记/index.html">
+<meta property="og:title" content="Hello World">
+<meta property="og:url" content="http://yoursite.com/2017/02/02/hello-world/index.html">
 <meta property="og:site_name" content="Chaowei's Blog">
-<meta property="og:description" content="pvanet训练及BUG记录Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)来自小北完美踩过的坑">
-<meta property="og:updated_time" content="2017-05-15T09:50:37.241Z">
+<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
+<meta property="og:updated_time" content="2019-03-15T06:47:30.402Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="DL:Pvanet笔记">
-<meta name="twitter:description" content="pvanet训练及BUG记录Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)来自小北完美踩过的坑">
+<meta name="twitter:title" content="Hello World">
+<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.">
 
 
 
@@ -125,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/04/20/DL:Pvanet笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/02/02/hello-world/"/>
 
 
 
 
 
-  <title> DL:Pvanet笔记 | Chaowei's Blog </title>
+  <title> Hello World | Chaowei's Blog </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -280,7 +280,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/20/DL:Pvanet笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/02/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Chaowei">
@@ -301,7 +301,7 @@
             
             
               
-                DL:Pvanet笔记
+                Hello World
               
             
           </h1>
@@ -316,8 +316,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-20T22:31:25+08:00">
-                2017-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-02T17:31:25+08:00">
+                2017-02-02
               </time>
             
 
@@ -327,28 +327,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/DeepLearning/" itemprop="url" rel="index">
-                    <span itemprop="name">DeepLearning</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -356,7 +334,7 @@
 
           
           
-             <span id="/2017/04/20/DL:Pvanet笔记/" class="leancloud_visitors" data-flag-title="DL:Pvanet笔记">
+             <span id="/2017/02/02/hello-world/" class="leancloud_visitors" data-flag-title="Hello World">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -385,40 +363,15 @@
       
 
       
-        <blockquote class="blockquote-center"><p> pvanet训练及BUG记录<br>Train Pvanet Note (Pvanet Project Version : Nov.21 2016 from GitHub)<br>来自小北完美踩过的坑 </p>
-</blockquote>
-<a id="more"></a>
-<blockquote>
-<p>版权声明：本文为博主原创文章，未经博主允许不得转载。</p>
-</blockquote>
-<h3 id="训练方法"><a href="#训练方法" class="headerlink" title="训练方法"></a>训练方法</h3><p>Train Command<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python tools/train_net.py --gpu 0 --solver models/pvanet/example_train_384/solver.prototxt  --weights models/pvanet/example_train_384/original.model --cfg models/pvanet/cfgs/train.yml --imdb voc_2007_trainval</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>–gpu 序号，单GPU为0<br>–solver 训练参数文件<br>–weight 预训练模型，使用Imagenet的预训练模型，若没有，开始训练时很难收敛，loss=nan<br>–cfg 配置<br>–imdb 训练数据集名字（需要按照voc或者Coco的命名规则，亦可修改程序来打破规则！详见/lib/datasets/factory.py）</p>
-</blockquote>
-<p>由于程序结构问题，训练的数据集需要覆盖至VOC数据集的文件夹下<br>～/data/VOCdevkit2007/VOC2007/Annotations和ImageSets和JPEGImages三个文件夹<br>ImageSets/Main文件中用到的只有trainval.txt这个文件，里面保存所有图片的名字（无后缀），需用程序生成</p>
-<p>训练模型会保存在pva根目录生成的output文件夹中</p>
-<h3 id="修改配置文件"><a href="#修改配置文件" class="headerlink" title="修改配置文件"></a>修改配置文件</h3><p>————train.prototxt————<br> 1&gt;搜索num_classes，修改成自己数据集的类别数（含background，文件中有两处）<br> 2&gt;搜索name: “cls_score”，修改下面的num_output为实际的类别数<br> 3&gt;搜索name: “bbox_pred”，修改下面的num_output为实际的类别数×4</p>
-<p>————test.prototxt————<br> 1&gt;搜索name: “cls_score”，修改下面的num_output为实际的类别数<br> 2&gt;搜索name: “bbox_pred”，修改下面的num_output为实际的类别数×4<br> 若修改错误，会出现参数不匹配错误</p>
-<h3 id="修改程序"><a href="#修改程序" class="headerlink" title="修改程序"></a>修改程序</h3><p>cd ～/lib/datesets/<br>1&gt;pascal_voc.py :<br>1）修改pascal_voc类属性<br>self._classes，self._image_ext<br>2）搜索<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x1 = <span class="built_in">float</span>(bbox.find(<span class="string">'xmin'</span>).text) -1</div><div class="line">y1 = <span class="built_in">float</span>(bbox.find(<span class="string">'ymin'</span>).text) -1</div></pre></td></tr></table></figure></p>
-<p>修改为<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">x1 = <span class="built_in">float</span>(bbox.find(<span class="string">'xmin'</span>).text) </div><div class="line">y1 = <span class="built_in">float</span>(bbox.find(<span class="string">'ymin'</span>).text)</div></pre></td></tr></table></figure></p>
-<p>2&gt;imdb.py :<br>1）搜索这一行代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">boxes[:, 2] = widths[i] - oldx1 - 1</div></pre></td></tr></table></figure></p>
-<p>在下面添加代码<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> b <span class="keyword">in</span> range(len(boxes)):</div><div class="line">    <span class="keyword">if</span> boxes[b][2]&lt;boxes[b][0]:</div><div class="line">       boxes[b][0]=0</div></pre></td></tr></table></figure></p>
-<p>注：这一步与上面的第二步都是为了防止标注数据的box中含有坐标为0的情况，造成训练loss=nan<br>     faster-rcnn 系列在处理生成pascal voc数据集时，为了使像素以0为起点，每个bbox的左上和右下坐标都减一</p>
-<p>3&gt;修改完后需要重新编译<br>输入<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">python</div><div class="line">import py_compile</div><div class="line">py_compile.compile(<span class="string">'imdb.py'</span>)</div><div class="line">py_compile.compile(<span class="string">'pascal_voc.py'</span>)</div></pre></td></tr></table></figure></p>
-<font color="#FF000000">首先在/data/cache文件夹中删除.pkl训练缓存文件</font>
-
-<h3 id="典型Error及解决方法"><a href="#典型Error及解决方法" class="headerlink" title="典型Error及解决方法"></a>典型Error及解决方法</h3><p>各种No module named XX错误，直接apt-get install 或者pip install<br>1&gt;No module named caffe，则进入faster-rcnn目录下，执行make pycaffe,有时需要使用sudo<br>另外需要添加pva目录下的Python到PYTHONPATH环境变量中<br>2&gt;No module named cv2, 在编译opencv的文件夹下，搜索cv2.so，拷贝到/usr/lib/python2.7/dist-packages<br>若没有cv2.so，则需要确保安装numpy后再重新编译opencv，从别的地方拷贝的cv2.so都是无效的</p>
-<p>3&gt;在该版本的pvanet下，需要使用numpy-1.11版本(神坑)</p>
-<p>4&gt;No module named google.protobuf.internal<br>使用pip安装protobuf，注意：使用apt-get安装protobuf是不会向python目录下添加库的</p>
-<h4 id="Error-1"><a href="#Error-1" class="headerlink" title="Error 1"></a>Error 1</h4><p>ValueError: numpy.dtype has the wrong size ,try compiling<br>说明当前numpy版本过低<br>查看numpy版本号 &gt;&gt;python -c “import numpy;print numpy.version.version”</p>
-<p>若之前是使用apt-get install python-numpy安装的numpy，则默认安装的是1.8版本<br>注意此时就不要apt-get remove python-numpy,可能会删除一些依赖项</p>
-<p>若使用pip install numpy会自动安装最新版本的numpy-1.12<br>此时编译后会出现第二的错误</p>
-<h4 id="Error-2"><a href="#Error-2" class="headerlink" title="Error 2"></a>Error 2</h4><p>bbox_targets[ind,start:end]=bbox_target_data[ind,1:]<br>TypeError: slice indices must be integers or None or have an<em>index</em> method<br>说明当前numpy版本过高<br>numpy-1.12 does not support floats as indexes ！！！ </p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">Download numpy 1.11.2 </div><div class="line"><span class="built_in">cd</span> numpy-1.11.2</div><div class="line">python setup.py build</div><div class="line">sudo python setup.py install</div></pre></td></tr></table></figure>
-<h4 id="Error-3"><a href="#Error-3" class="headerlink" title="Error 3"></a>Error 3</h4><p>KeyError: ‘max_overlaps’</p>
-<font color="#FF000000">在/data/cache文件夹中删除.pkl文件</font>
-
-<h4 id="Others"><a href="#Others" class="headerlink" title="Others"></a>Others</h4><p>1&gt;cudnn错误，暂时支持4.0版本的cudnn<br>2&gt;so一类错误，添加LD_LIBRARY_PATH，另外在pva/lib/中重新make，有时需要手动删除.so文件再make</p>
+        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.<br><a id="more"></a></p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
 
       
     </div>
@@ -446,12 +399,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/DeepLearning/" rel="tag"># DeepLearning</a>
-          
-        </div>
-      
 
       
         
@@ -461,8 +408,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/21/DL:SSD笔记/" rel="next" title="DL:SSD笔记">
-                <i class="fa fa-chevron-left"></i> DL:SSD笔记
+              <a href="/2017/04/18/Hexo,快速搭建简约博客/" rel="next" title="Hexo,快速搭建简约博客">
+                <i class="fa fa-chevron-left"></i> Hexo,快速搭建简约博客
               </a>
             
           </div>
@@ -470,10 +417,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/04/19/TX1-2configuration/" rel="prev" title="Jetson TX1/TX2配置教程">
-                Jetson TX1/TX2配置教程 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -499,7 +442,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+      <div id="gitalk-container"></div>    
     
   </div>
 
@@ -547,7 +490,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -624,7 +567,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#训练方法"><span class="nav-number">1.</span> <span class="nav-text">训练方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改配置文件"><span class="nav-number">2.</span> <span class="nav-text">修改配置文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改程序"><span class="nav-number">3.</span> <span class="nav-text">修改程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#典型Error及解决方法"><span class="nav-number">4.</span> <span class="nav-text">典型Error及解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-1"><span class="nav-number">4.1.</span> <span class="nav-text">Error 1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-2"><span class="nav-number">4.2.</span> <span class="nav-text">Error 2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Error-3"><span class="nav-number">4.3.</span> <span class="nav-text">Error 3</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Others"><span class="nav-number">4.4.</span> <span class="nav-text">Others</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -648,7 +591,7 @@
 <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -789,21 +732,26 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '71694fc9d12248797ca9',
+          clientSecret: '049430e1ee3ea9c254d976b7de593cdf1595ea30',
+          repo: 'Chaowei0820.github.io',
+          owner: 'chaowei0820@buaa.edu.cn',
+          admin: ['chaowei0820@buaa.edu.cn'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   

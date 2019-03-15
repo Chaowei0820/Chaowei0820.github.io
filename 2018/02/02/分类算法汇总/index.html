@@ -128,7 +128,7 @@
 <meta property="og:image" content="http://yoursite.com/img/ML/34.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/35.png">
 <meta property="og:image" content="http://yoursite.com/img/ML/36.png">
-<meta property="og:updated_time" content="2018-07-21T07:41:43.582Z">
+<meta property="og:updated_time" content="2019-01-07T11:54:19.816Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="分类算法汇总(一)">
 <meta name="twitter:description" content="k-近邻,决策树,贝叶斯分类,Logistic,SVM">
@@ -529,8 +529,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/02/15/分类算法汇总2/" rel="next" title="分类算法汇总(二)">
-                <i class="fa fa-chevron-left"></i> 分类算法汇总(二)
+              <a href="/2018/02/15/线性分类方法总结/" rel="next" title="线性分类方法总结">
+                <i class="fa fa-chevron-left"></i> 线性分类方法总结
               </a>
             
           </div>
@@ -567,7 +567,7 @@
           
   <div class="comments" id="comments">
     
-      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDU1Ny83MTEy"></div>
+      <div id="gitalk-container"></div>    
     
   </div>
 
@@ -615,7 +615,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-count">35</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -716,7 +716,7 @@
 <div class="copyright" >
   
   &copy;  2017 - 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
@@ -857,21 +857,26 @@
 
 
   
-    <script type="text/javascript">
-      (function(d, s) {
-        var j, e = d.getElementsByTagName(s)[0];
-        if (typeof LivereTower === 'function') { return; }
-        j = d.createElement(s);
-        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
-        j.async = true;
-        e.parentNode.insertBefore(j, e);
-      })(document, 'script');
-    </script>
-  
 
 
 
 
+
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+   <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '71694fc9d12248797ca9',
+          clientSecret: '049430e1ee3ea9c254d976b7de593cdf1595ea30',
+          repo: 'Chaowei0820.github.io',
+          owner: 'chaowei0820@buaa.edu.cn',
+          admin: ['chaowei0820@buaa.edu.cn'],
+          id: location.pathname,
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
   
